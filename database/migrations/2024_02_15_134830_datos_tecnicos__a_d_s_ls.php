@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datos_tecnicos_adsl', function (Blueprint $table) {
+        Schema::create('datos_tecnicos_adsls', function (Blueprint $table) {
             $table->bigInteger('numero');
             $table->primary('numero');
             $table->unsignedBigInteger('zonas_id');

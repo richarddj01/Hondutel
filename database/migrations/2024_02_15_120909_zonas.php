@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('zonas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descripcion');
-            $table->string('nombre_corto',3);
+            $table->string('nombre_corto',5);
             $table->timestamps();
         });
     }
