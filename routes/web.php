@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/consulta_datos_telefono', [DatosTecnicosTelefonoController::class, 'index'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono');
-Route::get('/consulta_datos_telefono/{id}', [DatosTecnicosTelefonoController::class, 'index'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono');
+//Route::get('/consulta_datos_telefono/{id}', [DatosTecnicosTelefonoController::class, 'index'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
