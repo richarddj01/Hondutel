@@ -14,7 +14,8 @@ class DatosTecnicosTelefonoController extends Controller
     {
         $datos = datos_tecnicos_telefono::all();
         //return view('consulta_datos_telefono', compact('datos'));
-        return view('consulta_datos_telefono', ['datos' =>$datos]);
+        //return view('consulta_datos_telefono', ['datos' =>$datos]);
+        return view('consulta_datos_telefono',['datos'=>0]);
     }
 
     /**
@@ -39,7 +40,8 @@ class DatosTecnicosTelefonoController extends Controller
     //public function show(datos_tecnicos_telefono $datos_tecnicos_telefono)
     public function show(string $id)
     {
-        
+        $id = 26621234;
+        return view('consulta_datos_telefono', ['datos' => datos_tecnicos_telefono::findOrFail($id)]);
     }
 
     /**
