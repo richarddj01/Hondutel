@@ -10,12 +10,18 @@ class DatosTecnicosTelefonoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos = datos_tecnicos_telefono::all();
-        //return view('consulta_datos_telefono', compact('datos'));
+        $request->validate([
+            'numero' => 'numeric',
+            // Agrega más reglas de validación según sea necesario para otros campos
+        ]);
+        $numero_telefono_formulario = $request->get('numero');
+        $datos_resultado_busqueda = datos_tecnicos_telefono::find($numero_telefono_formulario);
+
+        return view('consulta_datos_telefono', compact('datos_resultado_busqueda'));
         //return view('consulta_datos_telefono', ['datos' =>$datos]);
-        return view('consulta_datos_telefono',['datos'=>0]);
+        //return view('consulta_datos_telefono',['datos'=>0]);
     }
 
     /**
@@ -38,10 +44,12 @@ class DatosTecnicosTelefonoController extends Controller
      * Display the specified resource.
      */
     //public function show(datos_tecnicos_telefono $datos_tecnicos_telefono)
-    public function show(string $id)
+    public function show(Request $request)
     {
-        $id = 26621234;
-        return view('consulta_datos_telefono', ['datos' => datos_tecnicos_telefono::findOrFail($id)]);
+        //$datos = datos_tecnicos_telefono::findOrFail($id);
+
+        //return view('consulta_datos_telefono', ['datos' => $datos]);
+
     }
 
     /**
