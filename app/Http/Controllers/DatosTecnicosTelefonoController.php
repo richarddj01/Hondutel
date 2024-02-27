@@ -13,13 +13,20 @@ class DatosTecnicosTelefonoController extends Controller
     public function index(Request $request)
     {
         $request->validate([
-            'numero' => 'numeric',
+            'numero' => 'numeric|gt:0',
             // Agrega más reglas de validación según sea necesario para otros campos
         ]);
         $numero_telefono_formulario = $request->get('numero');
+
         $datos_resultado_busqueda = datos_tecnicos_telefono::find($numero_telefono_formulario);
 
-        return view('consulta_datos_telefono', compact('datos_resultado_busqueda'));
+        if(isset($datos_resultado_busqueda)){
+            return view('consulta_datos_telefono', compact('datos_resultado_busqueda'));
+        }
+        else{
+            return view('consulta_datos_telefono');
+        }
+
         //return view('consulta_datos_telefono', ['datos' =>$datos]);
         //return view('consulta_datos_telefono',['datos'=>0]);
     }
