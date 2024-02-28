@@ -18,4 +18,13 @@ class Persona extends Model
         'correo',
         'direccion'
     ];
+    public function abonados() //Numeros de telefonos asignados en la tabla abonados
+    {
+        return $this->hasMany(abonado::class, 'identidad', 'identidad');
+    }
+
+    public function tipos_servicios() //Numeros de telefonos asignados en la tabla abonados
+    {
+        return $this->belongsTo(tipo_servicio::class, 'tipo_servicios_id','id');
+    }
 }

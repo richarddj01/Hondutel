@@ -9,4 +9,8 @@ class datos_tecnicos_telefono extends Model
 {
     //use HasFactory;
     protected $primaryKey = 'numero';
+    public function zona()
+    {
+        return $this->belongsTo(zona::class, 'zonas_id');
+    }
 }

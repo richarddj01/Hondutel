@@ -67,5 +67,4 @@ Route::get('/personas/{persona}/edit', [PersonaController::class, 'edit'])->midd
 Route::put('/personas/{persona}', [PersonaController::class, 'update'])->middleware(['auth', 'verified'])->name('personas.update');
 Route::delete('/personas/{persona}', [PersonaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('personas.destroy');
 
-
 require __DIR__.'/auth.php';

@@ -20,7 +20,8 @@ class ZonaController extends Controller
         }
         
 
-        $zonas = $query->get();
+        //$zonas = $query->get();
+        $zonas = $query->paginate(10);
 
         return view('zonas.index', compact('zonas'));
     }

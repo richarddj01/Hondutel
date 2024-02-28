@@ -20,14 +20,17 @@
     <div class="container">
         <div class="text-center my-3 card shadow">
             <div class="px-3 py-5 rounded">
-                <h4>Resultado de la búsqueda:</h1>
-                <div class="row mt-5">
-                    <div class="col-4"><strong><p>Número: </p></strong></div>
+                <h4>Resultado de la búsqueda:</h4>
+                <div class="row my-5">
+                    <div class="col-12"><h5><strong>Número: </strong>{{ $datos_resultado_busqueda->numero }}</h5></div>
+                </div>
+                <div class="row">
+                    <div class="col-4"><strong><p>Zona: </p></strong></div>
                     <div class="col-4"><strong><p>Armario: </p></strong></div>
                     <div class="col-4"><strong><p>Par Primario: </p></strong></div>
                 </div>
                 <div class="row">
-                    <div class="col-4">{{ $datos_resultado_busqueda->numero }}</div>
+                    <div class="col-4">{{ $datos_resultado_busqueda->zona->nombre_corto.' - '.$datos_resultado_busqueda->zona->descripcion }}</div>
                     <div class="col-4">{{ $datos_resultado_busqueda->armario }}</div>
                     <div class="col-4">{{ $datos_resultado_busqueda->par_primario }}</div>
                 </div>
@@ -40,7 +43,7 @@
                     <div class="col-4">{{ $datos_resultado_busqueda->par_secundario }}</div>
                     <div class="col-4">{{ $datos_resultado_busqueda->caja_terminal }}</div>
                     <div class="col-4">{{ $datos_resultado_busqueda->borne }}</div>
-                </div>          
+                </div>        
             </div>
         </div>
     @elseif(isset($mensaje))

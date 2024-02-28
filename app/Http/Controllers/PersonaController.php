@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
+use App\Models\tipo_servicio;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -15,20 +16,28 @@ class PersonaController extends Controller
     public function index(Request $request)
     {
         $query = Persona::query();
-
+    
         if ($request->has('search')) {
-            $search = $request->get('search');
-            $query->where('identidad', 'like', '%'.$search.'%')
-                ->orWhere('primer_nombre', 'like', '%'.$search.'%')
-                ->orWhere('segundo_nombre', 'like', '%'.$search.'%')
-                ->orWhere('primer_apellido', 'like', '%'.$search.'%')
-                ->orWhere('segundo_apellido', 'like', '%'.$search.'%');
+            // Divide la cadena de búsqueda en términos individuales
+            $terminosBusqueda = explode(' ', $request->get('search'));
+    
+            $query->where(function ($query) use ($terminosBusqueda) {
+                foreach ($terminosBusqueda as $term) {
+                    $query->where(function ($query) use ($term) {
+                        $query->where('primer_nombre', 'like', '%' . $term . '%')
+                              ->orWhere('segundo_nombre', 'like', '%' . $term . '%')
+                              ->orWhere('primer_apellido', 'like', '%' . $term . '%')
+                              ->orWhere('segundo_apellido', 'like', '%' . $term . '%');
+                    });
+                }
+            });
         }
-
-        $personas = $query->get();
-
+        
+        $personas = $query->paginate(10);
+    
         return view('personas.index', compact('personas'));
     }
+    
 
 
     /**
@@ -62,7 +71,10 @@ class PersonaController extends Controller
      */
     public function show(Persona $persona)
     {
-        return view('personas.show', compact('persona'));
+        //Consulta de numeros asignados en la tabla abonados (usando la relación creada en el modelo persona)
+        $persona = persona::with('abonados')->find($persona->identidad);
+        $servicios = tipo_servicio::all();
+        return view('personas.show', compact('persona','servicios'));
     }
 
     /**

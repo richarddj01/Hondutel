@@ -41,6 +41,43 @@
                     <br>
                     <strong>Direccion:</strong>
                     {{ $persona->direccion ?? '----'}}
+                    <br>
+                    <br>
+                    <strong>Numeros Asignados:</strong>
+                    <table class="table table-bordered mt-3">
+                        <tr>
+                            <th>#</th>
+                            <th>Número</th>
+                            <th>Servicio</th>
+                            <th>Acción</th>
+                        </tr>
+                        @php
+                            $i = 1;
+                        @endphp
+                        @if(count($persona->abonados) > 0)
+                        @foreach ($persona->abonados as $abonado)
+                        <tr>
+                            <td>{{$i++}}</td>
+                            <td>{{ $abonado->numero ?? '----'}}</td>
+                            @foreach ($servicios as $tipo)
+                                @if($tipo->id == $abonado->tipo_servicios_id)
+                                <td>{{$tipo->descripcion}}</td>
+                                @endif
+                            
+                            @endforeach
+                            <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>
+                            
+                        </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td colspan='4' class='text-center'>
+                                <div class='alert alert-warning'>No tiene numeros asignados</div>
+                            </td>
+                        </tr>
+                        @endif
+                    </table>
+                    
                 </div>
             </div>
         </div>

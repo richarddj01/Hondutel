@@ -18,7 +18,7 @@ class DatosTecnicosTelefonoController extends Controller
         ]);
         $numero_telefono_formulario = $request->get('numero');
 
-        $datos_resultado_busqueda = datos_tecnicos_telefono::find($numero_telefono_formulario);
+        $datos_resultado_busqueda = datos_tecnicos_telefono::with('zona')->find($numero_telefono_formulario);
 
         if(isset($datos_resultado_busqueda)){
             return view('consulta_datos_telefono', compact('datos_resultado_busqueda'));
