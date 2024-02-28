@@ -12,7 +12,7 @@
     <div class="container mt-3">
         <form method="" class="p-4 bg-white shadow-sm rounded">
             <div class="d-flex flex-row align-items-center">
-                <input class="form-control me-2" id="numero" type="number" name="numero" value="{{ $datos_resultado_busqueda->numero ?? '' }}" placeholder="Ingrese un número">
+                <input class="form-control me-2" id="numero" type="tel" name="numero" value="{{ $datos_resultado_busqueda->numero ?? '' }}" placeholder="Ingrese un número">
                 <button class="btn btn-success " type="submit">Buscar</button>
             </div>
         </form>
@@ -53,7 +53,7 @@
         <div class="container mt-5">
             <form method="" class="p-4 bg-white shadow-sm rounded mt-4">
                 <div class="d-flex flex-row align-items-center">
-                    <input class="form-control me-2" id="numero" type="number" name="numero" value="" placeholder="Ingrese un número">
+                    <input class="form-control me-2" id="numero" type="tel" name="numero" value="" placeholder="Ingrese un número">
                     <button class="btn btn-success " type="submit">
                         Buscar
                     </button>
@@ -64,7 +64,7 @@
         <div class="container mt-5">
             <form method="" class="p-4 bg-white shadow-sm rounded mt-4">
                 <div class="d-flex flex-row align-items-center">
-                    <input class="form-control me-2" id="numero" type="number" name="numero" value="" placeholder="Ingrese un número">
+                    <input class="form-control me-2" id="numero" type="tel" name="numero" value="" placeholder="Ingrese un número">
                     <button class="btn btn-success " type="submit">
                         Buscar
                     </button>

@@ -38,7 +38,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Telefono:</strong>
-                        <input type="text" name="telefono" value="{{ $persona->telefono }}" class="form-control" placeholder="">
+                        <input type="tel" name="telefono" value="{{ $persona->telefono }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Celular:</strong>
-                        <input type="text" name="celular" value="{{ $persona->celular }}" class="form-control" placeholder="">
+                        <input type="tel" name="celular" value="{{ $persona->celular }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Correo:</strong>
-                        <input type="text" name="correo" value="{{ $persona->correo }}" class="form-control" placeholder="">
+                        <input type="email" name="correo" value="{{ $persona->correo }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>

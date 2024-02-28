@@ -23,14 +23,13 @@
             <div class="col">
                 <form action="{{ route('personas.index') }}" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar..." name="search">
+                        <input type="search" class="form-control" placeholder="Buscar..." name="search">
                         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                     </div>
                 </form>
             </div>
         </div>
-
-
+        
         <table class="table table-bordered">
             <tr>
                 <th>No</th>

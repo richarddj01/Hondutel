@@ -44,6 +44,7 @@
                     <br>
                     <br>
                     <strong>Numeros Asignados:</strong>
+                    @if(count($persona->abonados) > 0)
                     <table class="table table-bordered mt-3">
                         <tr>
                             <th>#</th>
@@ -54,7 +55,6 @@
                         @php
                             $i = 1;
                         @endphp
-                        @if(count($persona->abonados) > 0)
                         @foreach ($persona->abonados as $abonado)
                         <tr>
                             <td>{{$i++}}</td>
@@ -63,21 +63,16 @@
                                 @if($tipo->id == $abonado->tipo_servicios_id)
                                 <td>{{$tipo->descripcion}}</td>
                                 @endif
-                            
                             @endforeach
-                            <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>
-                            
+                            <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>                          
                         </tr>
-                        @endforeach
-                        @else
-                        <tr>
-                            <td colspan='4' class='text-center'>
-                                <div class='alert alert-warning'>No tiene numeros asignados</div>
-                            </td>
-                        </tr>
-                        @endif
+                        @endforeach  
                     </table>
-                    
+                    @else
+                        <div class="text-center mt-3">
+                            <div class='alert alert-warning'>No tiene numeros asignados</div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

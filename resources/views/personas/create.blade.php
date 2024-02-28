@@ -1,32 +1,95 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Agregar Persona') }}
-        </h2>
+        <div class="py-4 align-items-center text-center">
+            <h2>Agregar Persona</h2>
+        </div>  
     </x-slot>
 
-    <div class="py-12">
+    <div class="container mt-3 shadow-sm">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <form action="{{ route('personas.store') }}" method="POST">
+            <div class="bg-white overflow-hidden sm:rounded-lg">
+                <div class="p-3 bg-white border-b border-gray-200">
+                    <form action="{{ route('personas.store') }}" class="mt-3" method="POST">
                         @csrf
-                        <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="identidad" class="block text-sm font-medium text-gray-700">Identidad</label>
-                                <input type="text" name="identidad" id="identidad" autocomplete="identidad" class="mt-1 p-2 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" required>
+                        <!--fila-->
+                        <div class="row">
+                            <div class="form-group">
+                                <strong>Identidad:</strong>
+                                <input type="number" name="identidad" class="form-control" placeholder="" tabindex="1">
                             </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="primer_nombre" class="block text-sm font-medium text-gray-700">Primer Nombre</label>
-                                <input type="text" name="primer_nombre" id="primer_nombre" autocomplete="primer_nombre" class="mt-1 p-2 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" required>
-                            </div>
-
-                            <!-- Agrega los campos restantes aquí -->
                         </div>
-
-                        <div class="flex items-center justify-end mt-4">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Guardar</button>
+                        <!--fila-->
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Primer Nombre:</strong>
+                                    <input type="text" name="primer_nombre" class="form-control" placeholder="" tabindex="2">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Telefono:</strong>
+                                    <input type="tel" name="telefono" class="form-control" placeholder="" tabindex="6">
+                                </div>
+                            </div>
+                        </div>
+                        <!--fila-->
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Segundo Nombre:</strong>
+                                    <input type="text" name="segundo_nombre" class="form-control" placeholder="" tabindex="3">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Celular:</strong>
+                                    <input type="tel" name="celular" class="form-control" placeholder="" tabindex="7">
+                                </div>
+                            </div>
+                        </div>
+                        <!--fila-->
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Primer Apellido:</strong>
+                                    <input type="text" name="primer_apellido" class="form-control" placeholder="" tabindex="4">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Correo:</strong>
+                                    <input type="email" name="correo" class="form-control" placeholder="" tabindex="8">
+                                </div>
+                            </div>
+                        </div>
+                        <!--fila-->
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Segundo Apellido:</strong>
+                                    <input type="text" name="segundo_apellido" class="form-control" placeholder="" tabindex="5">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <strong>Dirección:</strong>
+                                    <input type="text" name="direccion" class="form-control" placeholder="" tabindex="9">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 mt-3 align-items-center">
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-6">
+                                    <a class="btn btn-primary" href="{{ route('personas.index') }}"> Volver</a>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success" tabindex="10">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -58,7 +58,6 @@ class PersonaController extends Controller
             'identidad' => 'required|unique:personas',
             'primer_nombre' => 'required',
             'primer_apellido' => 'required',
-            // Agrega aquí otras reglas de validación según sea necesario
         ]);
 
         Persona::create($request->all());
