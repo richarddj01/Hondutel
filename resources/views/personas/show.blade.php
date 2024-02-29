@@ -66,7 +66,7 @@
                             @endforeach
                             <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>                          
                         </tr>
-                        @endforeach  
+                        @endforeach
                     </table>
                     @else
                         <div class="text-center mt-3">

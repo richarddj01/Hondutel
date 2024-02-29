@@ -21,6 +21,9 @@ class DatosTecnicosTelefonoController extends Controller
         $datos_resultado_busqueda = datos_tecnicos_telefono::with('zona')->find($numero_telefono_formulario);
 
         if(isset($datos_resultado_busqueda)){
+            if($datos_resultado_busqueda == null){
+                $datos_resultado_busqueda = 'no_encontrado';
+            }
             return view('consulta_datos_telefono', compact('datos_resultado_busqueda'));
         }
         else{

@@ -23,7 +23,7 @@ class Persona extends Model
         return $this->hasMany(abonado::class, 'identidad', 'identidad');
     }
 
-    public function tipos_servicios() //Numeros de telefonos asignados en la tabla abonados
+    public function tipos_servicios()
     {
         return $this->belongsTo(tipo_servicio::class, 'tipo_servicios_id','id');
     }

@@ -9,17 +9,18 @@
     </x-slot>
 
     @if(isset($datos_resultado_busqueda->numero))
-    <div class="container mt-3">
+        @if($datos_resultado_busqueda != 'no_encontrado')
+        <div class="container mt-3">
         <form method="" class="p-4 bg-white shadow-sm rounded">
             <div class="d-flex flex-row align-items-center">
                 <input class="form-control me-2" id="numero" type="tel" name="numero" value="{{ $datos_resultado_busqueda->numero ?? '' }}" placeholder="Ingrese un número">
                 <button class="btn btn-success " type="submit">Buscar</button>
             </div>
         </form>
-    </div>
-    <div class="container">
-        <div class="text-center my-3 card shadow">
-            <div class="px-3 py-5 rounded">
+        </div>
+        <div class="container">
+            <div class="text-center my-3 card shadow">
+                <div class="px-3 py-5 rounded">
                 <h4>Resultado de la búsqueda:</h4>
                 <div class="row my-5">
                     <div class="col-12"><h5><strong>Número: </strong>{{ $datos_resultado_busqueda->numero }}</h5></div>
@@ -46,6 +47,11 @@
                 </div>        
             </div>
         </div>
+        @else
+
+        error
+
+        @endif
     @elseif(isset($mensaje))
         <div class="container mt-5">
             <div class="alert alert-info">{{ $mensaje }}</div>
