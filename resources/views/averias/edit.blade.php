@@ -1,20 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="py-4 align-items-center text-center">
-            <h2>Agregar Averia</h2>
+            <h2>Editar Avería</h2>
         </div>  
     </x-slot>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-4">
-                    <div class="card-header">Crear Avería</div>
+                    <div class="card-header">Editar Avería</div>
+
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col">
-                                <form action="{{ route('averias.create') }}" method="GET">
+                                <form action="{{ route('averias.edit', $averia->numero) }}" method="GET">
                                     <div class="input-group">
-                                        <input type="tel" class="form-control" placeholder="Buscar numero..." name="search">
+                                        <input type="tel" class="form-control" placeholder="Buscar..." name="search">
                                         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                                     </div>
                                 </form>
@@ -29,7 +30,6 @@
                             <div class="card">
                                 <div class="card-header">Información del Cliente</div>
                                 <div class="card-body">
-                                <div class="--bs-success-text-emphasis"></div>
                                     <strong>Identidad:</strong>
                                     {{ $abonado->identidad }}
                                     <br>
@@ -53,18 +53,19 @@
                                     <br>
                                 </div>
                             </div>
-                            <form action="{{ route('averias.store') }}" method="POST">
-                            @csrf
-                            <div class="card my-3">
+                            <form action="{{ route('averias.update', $averia->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <input type="hidden" name="numero" value='{{$abonado->numero}}'>
-                                <div class="card-header">Problema presentado</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                    <textarea type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control"></textarea>
+                                <div class="card my-3">
+                                    <div class="card-header">Problema presentado</div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <textarea type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control">{{ $averia->problema_presentado }}</textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
                             @else
                             <div class="alert alert-warning" role="alert">
@@ -78,4 +79,3 @@
         </div>
     </div>
 </x-app-layout>
-

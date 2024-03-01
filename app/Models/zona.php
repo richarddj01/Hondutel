@@ -13,4 +13,8 @@ class zona extends Model
         'nombre_corto',
         'oculto',
     ];
+    public function datos_tecnicos_telefono()
+    {
+        return $this->hasMany(datos_tecnicos_telefono::class, 'zonas_id', 'zonas_id');
+    }
 }

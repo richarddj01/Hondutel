@@ -45,6 +45,17 @@
                 </div>
             </div>
         </div>
+        <div class="row ">
+            <div class="col-6">
+                <div class="card text-bg-warning mb-3">
+                    <div class="card-header"><h5>Averías</h5></div>
+                        <div class="card-body">
+                            <a href="{{ route('averias.index') }}" class="btn btn-light">Pendientes</a>
+                            <a href="{{ route('averias.create') }}" class="btn btn-light">Registrar</a>
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 <!--

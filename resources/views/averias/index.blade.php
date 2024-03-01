@@ -1,36 +1,40 @@
 <x-app-layout>
 <x-slot name="header">
     <div class="container">
-        <div class="card">
-            <div class="card-header">Lista de Averías</div>
-
+        <div class="card mt-3">
+            <div class="card-header"><strong>Lista de Averías Pendientes</strong></div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Zona</th>
-                            <th>Número de Abonado</th>
-                            <!-- Agregar más columnas según sea necesario -->
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($averias as $averia)
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ $averia->id }}</td>
-                                <td>{{ $averia->zona->nombre }}</td>
-                                <td>{{ $averia->numero }}</td>
-                                <!-- Agregar más columnas según sea necesario -->
-                                <td>
-                                    <a href="{{ route('averias.show', $averia->id) }}" class="btn btn-primary">Ver</a>
-                                    <a href="{{ route('averias.edit', $averia->id) }}" class="btn btn-warning">Editar</a>
-                                    <!-- Agregar botón de eliminar -->
-                                </td>
+                                <th>#</th>
+                                <th>Fecha de Reporte</th>
+                                <th>Hora</th>
+                                <th>Número de Abonado</th>
+                                <th>Acciones</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i = 1
+                            @endphp
+                            @foreach ($averias as $averia)
+                                <tr>
+                                    <td>{{ $i++}}</td>
+                                    <td>{{ $averia->created_at->format('d/m/Y') }}</td>
+                                    <td>{{ $averia->created_at->format('h:m A') }}</td>
+                                    <td>{{ $averia->numero}}</td>
+                                    <td>
+                                        <a href="{{ route('averias.show', $averia->id) }}" class="btn btn-primary">Ver</a>
+                                        <a href="{{ route('averias.edit', $averia->id) }}" class="btn btn-warning">Editar</a>
+                                        <a href="{{ route('averias.execute', $averia->id) }}" class="btn btn-success">Ejecutar</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

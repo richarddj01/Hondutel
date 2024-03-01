@@ -13,4 +13,9 @@ class datos_tecnicos_telefono extends Model
     {
         return $this->belongsTo(zona::class, 'zonas_id');
     }
+    public function abonado()
+    {
+        return $this->belongsTo(Abonado::class, 'numero', 'numero');
+    }
+
 }

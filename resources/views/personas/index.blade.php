@@ -35,7 +35,7 @@
                 <th>No</th>
                 <th>Identidad</th>
                 <th>Nombre Completo</th>
-                <th width="280px">Acción</th>
+                <th width="230px">Acción</th>
             </tr>
             @php
                 $i = 0;

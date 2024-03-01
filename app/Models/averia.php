@@ -15,8 +15,8 @@ class Averia extends Model
         'numero',
         'problema_presentado',
         'hora_inicio',
-        'ubicacion_latitud',
-        'ubicacion_longitud',
+        'ubicacion_inicio',
+        'ubicacion_final',
         'hora_finalizado',
         'solucionado',
         'observacion',
@@ -35,5 +35,9 @@ class Averia extends Model
     public function persona()
     {
         return $this->belongsTo(Persona::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
