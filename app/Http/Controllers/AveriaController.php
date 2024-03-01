@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Averia;
 use App\Models\zona;
 use App\Models\abonado;
+use App\Models\datos_tecnicos_telefono;
 use Illuminate\Http\Request;
 
 class AveriaController extends Controller
@@ -16,24 +17,32 @@ class AveriaController extends Controller
     }
 
     public function create(Request $request)
-    {
-        $zonas = Zona::where('oculto', false)->orderBy('nombre_corto')->get();
-          
+    {     
         if ($request->has('search')) {
             $terminoBusqueda = $request->get('search');
             
             $abonado = Abonado::where('numero', $terminoBusqueda)
             ->join('personas', 'abonados.identidad', '=', 'personas.identidad')
-            ->selectRaw("CONCAT(personas.primer_nombre, ' ', personas.segundo_nombre, ' ', personas.primer_apellido) AS nombre_completo")
-            ->select('personas.identidad','telefono', 'celular', 'correo', 'direccion')
+            ->selectRaw("CONCAT(personas.primer_nombre, ' ', COALESCE(personas.segundo_nombre,''), ' ', personas.primer_apellido, ' ', COALESCE(personas.segundo_apellido,'')) AS nombre_completo, personas.identidad, telefono, celular, correo, direccion")
             ->first();
+        
+            //buscar la zona a la que pertenece el numero
+            $zonas  = datos_tecnicos_telefono::with('zona')
+            ->where('numero', $terminoBusqueda)
+            ->select('zonas_id')
+            ->first();
+
+            if(isset($zonas)&&isset($terminoBusqueda)){
+                $abonado->zonas = $zonas;
+                $abonado->numero = $terminoBusqueda;
+            }
             if($abonado == null){
                 $abonado = 'no_encontrado';
             }
         }else{
             $abonado = null;
         }
-        return view('averias.create', compact('zonas', 'abonado'));
+        return view('averias.create', compact('abonado'));
     }
 
     public function store(Request $request)
