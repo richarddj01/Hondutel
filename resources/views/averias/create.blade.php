@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="py-4 align-items-center text-center">
             <h2>Agregar Averia</h2>
-        </div>  
+        </div>
     </x-slot>
     <div class="container">
         <div class="row justify-content-center">
@@ -14,7 +14,11 @@
                             <div class="col">
                                 <form action="{{ route('averias.create') }}" method="GET">
                                     <div class="input-group">
+<<<<<<< HEAD
                                         <input type="tel" class="form-control" placeholder="Buscar numero..." name="search">
+=======
+                                        <input type="tel" class="form-control" placeholder="Buscar..." name="search">
+>>>>>>> origin/main
                                         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                                     </div>
                                 </form>
@@ -56,7 +60,10 @@
                             <form action="{{ route('averias.store') }}" method="POST">
                             @csrf
                             <div class="card my-3">
+<<<<<<< HEAD
                                 <input type="hidden" name="numero" value='{{$abonado->numero}}'>
+=======
+>>>>>>> origin/main
                                 <div class="card-header">Problema presentado</div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -64,8 +71,14 @@
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
+=======
+                            <!-- Resto de los campos -->
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
+>>>>>>> origin/main
                             @else
                             <div class="alert alert-warning" role="alert">
                                 No se encontró ningún abonado con ese número.
@@ -78,4 +91,3 @@
         </div>
     </div>
 </x-app-layout>
-
