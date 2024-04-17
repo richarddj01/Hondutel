@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('averias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->BigInteger('numero')->unsigned();
+            $table->BigInteger('numero');
+                $table->foreign('numero')->references('numero')->on('datos_tecnicos');
+            $table->unsignedInteger('tipo_averia_id');
+                $table->foreign('tipo_averia_id')->references('id')->on('tipo_averia');
             $table->timestamps();
-            $table->string('problema_presentado')->nullable();
+            $table->string('detalle_problema')->nullable();
 
             //usuario que crea el registro
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+                $table->foreign('user_id')->references('id')->on('users');
 
             //usuario (tecnico) que se hace cargo de la avería
             $table->unsignedBigInteger('user_id_tecnico')->nullable();
-            $table->foreign('user_id_tecnico')->references('id')->on('users');
+                $table->foreign('user_id_tecnico')->references('id')->on('users');
 
             $table->boolean('iniciado')->nullable();
             $table->time('hora_inicio')->nullable();

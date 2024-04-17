@@ -14,14 +14,12 @@ return new class extends Migration
     {
         Schema::create('abonados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('identidad');
+            $table->unsignedBigInteger('id_cliente');
+                $table->foreign('id_cliente')->references('id')->on('clientes');
             $table->bigInteger('numero');
-
-            $table->unsignedBigInteger('tipo_servicios_id');
-            $table->foreign('tipo_servicios_id')->references('id')->on('tipo_servicios');
-
+                $table->foreign('numero')->references('numero')->on('datos_tecnicos');
             $table->timestamps();
-            $table->index(['identidad', 'numero'])->unique();
+            $table->softDeletes();
         });
     }
 

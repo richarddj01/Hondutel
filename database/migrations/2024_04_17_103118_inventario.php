@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('zonas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('descripcion');
-            $table->string('nombre_corto',5);
-            $table->boolean('oculto')->default(false);
+        Schema::create('inventario', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('descripcion',100);
+            $table->float('cantidad');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('zonas');
+        Schema::dropIfExists('inventario');
     }
 };

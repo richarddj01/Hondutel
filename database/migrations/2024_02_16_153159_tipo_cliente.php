@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('zonas', function (Blueprint $table) {
-            $table->boolean('oculto')->default(false);
+        Schema::create('tipo_cliente', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('descripcion',50);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -21,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
+        Schema::dropIfExists('tipo_cliente');
     }
 };
