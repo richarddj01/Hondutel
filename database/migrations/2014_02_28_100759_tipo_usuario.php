@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('averia-inventario', function (Blueprint $table) {
+        Schema::create('tipo_usuarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('id_averia');
-            $table->foreign('id_averia')->references('id')->on('averias');
-            $table->unsignedInteger('id_inventario');
-            $table->foreign('id_inventario')->references('id')->on(('inventario'));
-            $table->float('cantidad');
+            $table->string('descripcion',50);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('averia-inventario');
+        Schema::dropIfExists('tipo_averias');
     }
 };

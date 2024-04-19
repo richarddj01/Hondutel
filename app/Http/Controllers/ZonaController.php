@@ -18,7 +18,6 @@ class ZonaController extends Controller
                       ->orWhere('nombre_corto', 'like', '%'.$search.'%');
             })->where('oculto', false);
         }
-        
 
         //$zonas = $query->get();
         $zonas = $query->paginate(10);

@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_cliente', function (Blueprint $table) {
+        Schema::create('averia_inventarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descripcion',50);
+            $table->unsignedBigInteger('averia_id');
+            $table->foreign('averia_id')->references('id')->on('averias');
+            $table->unsignedInteger('inventario_id');
+            $table->foreign('inventario_id')->references('id')->on(('inventarios'));
+            $table->float('cantidad');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_cliente');
+        Schema::dropIfExists('averia-inventarios');
     }
 };

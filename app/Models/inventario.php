@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class zona extends Model
+class inventario extends Model
 {
     use HasFactory;
     protected $fillable = [
         'descripcion',
-        'nombre_corto',
+        'cantidad'
     ];
-    public function datos_tecnicos()
-    {
-        return $this->hasMany(datos_tecnicos::class);
+    public function averia_inventarios():HasMany{
+        return $this->hasMany(averia_inventario::class);
     }
 }

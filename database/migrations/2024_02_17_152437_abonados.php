@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('abonados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_cliente');
-                $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->unsignedBigInteger('cliente_id');
+                $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->bigInteger('numero');
                 $table->foreign('numero')->references('numero')->on('datos_tecnicos');
             $table->timestamps();

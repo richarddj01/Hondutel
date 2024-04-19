@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('abonados-servicios', function (Blueprint $table) {
+        Schema::create('abonados_servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_abonado');
-                $table->foreign('id_abonado')->references('id')->on('abonados');
-            $table->unsignedBigInteger('id_servicio');
-                $table->foreign('id_servicio')->references('id')->on('servicios');
+            $table->unsignedBigInteger('abonado_id');
+                $table->foreign('abonado_id')->references('id')->on('abonados');
+            $table->unsignedBigInteger('servicio_id');
+                $table->foreign('servicio_id')->references('id')->on('servicios');
             $table->timestamps();
             $table->softDeletes();
         });
