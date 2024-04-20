@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datos_tecnicos', function (Blueprint $table) {
+        Schema::create('telefonos', function (Blueprint $table) {
             $table->bigInteger('numero');
             $table->primary('numero');
             $table->integer('numero_de_enlace')->nullable();
-            $table->unsignedBigInteger('zonas_id')->nullable();
-                $table->foreign('zonas_id')->references('id')->on('zonas');
+            $table->unsignedBigInteger('zona_id')->nullable();
+                $table->foreign('zona_id')->references('id')->on('zonas');
             $table->integer('numero_cable')->nullable();;
             $table->integer('armario')->nullable();
             $table->integer('par_primario')->nullable();;
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('datos_tecnicos');
+        Schema::dropIfExists('telefonos');
     }
 };

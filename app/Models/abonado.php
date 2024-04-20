@@ -18,8 +18,8 @@ class abonado extends Model
         return $this->belongsTo(cliente::class);
     }
 
-    public function datos_tecnicos(): HasOne
+    public function telefono(): HasOne
     {
-        return $this->hasOne(datos_tecnicos::class, 'numero','numero');
+        return $this->hasOne(telefono::class, 'numero','numero');
     }
 }

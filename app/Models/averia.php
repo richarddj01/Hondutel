@@ -24,9 +24,9 @@ class Averia extends Model
         'tecnicos_encargados',
     ];
 
-    public function datos_tecnicos()
+    public function telefonos()
     {
-        return $this->belongsTo(datos_tecnicos::class, 'numero', 'numero');
+        return $this->belongsTo(telefono::class, 'numero', 'numero');
     }
     public function tipo_averia(){
         return $this->belongsTo(tipo_averia::class);

@@ -9,7 +9,7 @@ class ZonaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Zona::where('oculto', false);
+        $query = Zona::whereNull('deleted_at');
 
         if ($request->has('search')) {
             $search = $request->get('search');

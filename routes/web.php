@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DatosTecnicosTelefonoController;
+use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\ZonaController;
-use App\Http\Controllers\TipoServicioController;
+use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\AveriaController;
 
@@ -39,7 +40,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //Consultas Datos Técnicos
-Route::get('/consulta_datos_telefono', [DatosTecnicosTelefonoController::class, 'index'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono.index');
+Route::get('/consulta_datos_telefono', [TelefonoController::class, 'index'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono.index');
 
 //CRUD Zonas
 Route::get('/zonas', [ZonaController::class, 'index'])->middleware(['auth', 'verified'])->name('zonas.index');
@@ -52,13 +53,13 @@ Route::put('/zonas/{zona}', [ZonaController::class, 'update'])->middleware(['aut
 Route::delete('/zonas/{zona}/hide', [ZonaController::class, 'hide'])->middleware(['auth', 'verified'])->name('zonas.hide');
 
 //CRUD Servicios
-Route::get('/tipo_servicio', [TipoServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('tipo_servicio.index');
-Route::get('/tipo_servicio/create', [TipoServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('tipo_servicio.create');
-Route::post('/tipo_servicio/store', [TipoServicioController::class, 'store'])->middleware(['auth', 'verified'])->name('tipo_servicio.store');
-Route::get('/tipo_servicio/{tipo_servicio}', [TipoServicioController::class, 'show'])->middleware(['auth', 'verified'])->name('tipo_servicio.show');
-Route::get('/tipo_servicio/{tipo_servicio}/edit', [TipoServicioController::class, 'edit'])->middleware(['auth', 'verified'])->name('tipo_servicio.edit');
-Route::put('/tipo_servicio/{tipo_servicio}', [TipoServicioController::class, 'update'])->middleware(['auth', 'verified'])->name('tipo_servicio.update');
-Route::delete('/tipo_servicio/{tipo_servicio}', [TipoServicioController::class, 'destroy'])->middleware(['auth', 'verified'])->name('tipo_servicio.destroy');
+Route::get('/servicio', [ServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('servicios.index');
+Route::get('/servicio/create', [ServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('servicios.create');
+Route::post('/servicio/store', [ServicioController::class, 'store'])->middleware(['auth', 'verified'])->name('servicios.store');
+Route::get('/servicio/{tipo_servicio}', [ServicioController::class, 'show'])->middleware(['auth', 'verified'])->name('servicios.show');
+Route::get('/servicio/{tipo_servicio}/edit', [ServicioController::class, 'edit'])->middleware(['auth', 'verified'])->name('servicios.edit');
+Route::put('/servicio/{tipo_servicio}', [ServicioController::class, 'update'])->middleware(['auth', 'verified'])->name('servicios.update');
+Route::delete('/servicio/{tipo_servicio}', [ServicioController::class, 'destroy'])->middleware(['auth', 'verified'])->name('servicios.destroy');
 
 //CRUD Personas
 Route::get('/personas', [PersonaController::class, 'index'])->middleware(['auth', 'verified'])->name('personas.index');

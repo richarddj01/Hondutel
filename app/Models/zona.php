@@ -12,8 +12,8 @@ class zona extends Model
         'descripcion',
         'nombre_corto',
     ];
-    public function datos_tecnicos()
+    public function telefonos()
     {
-        return $this->hasMany(datos_tecnicos::class);
+        return $this->hasMany(telefono::class);
     }
 }

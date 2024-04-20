@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('averias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->BigInteger('numero');
-                $table->foreign('numero')->references('numero')->on('datos_tecnicos');
+                $table->foreign('numero')->references('numero')->on('telefonos');
             $table->unsignedInteger('tipo_averia_id');
                 $table->foreign('tipo_averia_id')->references('id')->on('tipo_averias');
             $table->timestamps();

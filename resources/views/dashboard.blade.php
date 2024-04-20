@@ -4,7 +4,7 @@
             Escritorio
         </h2>
     </x-slot>
-    
+
     <div class="cointainer mx-md-5 shadow">
         <div class="row">
             <div class="col-6">
@@ -32,7 +32,7 @@
                 <div class="card text-bg-success mb-3">
                     <div class="card-header"><h5>Servicios</h5></div>
                         <div class="card-body">
-                            <a href="{{ route('tipo_servicio.index') }}" class="btn btn-light">Ingresar</a>
+                            <a href="{{ route('servicios.index') }}" class="btn btn-light">Ingresar</a>
                         </div>
                 </div>
             </div>
