@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('zonas', function (Blueprint $table) {
-            $table->boolean('oculto')->default(false);
+        Schema::create('inventarios', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('descripcion',100);
+            $table->float('cantidad');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -21,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
+        Schema::dropIfExists('inventarios');
     }
 };

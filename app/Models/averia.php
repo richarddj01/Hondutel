@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Averia extends Model
@@ -23,21 +24,18 @@ class Averia extends Model
         'tecnicos_encargados',
     ];
 
-    public function abonado()
+    public function telefonos()
     {
-        return $this->belongsTo(Abonado::class, 'numero', 'numero');
+        return $this->belongsTo(telefono::class, 'numero', 'numero');
     }
-
-    public function zona()
-    {
-        return $this->belongsTo(Zona::class);
-    }
-    public function persona()
-    {
-        return $this->belongsTo(Persona::class);
+    public function tipo_averia(){
+        return $this->belongsTo(tipo_averia::class);
     }
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function averia_inventario():BelongsTo{
+        return $this->belongsTo(averia_inventario::class);
     }
 }

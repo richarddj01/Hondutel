@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_servicios', function (Blueprint $table) {
+        Schema::create('abonados_servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('descripcion');
+            $table->unsignedBigInteger('abonado_id');
+                $table->foreign('abonado_id')->references('id')->on('abonados');
+            $table->unsignedBigInteger('servicio_id');
+                $table->foreign('servicio_id')->references('id')->on('servicios');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_servicios');
+        Schema::dropIfExists('abonados-servicios');
     }
 };

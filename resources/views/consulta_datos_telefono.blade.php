@@ -5,7 +5,7 @@
             <h2>
                 Consulta de datos técnicos
             </h2>
-        </div>       
+        </div>
     </x-slot>
 
     @if(isset($datos_resultado_busqueda->numero))
@@ -31,9 +31,9 @@
                     <div class="col-4"><strong><p>Par Primario: </p></strong></div>
                 </div>
                 <div class="row">
-                    <div class="col-4">{{ $datos_resultado_busqueda->zona->nombre_corto.' - '.$datos_resultado_busqueda->zona->descripcion }}</div>
-                    <div class="col-4">{{ $datos_resultado_busqueda->armario }}</div>
-                    <div class="col-4">{{ $datos_resultado_busqueda->par_primario }}</div>
+                    <div class="col-4">{{ $datos_resultado_busqueda->zona->nombre_corto.' - '.$datos_resultado_busqueda->zona->descripcion ?? 'N/D'}}</div>
+                    <div class="col-4">{{ $datos_resultado_busqueda->armario ?? 'N/D'}}</div>
+                    <div class="col-4">{{ $datos_resultado_busqueda->par_primario ?? 'N/D'}}</div>
                 </div>
                 <div class="row mt-5">
                     <div class="col-4"><strong><p>Par Secundario: </p></strong></div>
@@ -41,10 +41,10 @@
                     <div class="col-4"><strong><p>Borne: </p></strong></div>
                 </div>
                 <div class="row">
-                    <div class="col-4">{{ $datos_resultado_busqueda->par_secundario }}</div>
-                    <div class="col-4">{{ $datos_resultado_busqueda->caja_terminal }}</div>
-                    <div class="col-4">{{ $datos_resultado_busqueda->borne }}</div>
-                </div>        
+                    <div class="col-4">{{ $datos_resultado_busqueda->par_secundario ?? 'N/D'}}</div>
+                    <div class="col-4">{{ $datos_resultado_busqueda->caja_terminal ?? 'N/D'}}</div>
+                    <div class="col-4">{{ $datos_resultado_busqueda->borne ?? 'N/D'}}</div>
+                </div>
             </div>
         </div>
         @else
@@ -79,9 +79,9 @@
         </div>
     @endif
     </div>
-    
 
-    
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

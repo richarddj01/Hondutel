@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tipo_servicios', function (Blueprint $table) {
-            $table->string('descripcion','50')->change();
+        Schema::create('servicios', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('descripcion',50);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tipo_servicios', function (Blueprint $table) {
-            $table->bigInteger('descripcion')->change();
-        });
+        Schema::dropIfExists('servicios');
     }
 };
