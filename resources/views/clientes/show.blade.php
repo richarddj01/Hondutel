@@ -7,7 +7,7 @@
             <h2>
                 Consulta de Cliente
             </h2>
-        </div>       
+        </div>
     </x-slot>
 
     <div class="container">
@@ -17,7 +17,7 @@
                     <h2>Detalles del Cliente</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('personas.index') }}"> Volver</a>
+                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
                 </div>
             </div>
         </div>
@@ -25,26 +25,26 @@
             <div class="col-xs-12 col-sm-12 col-md-12 card-body">
                 <div class="form-group">
                     <strong>Identidad:</strong>
-                    {{ $persona->identidad }}
+                    {{ $cliente }}
                     <br>
                     <strong>Nombre Completo:</strong>
-                    {{ $persona->primer_nombre.' '.$persona->segundo_nombre.' '.$persona->primer_apellido.' '.$persona->segundo_apellido  }}
+                    {{ $cliente->nombre.' '.$cliente->apellido  }}
                     <br>
                     <strong>Telefono:</strong>
-                    {{ $persona->telefono ?? '----'}}
+                    {{ $cliente->telefono ?? '----'}}
                     <br>
                     <strong>Celular:</strong>
-                    {{ $persona->celular ?? '----'}}
+                    {{ $cliente->celular ?? '----'}}
                     <br>
                     <strong>Correo:</strong>
-                    {{ $persona->correo ?? '----'}}
+                    {{ $cliente->correo ?? '----'}}
                     <br>
                     <strong>Direccion:</strong>
-                    {{ $persona->direccion ?? '----'}}
+                    {{ $cliente->direccion ?? '----'}}
                     <br>
                     <br>
                     <strong>Numeros Asignados:</strong>
-                    @if(count($persona->abonados) > 0)
+                    @if(count($cliente->abonados) > 0)
                     <table class="table table-bordered mt-3">
                         <tr>
                             <th>#</th>
@@ -55,7 +55,7 @@
                         @php
                             $i = 1;
                         @endphp
-                        @foreach ($persona->abonados as $abonado)
+                        @foreach ($cliente->abonados as $abonado)
                         <tr>
                             <td>{{$i++}}</td>
                             <td>{{ $abonado->numero ?? '----'}}</td>
@@ -64,7 +64,7 @@
                                 <td>{{$tipo->descripcion}}</td>
                                 @endif
                             @endforeach
-                            <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>                          
+                            <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>
                         </tr>
                         @endforeach
                     </table>

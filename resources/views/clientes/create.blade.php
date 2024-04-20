@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="py-4 align-items-center text-center">
             <h2>Agregar Persona</h2>
-        </div>  
+        </div>
     </x-slot>
 
     <div class="container mt-3 shadow-sm">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden sm:rounded-lg">
                 <div class="p-3 bg-white border-b border-gray-200">
-                    <form action="{{ route('personas.store') }}" class="mt-3" method="POST">
+                    <form action="{{ route('clientes.store') }}" class="mt-3" method="POST">
                         @csrf
                         <!--fila-->
                         <div class="row">
@@ -82,7 +82,7 @@
                             </div>
                             <div class="row my-3">
                                 <div class="col-6">
-                                    <a class="btn btn-primary" href="{{ route('personas.index') }}"> Volver</a>
+                                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">

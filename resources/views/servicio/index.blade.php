@@ -37,7 +37,7 @@
                     @php
                         $i = 0;
                     @endphp
-                    @foreach ($servicio as $servicio)
+                    @foreach ($servicios as $servicio)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $servicio->descripcion }}</td>
@@ -45,7 +45,7 @@
                             <td>
                                 <form action="{{ route('servicios.destroy',$servicio->id) }}" method="POST">
                                     <a class="btn btn-info" href="{{ route('servicios.show',$servicio->id) }}">Ver</a>
-                                    <a class="btn btn-warning" href="{{ route('servicio.edit',$servicio->id) }}">Editar</a>
+                                    <a class="btn btn-warning" href="{{ route('servicios.edit',$servicio->id) }}">Editar</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Eliminar</button>

@@ -6,7 +6,7 @@
             <h2>
                 Consulta de datos técnicos
             </h2>
-        </div>       
+        </div>
     </x-slot>
 
     <div class="container">
@@ -16,7 +16,7 @@
                     <h2>Crear nuevo tipo de servicio</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('tipo_servicio.index') }}"> Volver</a>
+                    <a class="btn btn-primary" href="{{ route('servicios.index') }}"> Volver</a>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('tipo_servicio.store') }}" method="POST">
+        <form action="{{ route('servicios.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
