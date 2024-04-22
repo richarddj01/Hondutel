@@ -24,11 +24,11 @@
         <div class="row my-3 card">
             <div class="col-xs-12 col-sm-12 col-md-12 card-body">
                 <div class="form-group">
-                    <strong>Identidad:</strong>
-                    {{ $cliente }}
-                    <br>
                     <strong>Nombre Completo:</strong>
                     {{ $cliente->nombre.' '.$cliente->apellido  }}
+                    <br>
+                    <strong>Tipo de Cliente:</strong>
+                    {{ $cliente->tipo_cliente->descripcion  }}
                     <br>
                     <strong>Telefono:</strong>
                     {{ $cliente->telefono ?? '----'}}
@@ -49,7 +49,7 @@
                         <tr>
                             <th>#</th>
                             <th>Número</th>
-                            <th>Servicio</th>
+                            <th>Servicios Contratados</th>
                             <th>Acción</th>
                         </tr>
                         @php
@@ -59,11 +59,13 @@
                         <tr>
                             <td>{{$i++}}</td>
                             <td>{{ $abonado->numero ?? '----'}}</td>
-                            @foreach ($servicios as $tipo)
-                                @if($tipo->id == $abonado->tipo_servicios_id)
-                                <td>{{$tipo->descripcion}}</td>
-                                @endif
-                            @endforeach
+                            <td>
+                                @foreach($abonados_servicios as $servicio_contratado)
+                                <!--Por cada item disponible en la tabla abonados-servicio (tabla de union) se accede
+                                a la relacion con servicios para obtener la descripcion de cada servicio-->
+                                <div class="btn btn-success">{{$servicio_contratado->servicio->descripcion}}</div>
+                                @endforeach
+                             </td>
                             <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>
                         </tr>
                         @endforeach

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tipo_cliente;
 use Illuminate\Http\Request;
 use App\Models\cliente;
-use App\Models\servicio;
+use App\Models\abonados_servicio;
 
 class ClienteController extends Controller
 {
@@ -38,7 +39,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('clientes.create');
+        $tipo_cliente = tipo_cliente::all();
+        return view('clientes.create', compact('tipo_cliente'));
     }
 
     /**
@@ -48,9 +50,9 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'identidad' => 'required|unique:clientes',
-            'primer_nombre' => 'required',
-            'primer_apellido' => 'required',
+            //'identidad' => 'required|unique:clientes',
+            'nombre' => 'required',
+            'correo' =>  'email:dns',
         ]);
 
         cliente::create($request->all());
@@ -65,8 +67,11 @@ class ClienteController extends Controller
     {
         //Consulta de numeros asignados en la tabla abonados (usando la relación creada en el modelo cliente)
         //$cliente = cliente::with('abonados')->find($cliente->identidad);
-        //$servicios = servicio::all();
-        return view('clientes.show', compact('cliente'));
+        $query = abonados_servicio::query();
+        $query->where('abonado_id','=',$cliente->abonados[0]->id);
+
+        $abonados_servicios = $query->get();
+        return view('clientes.show', compact('cliente', 'abonados_servicios'));
     }
 
     /**
