@@ -21,10 +21,10 @@ class TelefonoController extends Controller
             if($datos_resultado_busqueda == null){
                 $datos_resultado_busqueda = 'no_encontrado';
             }
-            return view('consulta_datos_telefono', compact('datos_resultado_busqueda'));
+            return view('telefonos.consulta_datos_telefono', compact('datos_resultado_busqueda'));
         }
         else{
-            return view('consulta_datos_telefono');
+            return view('telefonos.consulta_datos_telefono');
         }
 
         //return view('consulta_datos_telefono', ['datos' =>$datos]);

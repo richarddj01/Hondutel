@@ -8,7 +8,7 @@
             <p>
                 {{$persona->identidad}} - {{$persona->primer_nombre.' '.$persona->segundo_nombre.' '.$persona->primer_apellido.' '.$persona->segundo_apellido}}
             </p>
-        </div>      
+        </div>
     </x-slot>
 
     <div class="container">
@@ -24,7 +24,7 @@
         @endif
 
         <!--Formulario de UPDATE-->
-        <form action="{{ route('personas.update',$persona->identidad) }} " class="mt-3" method="POST">
+        <form action="{{ route('clientes.update',$persona->identidad) }} " class="mt-3" method="POST">
             @csrf
             @method('PUT')
             <!--fila-->
@@ -89,7 +89,7 @@
             </div>
             <div class="row my-5">
                 <div class="col-6">
-                    <a class="btn btn-primary" href="{{ route('personas.index') }}"> Volver</a>
+                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
                 </div>
                 <div class="col-6">
                     <div class="form-group">

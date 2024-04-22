@@ -7,7 +7,7 @@
             <h2>
                 Consulta de datos técnicos
             </h2>
-        </div>       
+        </div>
     </x-slot>
 
     <div class="container">
@@ -17,7 +17,7 @@
                     <h2>Ver Detalles del tipo de servicio</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('tipo_servicio.index') }}"> Volver</a>
+                    <a class="btn btn-primary" href="{{ route('servicios.index') }}"> Volver</a>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Descripcion:</strong>
-                    {{ $tipo_servicio->descripcion }}
+                    {{ $servicio->descripcion }}
                 </div>
             </div>
         </div>

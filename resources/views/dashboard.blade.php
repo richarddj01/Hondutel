@@ -11,7 +11,7 @@
                 <div class="card text-bg-primary mb-3">
                     <div class="card-header"><h5>Clientes</h5></div>
                         <div class="card-body">
-                            <a href="{{ route('personas.index') }}" class="btn btn-light">Ingresar</a>
+                            <a href="{{ route('clientes.index') }}" class="btn btn-light">Ingresar</a>
                         </div>
                 </div>
             </div>
