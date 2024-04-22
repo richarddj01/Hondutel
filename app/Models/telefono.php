@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class telefono extends Model
 {
@@ -16,5 +17,8 @@ class telefono extends Model
     }
     public function zona():BelongsTo{
         return $this->belongsTo(zona::class);
+    }
+    public function abonado():HasOne{
+        return $this->hasOne(zona::class);
     }
 }

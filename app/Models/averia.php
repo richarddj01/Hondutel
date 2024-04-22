@@ -12,16 +12,17 @@ class Averia extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'zona_id',
         'numero',
-        'problema_presentado',
+        'detalle_problema',
+        'tipo_averia_id',
+        'user_id',
+        'user_id_tecnico',
         'hora_inicio',
         'ubicacion_inicio',
         'ubicacion_final',
         'hora_finalizado',
         'solucionado',
         'observacion',
-        'tecnicos_encargados',
     ];
 
     public function telefonos()
@@ -36,6 +37,6 @@ class Averia extends Model
         return $this->belongsTo(User::class);
     }
     public function averia_inventario():BelongsTo{
-        return $this->belongsTo(averia_inventario::class);
+        return $this->belongsTo(averia_inventario::class, 'numero', 'numero');
     }
 }

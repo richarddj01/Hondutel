@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="py-4 align-items-center text-center">
             <h2>Editar Avería</h2>
-        </div>  
+        </div>
     </x-slot>
     <div class="container">
         <div class="row justify-content-center">
@@ -49,7 +49,7 @@
                                     {{ $abonado->direccion ?? '----'}}
                                     <br>
                                     <strong>Zona:</strong>
-                                    {{ $abonado->zonas->zona->nombre_corto.' - '.$abonado->zonas->zona->descripcion ?? '----'}}
+                                    {{ $abonado->zona->nombre_corto.' - '.$abonado->zonas->zona->descripcion ?? '----'}}
                                     <br>
                                 </div>
                             </div>

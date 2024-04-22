@@ -55,13 +55,31 @@
                             <form action="{{ route('averias.store') }}" method="POST">
                             @csrf
                             <div class="card my-3">
-                                <input type="hidden" name="numero" value='{{$abonado}}'>
+                                <input type="hidden" name="numero" value='{{$abonado->numero}}'>
                                 <div class="card-header">Problema presentado</div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                    <textarea type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control"></textarea>
+                                    <select name="tipo_averia_id" id="tipo_averia_id" class="form-select" onchange="mostrarOtros()">
+                                        <option value=""></option>
+                                        @foreach ($tipo_averia as $tipo)
+                                        <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
+                                        @endforeach
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                    <textarea hidden type="text" rows="5" name="detalle_problema" id="detalle_problema" class="form-control mt-3"></textarea>
                                     </div>
                                 </div>
+                                <script>
+                                    function mostrarOtros(){
+                                        var select = document.getElementById("tipo_averia_id");
+                                        var txt_problema = document.getElementById("detalle_problema");
+                                        if (select.value == "otro"){
+                                            txt_problema.hidden = false;
+                                        }else{
+                                            txt_problema.hidden = true;
+                                        }
+                                    }
+                                </script>
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>

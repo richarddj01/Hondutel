@@ -5,7 +5,7 @@
             <h2>
                 Averías
             </h2>
-        </div>       
+        </div>
     </x-slot>
     <div class="container">
         <div class="card mt-4 ">
@@ -14,23 +14,23 @@
             <div class="card-body">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Datos Abonado</strong>
+                        <strong>Datos Cliente</strong>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <p><strong>Número:</strong> {{ $averia->numero }}</p>
+                                <p><strong>Número:</strong> {{ $abonado->numero }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Dirección:</strong> {{ $direccion ?? '---' }}</p>
+                                <p><strong>Dirección:</strong> {{ $abonado->cliente->direccion ?? '---' }}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p><strong>Nombre:</strong> {{ $nombre_abonado }}</p>
+                                <p><strong>Nombre:</strong> {{ $abonado->cliente->nombre.' '.$abonado->cliente->apellido ?? '---' }} </p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Zona:</strong> {{ $zona }}</p>
+                                <p><strong>Zona:</strong>  {{ $telefono->zona->nombre_corto.' - '.$telefono->zona->descripcion ?? '---' }}</p>
                             </div>
                         </div>
                     </div>
@@ -52,8 +52,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <p><strong>Problema Presentado:</strong> 
-                            <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $averia->problema_presentado}}</textarea>         
+                            <p><strong>Problema Presentado:</strong>
+                            <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $averia->tipo_averia->descripcion.$averia->detalle_problema}}</textarea>
                         </div>
                     </div>
                 </div>
