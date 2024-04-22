@@ -31,10 +31,10 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <strong>Tipo Cliente:</strong>
-                                    <select name="tipo_cliente" id="tipo_cliente" class="form-select" tabindex="3">
+                                    <select name="tipo_cliente_id" id="tipo_cliente_id" class="form-select" tabindex="3" required>
                                         <option value=""></option>
                                         @foreach($tipo_cliente as $tipo)
-                                        <option value="{{$tipo->descripcion}}">{{$tipo->descripcion}}</option>
+                                        <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -24,7 +24,7 @@ class ClienteController extends Controller
                               ->orWhere('apellido', 'like', '%' . $term . '%');
                     });
                 }
-            });
+            })->whereNull('deleted_at');
         }
 
         $clientes = $query->paginate(10);
@@ -51,13 +51,15 @@ class ClienteController extends Controller
     {
         $request->validate([
             //'identidad' => 'required|unique:clientes',
-            'nombre' => 'required',
-            'correo' =>  'email:dns',
+            'nombre' => 'required|alpha:ascii',
+            'apellido' => 'sometimes|nullable|alpha:ascii',
+            'tipo_cliente_id'=>'required|numeric',
+            'correo' => 'sometimes|nullable|email:rfc,dns'
         ]);
 
         cliente::create($request->all());
 
-        return redirect()->route('clientes.index')->with('success', 'cliente registrado exitosamente.');
+        return redirect()->route('clientes.index')->with('success', 'Cliente registrado exitosamente.');
     }
 
     /**
@@ -79,7 +81,8 @@ class ClienteController extends Controller
      */
     public function edit(cliente $cliente)
     {
-        return view('clientes.edit', compact('cliente'));
+        $tipo_cliente = tipo_cliente::all();
+        return view('clientes.edit', compact('cliente', 'tipo_cliente'));
     }
 
     /**
@@ -89,10 +92,9 @@ class ClienteController extends Controller
     public function update(Request $request, cliente $cliente)
     {
         $request->validate([
-            'primer_nombre' => 'required|alpha:ascii',
-            'segundo_nombre' => 'sometimes|nullable|alpha:ascii',
-            'primer_apellido' => 'required|alpha:ascii',
-            'segundo_apellido' => 'sometimes|nullable|alpha:ascii',
+            'nombre' => 'required',
+            'apellido' => 'sometimes|nullable',
+            'tipo_cliente_id'=>'required|numeric',
             'correo' => 'sometimes|nullable|email:rfc,dns'
             // Agrega aquí otras reglas de validación según sea necesario
         ]);

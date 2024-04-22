@@ -24,39 +24,38 @@
                             @if($abonado != 'no_encontrado')
                             <div class="alert alert-warning" role="alert">
                                 <strong>Número de Abonado:</strong>
-                                {{ $abonado->numero }}
+                                {{ $abonado->numero}}
                             </div>
                             <div class="card">
                                 <div class="card-header">Información del Cliente</div>
                                 <div class="card-body">
                                 <div class="--bs-success-text-emphasis"></div>
-                                    <strong>Identidad:</strong>
-                                    {{ $abonado->identidad }}
-                                    <br>
                                     <strong>Nombre Completo:</strong>
-                                    {{ $abonado->nombre_completo  }}
+                                    {{ $abonado->cliente->nombre.' '.$abonado->cliente->apellido }}
                                     <br>
                                     <strong>Telefono:</strong>
-                                    {{ $abonado->telefono ?? '----'}}
+                                    {{ $abonado->cliente->telefono ?? '----'}}
                                     <br>
                                     <strong>Celular:</strong>
-                                    {{ $abonado->celular ?? '----'}}
+                                    {{ $abonado->cliente->celular ?? '----'}}
                                     <br>
                                     <strong>Correo:</strong>
-                                    {{ $abonado->correo ?? '----'}}
+                                    {{ $abonado->cliente->correo ?? '----'}}
                                     <br>
                                     <strong>Direccion:</strong>
-                                    {{ $abonado->direccion ?? '----'}}
+                                    {{ $abonado->cliente->direccion ?? '----'}}
                                     <br>
                                     <strong>Zona:</strong>
-                                    {{ $abonado->zonas->zona->nombre_corto.' - '.$abonado->zonas->zona->descripcion ?? '----'}}
+                                    {{
+                                        $abonado->telefono->zona->nombre_corto.' - '.$abonado->telefono->zona->descripcion ?? '----'
+                                    }}
                                     <br>
                                 </div>
                             </div>
                             <form action="{{ route('averias.store') }}" method="POST">
                             @csrf
                             <div class="card my-3">
-                                <input type="hidden" name="numero" value='{{$abonado->numero}}'>
+                                <input type="hidden" name="numero" value='{{$abonado}}'>
                                 <div class="card-header">Problema presentado</div>
                                 <div class="card-body">
                                     <div class="form-group">

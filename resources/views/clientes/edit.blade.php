@@ -6,7 +6,7 @@
                 Editar Datos del Cliente
             </h2>
             <p>
-                {{$persona->identidad}} - {{$persona->primer_nombre.' '.$persona->segundo_nombre.' '.$persona->primer_apellido.' '.$persona->segundo_apellido}}
+                {{$cliente->nombre.' '.$cliente->apellido.' '}}
             </p>
         </div>
     </x-slot>
@@ -24,66 +24,68 @@
         @endif
 
         <!--Formulario de UPDATE-->
-        <form action="{{ route('clientes.update',$persona->identidad) }} " class="mt-3" method="POST">
+        <form action="{{ route('clientes.update',$cliente->id) }} " class="mt-3" method="POST">
             @csrf
             @method('PUT')
             <!--fila-->
             <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <strong>Nombre:</strong>
+                        <input type="text" name="nombre" value="{{ $cliente->nombre }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <!--fila-->
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <strong>Apellido:</strong>
+                        <input type="text" name="apellido" value="{{ $cliente->apellido }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <!--fila-->
+            <div class="row mt-3">
                 <div class="col-6">
                     <div class="form-group">
-                        <strong>Primer Nombre:</strong>
-                        <input type="text" name="primer_nombre" value="{{ $persona->primer_nombre }}" class="form-control" placeholder="">
+                        <strong>Tipo Cliente:</strong>
+                        <select name="tipo_cliente_id" id="tipo_cliente_id" class="form-select" tabindex="3" required>
+                            <option value="{{$cliente->tipo_cliente->id}}">{{$cliente->tipo_cliente->descripcion}}</option>
+                            @foreach($tipo_cliente as $tipo)
+                            <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Telefono:</strong>
-                        <input type="tel" name="telefono" value="{{ $persona->telefono }}" class="form-control" placeholder="">
+                        <input type="tel" name="telefono" value="{{ $cliente->telefono }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
             <!--fila-->
             <div class="row mt-3">
-                <div class="col-6">
-                    <div class="form-group">
-                        <strong>Segundo Nombre:</strong>
-                        <input type="text" name="segundo_nombre" value="{{ $persona->segundo_nombre }}" class="form-control" placeholder="">
-                    </div>
-                </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Celular:</strong>
-                        <input type="tel" name="celular" value="{{ $persona->celular }}" class="form-control" placeholder="">
-                    </div>
-                </div>
-            </div>
-            <!--fila-->
-            <div class="row mt-3">
-                <div class="col-6">
-                    <div class="form-group">
-                        <strong>Primer Apellido:</strong>
-                        <input type="text" name="primer_apellido" value="{{ $persona->primer_apellido }}" class="form-control" placeholder="">
+                        <input type="tel" name="celular" value="{{ $cliente->celular }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Correo:</strong>
-                        <input type="email" name="correo" value="{{ $persona->correo }}" class="form-control" placeholder="">
+                        <input type="email" name="correo" value="{{ $cliente->correo }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
             <!--fila-->
             <div class="row mt-3">
-                <div class="col-6">
-                    <div class="form-group">
-                        <strong>Segundo Apellido:</strong>
-                        <input type="text" name="segundo_apellido" value="{{ $persona->segundo_apellido }}" class="form-control" placeholder="">
-                    </div>
-                </div>
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
                         <strong>Dirección:</strong>
-                        <input type="text" name="direccion" value="{{ $persona->direccion }}" class="form-control" placeholder="">
+                        <input type="text" name="direccion" value="{{ $cliente->direccion }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
