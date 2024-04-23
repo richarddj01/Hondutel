@@ -19,18 +19,18 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <p><strong>Número:</strong> {{ $abonado->numero }}</p>
+                                <p><strong>Número:</strong> {{ $cliente['numero'] }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Dirección:</strong> {{ $abonado->cliente->direccion ?? '---' }}</p>
-                            </div>
+                                <p><strong>Dirección:</strong> {{$cliente['direccion'] ?? '---' }}</p>
+                                </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p><strong>Nombre:</strong> {{ $abonado->cliente->nombre.' '.$abonado->cliente->apellido ?? '---' }} </p>
+                                <p><strong>Nombre:</strong> {{ $cliente['nombre'] ?? '---' }} </p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Zona:</strong>  {{ $telefono->zona->nombre_corto.' - '.$telefono->zona->descripcion ?? '---' }}</p>
+                                <p><strong>Zona:</strong>  {{  $cliente['zona'] ?? '---' }}</p>
                             </div>
                         </div>
                     </div>
@@ -41,20 +41,20 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <p><strong>Avería registrada por:</strong> {{ $averia->user->name }}</p>
+                            <p><strong>Avería registrada por:</strong> {{ $datos_averia['usuario_reporte'] }}</p>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <p><strong>Fecha de Reporte:</strong> {{ $averia->created_at->format('d/m/Y') }}</p>
+                                <p><strong>Fecha de Reporte:</strong> {{ $datos_averia['fecha_reporte']->format('d/m/Y') }}</p>
                             </div>
                             <div class="col-6">
-                                <p><strong>Hora de Reporte:</strong> {{ $averia->created_at->format('h:m A') }}</p>
+                                <p><strong>Hora de Reporte:</strong> {{ $datos_averia['fecha_reporte']->format('h:m A') }}</p>
                             </div>
                         </div>
                         <div class="row">
                             <p><strong>Problema Presentado:</strong>
-                            <input type="text" class="form-control" placeholder="{{$averia->tipo_averia->descripcion}}" readonly>
-                            <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{$averia->detalle_problema}}</textarea>
+                            <input type="text" class="form-control" placeholder="{{ $datos_averia['descripcion'] }}" readonly>
+                            <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $datos_averia['detalle_problema'] }}</textarea>
                         </div>
                     </div>
                 </div>

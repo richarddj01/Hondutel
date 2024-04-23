@@ -11,45 +11,31 @@
                     <div class="card-header">Editar Avería</div>
 
                     <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col">
-                                <form action="{{ route('averias.edit', $averia->numero) }}" method="GET">
-                                    <div class="input-group">
-                                        <input type="tel" class="form-control" placeholder="Buscar..." name="search">
-                                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        @if (isset($abonado))
-                            @if($abonado != 'no_encontrado')
+                        @if (isset($cliente['numero']))
                             <div class="alert alert-warning" role="alert">
                                 <strong>Número de Abonado:</strong>
-                                {{ $abonado->numero }}
+                                {{ $cliente['numero'] }}
                             </div>
                             <div class="card">
                                 <div class="card-header">Información del Cliente</div>
                                 <div class="card-body">
-                                    <strong>Identidad:</strong>
-                                    {{ $abonado->identidad }}
-                                    <br>
                                     <strong>Nombre Completo:</strong>
-                                    {{ $abonado->cliente->nombre  }}
+                                    {{ $cliente['nombre'] }}
                                     <br>
                                     <strong>Telefono:</strong>
-                                    {{ $abonado->cliente->telefono ?? '----'}}
+                                    {{ $cliente['telefono'] ?? '----'}}
                                     <br>
                                     <strong>Celular:</strong>
-                                    {{ $abonado->cliente->celular ?? '----'}}
+                                    {{ $cliente['celular'] ?? '----'}}
                                     <br>
                                     <strong>Correo:</strong>
-                                    {{ $abonado->cliente->correo ?? '----'}}
+                                    {{ $cliente['correo'] ?? '----'}}
                                     <br>
                                     <strong>Direccion:</strong>
-                                    {{ $abonado->cliente->direccion ?? '----'}}
+                                    {{ $cliente['direccion'] ?? '----'}}
                                     <br>
                                     <strong>Zona:</strong>
-                                    {{ $telefono->zona->nombre_corto.' - '.$telefono->zona->descripcion ?? '----'}}
+                                    {{ $cliente['zona'] ?? '----'}}
                                     <br>
                                 </div>
                             </div>
@@ -57,7 +43,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="card my-3">
-                                <input type="hidden" name="numero" value='{{$abonado->numero}}'>
+                                <input type="hidden" name="numero" value='{{$cliente['numero']}}'>
                                 <div class="card-header">Problema presentado</div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -78,11 +64,6 @@
                             </div>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
-                            @else
-                            <div class="alert alert-warning" role="alert">
-                                No se encontró ningún abonado con ese número.
-                            </div>
-                            @endif
                         @endif
                     </div>
                 </div>

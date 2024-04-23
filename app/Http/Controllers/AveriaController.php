@@ -28,6 +28,7 @@ class AveriaController extends Controller
             $abonado = null;
         }
         $tipo_averia = tipo_averia::all();
+
         return view('averias.create', compact('abonado','tipo_averia'));
     }
     public function store(Request $request)
@@ -50,56 +51,43 @@ class AveriaController extends Controller
 
     public function show(Averia $averia)
     {
-        /*
-        $datos_tecnicos_telefono = datos_tecnicos_telefono::find($averia->numero);
-
-        $zona = $datos_tecnicos_telefono->zona->nombre_corto.' - '.
-                $datos_tecnicos_telefono->zona->descripcion;
-
-        $abonado = $datos_tecnicos_telefono->abonado;
-
-        $nombre_abonado = $abonado->cliente->primer_nombre.' '.
-                    $abonado->cliente->segundo_nombre.' '.
-                    $abonado->cliente->primer_apellido.' '.
-                    $abonado->cliente->segundo_apellido.' ';
-
-        $direccion = $abonado->cliente->direccion;
-
-        */
         $telefono = telefono::get()->first();
         $abonado = abonado::get()->first();
 
-        return view('averias.show', compact('averia','telefono','abonado'));
+        //Obtencion de datos Cliente
+        $numero= $abonado->numero;
+        $direccion = $abonado->cliente->direccion;
+        $nombre = $abonado->cliente->nombre.' '.$abonado->cliente->apellido;
+        $zona = $telefono->zona->nombre_corto.' - '.$telefono->zona->descripcion;
+        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre'=>$nombre,'zona'=>$zona];
+
+        //Datos avería
+        $usuario_reporte = $averia->user->name;
+        $fecha_reporte = $averia->created_at;
+        $detalle_problema = $averia->detalle_problema;
+        $descripcion = $averia->tipo_averia->descripcion;
+        $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema'=>$detalle_problema, 'descripcion'=> $descripcion];
+
+        return view('averias.show', compact('cliente', 'datos_averia'));
     }
 
     public function edit(Averia $averia)
     {
-        /*
-        $terminoBusqueda = $averia->numero;
+        $telefono = telefono::get()->first();
+        $abonado = abonado::get()->first();
+        $tipo_averia = tipo_averia::all();
 
-            $abonado = Abonado::where('numero', $terminoBusqueda)
-            ->join('clientes', 'abonados.identidad', '=', 'clientes.identidad')
-            ->selectRaw("CONCAT(clientes.primer_nombre, ' ', COALESCE(clientes.segundo_nombre,''), ' ', clientes.primer_apellido, ' ', COALESCE(clientes.segundo_apellido,'')) AS nombre_completo, clientes.identidad, telefono, celular, correo, direccion")
-            ->first();
+        $numero= $abonado->numero;
+        $nombre = $abonado->cliente->nombre.' '.$abonado->cliente->apellido;
+        $telefono = $abonado->cliente->telefono;
+        $celular = $abonado->cliente->celular;
+        $direccion = $abonado->cliente->direccion;
+        $correo = $abonado->cliente->correo;
+        $zona = $abonado->telefono->zona->nombre_corto.' - '.$abonado->telefono->zona->descripcion;
+        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre'=>$nombre,'zona'=>$zona];
 
-            //buscar la zona a la que pertenece el numero
-            $zonas  = telefono::with('zona')
-            ->where('numero', $terminoBusqueda)
-            ->select('zonas_id')
-            ->first();
 
-            if(isset($zonas)&&isset($terminoBusqueda)){
-                $abonado->zonas = $zonas;
-                $abonado->numero = $terminoBusqueda;
-            }
-            if($abonado == null){
-                $abonado = 'no_encontrado';
-            }
-            */
-            $abonado = abonado::get()->first();
-            $telefono = telefono::get()->first();
-            $tipo_averia = tipo_averia::all();
-        return view('averias.edit', compact('averia', 'abonado', 'telefono', 'tipo_averia'));
+        return view('averias.edit', compact('cliente', 'averia', 'abonado', 'telefono', 'tipo_averia'));
     }
 
     public function update(Request $request, Averia $averia)
@@ -133,12 +121,12 @@ class AveriaController extends Controller
     }
     public function execute(Averia $averia)
     {
-        $datos_tecnicos_telefono = telefono::find($averia->numero);
+        $telefono = telefono::find($averia->numero);
 
-        $zona = $datos_tecnicos_telefono->zona->nombre_corto.' - '.
-                $datos_tecnicos_telefono->zona->descripcion;
+        $zona = $telefono->zona->nombre_corto.' - '.
+                $telefono->zona->descripcion;
 
-        $abonado = $datos_tecnicos_telefono->abonado;
+        $abonado = $telefono->abonado;
 
         $nombre_abonado = $abonado->cliente->primer_nombre.' '.
                     $abonado->cliente->segundo_nombre.' '.
@@ -149,5 +137,4 @@ class AveriaController extends Controller
 
         return view('averias.execute', compact('averia', 'nombre_abonado', 'zona', 'direccion'));
     }
-
 }
