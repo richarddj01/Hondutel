@@ -9,7 +9,6 @@
             <div class="col-md-8">
                 <div class="card mt-4">
                     <div class="card-header">Editar Avería</div>
-
                     <div class="card-body">
                         @if (isset($cliente['numero']))
                             <div class="alert alert-warning" role="alert">

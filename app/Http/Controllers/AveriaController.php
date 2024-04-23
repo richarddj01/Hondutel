@@ -122,19 +122,26 @@ class AveriaController extends Controller
     public function execute(Averia $averia)
     {
         $telefono = telefono::find($averia->numero);
+        $abonado = abonado::get()->first();
 
-        $zona = $telefono->zona->nombre_corto.' - '.
-                $telefono->zona->descripcion;
-
-        $abonado = $telefono->abonado;
-
-        $nombre_abonado = $abonado->cliente->primer_nombre.' '.
-                    $abonado->cliente->segundo_nombre.' '.
-                    $abonado->cliente->primer_apellido.' '.
-                    $abonado->cliente->segundo_apellido.' ';
-
+        // Datos cliente/abonado
+        $numero= $abonado->numero;
+        $nombre = $abonado->cliente->nombre.' '.$abonado->cliente->apellido;
+        $telefono = $abonado->cliente->telefono;
+        $celular = $abonado->cliente->celular;
         $direccion = $abonado->cliente->direccion;
+        $correo = $abonado->cliente->correo;
+        $zona = $abonado->telefono->zona->nombre_corto.' - '.$abonado->telefono->zona->descripcion;
+        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre'=>$nombre,'zona'=>$zona];
 
-        return view('averias.execute', compact('averia', 'nombre_abonado', 'zona', 'direccion'));
+        //Datos avería
+        $usuario_reporte = $averia->user->name;
+        $fecha_reporte = $averia->created_at;
+        $detalle_problema = $averia->detalle_problema;
+        $descripcion = $averia->tipo_averia->descripcion;
+        $iniciado = $averia->iniciado;
+        $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema'=>$detalle_problema, 'descripcion'=> $descripcion, 'iniciado'=> $iniciado, 'id'=>$averia->id];
+
+        return view('averias.execute', compact('datos_averia', 'cliente'));
     }
 }
