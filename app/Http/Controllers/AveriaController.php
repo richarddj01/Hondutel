@@ -66,17 +66,16 @@ class AveriaController extends Controller
         $direccion = $abonado->cliente->direccion;
 
         */
-
-        $telefono = telefono::find($averia->numero);
-
-        $abonado = abonado::get()->where('numero', '==',$averia->numero)->first();
+        $telefono = telefono::get()->first();
+        $abonado = abonado::get()->first();
 
         return view('averias.show', compact('averia','telefono','abonado'));
     }
 
     public function edit(Averia $averia)
     {
-            $terminoBusqueda = $averia->numero;
+        /*
+        $terminoBusqueda = $averia->numero;
 
             $abonado = Abonado::where('numero', $terminoBusqueda)
             ->join('clientes', 'abonados.identidad', '=', 'clientes.identidad')
@@ -84,7 +83,7 @@ class AveriaController extends Controller
             ->first();
 
             //buscar la zona a la que pertenece el numero
-            $zonas  = datos_tecnicos_telefono::with('zona')
+            $zonas  = telefono::with('zona')
             ->where('numero', $terminoBusqueda)
             ->select('zonas_id')
             ->first();
@@ -96,12 +95,18 @@ class AveriaController extends Controller
             if($abonado == null){
                 $abonado = 'no_encontrado';
             }
-        return view('averias.edit', compact('averia', 'abonado'));
+            */
+            $abonado = abonado::get()->first();
+            $telefono = telefono::get()->first();
+            $tipo_averia = tipo_averia::all();
+        return view('averias.edit', compact('averia', 'abonado', 'telefono', 'tipo_averia'));
     }
 
     public function update(Request $request, Averia $averia)
     {
         $request->validate([
+            'tipo_averia_id' => 'required|numeric',
+            'detalle_problema' => 'sometimes',
             'user_id_tecnico' => 'nullable',
             'hora_inicio' => 'nullable|date_format:H:i:s',
             'ubicacion_latitud' => 'nullable|string',

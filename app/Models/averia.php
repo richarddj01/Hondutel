@@ -39,4 +39,7 @@ class Averia extends Model
     public function averia_inventario():BelongsTo{
         return $this->belongsTo(averia_inventario::class, 'numero', 'numero');
     }
+    public function abonado():BelongsTo{
+        return $this->belongsTo(abonado::class, 'numero', 'numero');
+    }
 }

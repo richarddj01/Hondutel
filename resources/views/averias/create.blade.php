@@ -64,11 +64,12 @@
                                         @foreach ($tipo_averia as $tipo)
                                         <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
                                         @endforeach
-                                        <option value="otro">Otro</option>
                                     </select>
-                                    <textarea hidden type="text" rows="5" name="detalle_problema" id="detalle_problema" class="form-control mt-3"></textarea>
+                                    <label for="descripcion_detallada" class="mt-3">Descripcion Detallada:</label>
+                                    <textarea type="text" rows="5" name="detalle_problema" id="detalle_problema" class="form-control mt-3"></textarea>
                                     </div>
                                 </div>
+                                <!--
                                 <script>
                                     function mostrarOtros(){
                                         var select = document.getElementById("tipo_averia_id");
@@ -80,6 +81,7 @@
                                         }
                                     }
                                 </script>
+                                -->
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>

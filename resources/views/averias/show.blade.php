@@ -53,7 +53,8 @@
                         </div>
                         <div class="row">
                             <p><strong>Problema Presentado:</strong>
-                            <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $averia->tipo_averia->descripcion.$averia->detalle_problema}}</textarea>
+                            <input type="text" class="form-control" placeholder="{{$averia->tipo_averia->descripcion}}" readonly>
+                            <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{$averia->detalle_problema}}</textarea>
                         </div>
                     </div>
                 </div>

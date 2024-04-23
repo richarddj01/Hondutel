@@ -34,37 +34,48 @@
                                     {{ $abonado->identidad }}
                                     <br>
                                     <strong>Nombre Completo:</strong>
-                                    {{ $abonado->nombre_completo  }}
+                                    {{ $abonado->cliente->nombre  }}
                                     <br>
                                     <strong>Telefono:</strong>
-                                    {{ $abonado->telefono ?? '----'}}
+                                    {{ $abonado->cliente->telefono ?? '----'}}
                                     <br>
                                     <strong>Celular:</strong>
-                                    {{ $abonado->celular ?? '----'}}
+                                    {{ $abonado->cliente->celular ?? '----'}}
                                     <br>
                                     <strong>Correo:</strong>
-                                    {{ $abonado->correo ?? '----'}}
+                                    {{ $abonado->cliente->correo ?? '----'}}
                                     <br>
                                     <strong>Direccion:</strong>
-                                    {{ $abonado->direccion ?? '----'}}
+                                    {{ $abonado->cliente->direccion ?? '----'}}
                                     <br>
                                     <strong>Zona:</strong>
-                                    {{ $abonado->zona->nombre_corto.' - '.$abonado->zonas->zona->descripcion ?? '----'}}
+                                    {{ $telefono->zona->nombre_corto.' - '.$telefono->zona->descripcion ?? '----'}}
                                     <br>
                                 </div>
                             </div>
                             <form action="{{ route('averias.update', $averia->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <input type="hidden" name="numero" value='{{$abonado->numero}}'>
                                 <div class="card my-3">
-                                    <div class="card-header">Problema presentado</div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <textarea type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control">{{ $averia->problema_presentado }}</textarea>
-                                        </div>
+                                <input type="hidden" name="numero" value='{{$abonado->numero}}'>
+                                <div class="card-header">Problema presentado</div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                    <select name="tipo_averia_id" id="tipo_averia_id" class="form-select" onchange="mostrarOtros()">
+                                        <!--Validación si se seleccionó problema o eligió "otro"-->
+                                        @if(isset($averia->detalle_problema))
+                                            <option value="{{$averia->tipo_averia->id}}">{{$averia->detalle_problema}}</option>
+                                        @else
+                                            <option value=""></option>
+                                        @endif
+                                            @foreach ($tipo_averia as $tipo)
+                                            <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
+                                    <textarea type="text" rows="5" name="detalle_problema" id="detalle_problema" class="form-control mt-3">{{$averia->tipo_averia->descripcion}}</textarea>
                                 </div>
+                            </div>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
                             @else
