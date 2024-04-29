@@ -46,13 +46,13 @@ Route::resource('zonas', ZonaController::class)->middleware(['auth', 'verified']
 Route::delete('/zonas/{zona}/hide', [ZonaController::class, 'hide'])->middleware(['auth', 'verified'])->name('zonas.hide');
 
 //Servicios
-Route::resource('servicio', ServicioController::class)->middleware(['auth', 'verified']);
+Route::resource('servicios', ServicioController::class)->middleware(['auth', 'verified']);
 
 //Clientes
 Route::resource('clientes', ClienteController::class)->middleware(['auth','verified']);
 
 //Averias
-Route::resource('cliente', ClienteController::class)->middleware(['auth', 'verified']);
+Route::resource('averias', ClienteController::class)->middleware(['auth', 'verified']);
 
 
 
@@ -70,12 +70,12 @@ Route::put('/zonas/{zona}', [ZonaController::class, 'update'])->middleware(['aut
 
 //CRUD Servicios
 /*
-Route::get('/servicio', [ServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('servicios.index');
-Route::get('/servicio/create', [ServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('servicios.create');
-Route::post('/servicio/store', [ServicioController::class, 'store'])->middleware(['auth', 'verified'])->name('servicios.store');
-Route::get('/servicio/{servicio}', [ServicioController::class, 'show'])->middleware(['auth', 'verified'])->name('servicios.show');
-Route::get('/servicio/{servicio}/edit', [ServicioController::class, 'edit'])->middleware(['auth', 'verified'])->name('servicios.edit');
-Route::put('/servicio/{servicio}', [ServicioController::class, 'update'])->middleware(['auth', 'verified'])->name('servicios.update');
+Route::get('/servicios', [ServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('servicios.index');
+Route::get('/servicios/create', [ServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('servicios.create');
+Route::post('/servicios/store', [ServicioController::class, 'store'])->middleware(['auth', 'verified'])->name('servicios.store');
+Route::get('/servicios/{servicio}', [ServicioController::class, 'show'])->middleware(['auth', 'verified'])->name('servicios.show');
+Route::get('/servicios/{servicio}/edit', [ServicioController::class, 'edit'])->middleware(['auth', 'verified'])->name('servicios.edit');
+Route::put('/servicios/{servicio}', [ServicioController::class, 'update'])->middleware(['auth', 'verified'])->name('servicios.update');
 Route::delete('/servicio/{servicio}', [ServicioController::class, 'destroy'])->middleware(['auth', 'verified'])->name('servicios.destroy');
 */
 
