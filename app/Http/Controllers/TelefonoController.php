@@ -9,26 +9,20 @@ class TelefonoController extends Controller
 {
     public function index(Request $request)
     {
-        $request->validate([
-            'numero' => 'numeric|gt:0',
-            // Agrega más reglas de validación según sea necesario para otros campos
-        ]);
-        $numero_telefono_formulario = $request->get('numero');
+        $query = telefono::whereNull('deleted_at');
 
-        $datos_resultado_busqueda = telefono::find($numero_telefono_formulario);
-
-        if(isset($datos_resultado_busqueda)){
-            if($datos_resultado_busqueda == null){
-                $datos_resultado_busqueda = 'no_encontrado';
-            }
-            return view('telefonos.consulta_datos_telefono', compact('datos_resultado_busqueda'));
-        }
-        else{
-            return view('telefonos.consulta_datos_telefono');
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where(function($query) use ($search) {
+                $query->where('descripcion', 'like', '%'.$search.'%')
+                      ->orWhere('nombre_corto', 'like', '%'.$search.'%');
+            })->where('oculto', false);
         }
 
-        //return view('consulta_datos_telefono', ['datos' =>$datos]);
-        //return view('consulta_datos_telefono',['datos'=>0]);
+        //$zonas = $query->get();
+        $zonas = $query->paginate(10);
+
+        return view('zonas.index', compact('zonas'));
     }
 
     /**
@@ -81,5 +75,29 @@ class TelefonoController extends Controller
     public function destroy(telefono $datosTecnicos)
     {
         //
+    }
+
+    public function mostrarDatosTelefono(Request $request)
+    {
+        $request->validate([
+            'numero' => 'numeric|gt:0',
+            // Agrega más reglas de validación según sea necesario para otros campos
+        ]);
+        $numero_telefono_formulario = $request->get('numero');
+
+        $datos_resultado_busqueda = telefono::find($numero_telefono_formulario);
+
+        if(isset($datos_resultado_busqueda)){
+            if($datos_resultado_busqueda == null){
+                $datos_resultado_busqueda = 'no_encontrado';
+            }
+            return view('telefonos.consulta_datos_telefono', compact('datos_resultado_busqueda'));
+        }
+        else{
+            return view('telefonos.consulta_datos_telefono');
+        }
+
+        //return view('consulta_datos_telefono', ['datos' =>$datos]);
+        //return view('consulta_datos_telefono',['datos'=>0]);
     }
 }

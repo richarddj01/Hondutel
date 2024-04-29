@@ -39,7 +39,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //Consultas Datos Técnicos
-Route::get('/telefonos/consulta_datos_telefono', [TelefonoController::class, 'index'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono.index');
+Route::get('/telefonos/consulta_datos_telefono', [TelefonoController::class, 'mostrarDatosTelefono'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono.index');
 
 //Zonas
 Route::resource('zonas', ZonaController::class)->middleware(['auth', 'verified']);
@@ -53,9 +53,6 @@ Route::resource('clientes', ClienteController::class)->middleware(['auth','verif
 
 //Averias
 Route::resource('averias', ClienteController::class)->middleware(['auth', 'verified']);
-
-
-
 
 //CRUD Zonas
 /*
