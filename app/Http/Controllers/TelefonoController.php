@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\telefono;
+use App\Models\zona;
 use Illuminate\Http\Request;
 
 class TelefonoController extends Controller
@@ -42,9 +43,10 @@ class TelefonoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(telefono $datosTecnicos)
+    public function edit(telefono $telefono)
     {
-        //
+        $zonas = zona::all();
+        return view('telefonos.edit', compact('telefono','zonas'));
     }
 
     /**

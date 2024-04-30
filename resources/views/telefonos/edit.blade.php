@@ -5,9 +5,6 @@
             <h2>
                 Editar Datos Técnicos Teléfono
             </h2>
-            <p>
-                {{$cliente->nombre.' '.$cliente->apellido.' '}}
-            </p>
         </div>
     </x-slot>
 
@@ -28,40 +25,22 @@
             @csrf
             @method('PUT')
             <!--fila-->
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <strong>Nombre:</strong>
-                        <input type="text" name="nombre" value="{{ $cliente->nombre }}" class="form-control" placeholder="">
-                    </div>
-                </div>
-            </div>
-            <!--fila-->
-            <div class="row mt-3">
-                <div class="col-12">
-                    <div class="form-group">
-                        <strong>Apellido:</strong>
-                        <input type="text" name="apellido" value="{{ $cliente->apellido }}" class="form-control" placeholder="">
-                    </div>
-                </div>
-            </div>
-            <!--fila-->
             <div class="row mt-3">
                 <div class="col-6">
                     <div class="form-group">
-                        <strong>Tipo Cliente:</strong>
+                        <strong>Zona</strong>
                         <select name="tipo_cliente_id" id="tipo_cliente_id" class="form-select" tabindex="3" required>
-                            <option value="{{$cliente->tipo_cliente->id}}">{{$cliente->tipo_cliente->descripcion}}</option>
-                            @foreach($tipo_cliente as $tipo)
-                            <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
+                            <option value="{{$telefono->zona->id}}">{{$telefono->zona->descripcion}} - (Actual)</option>
+                            @foreach($zonas as $zona)
+                            <option value="{{$zona->id}}">{{$zona->descripcion}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <strong>Telefono:</strong>
-                        <input type="tel" name="telefono" value="{{ $cliente->telefono }}" class="form-control" placeholder="">
+                        <strong>Armario:</strong>
+                        <input type="tel" name="telefono" value="{{ $telefono->armario }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -69,23 +48,104 @@
             <div class="row mt-3">
                 <div class="col-6">
                     <div class="form-group">
-                        <strong>Celular:</strong>
-                        <input type="tel" name="celular" value="{{ $cliente->celular }}" class="form-control" placeholder="">
+                        <strong>Par Primario:</strong>
+                        <input type="tel" name="celular" value="{{ $telefono->par_primario }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <strong>Correo:</strong>
-                        <input type="email" name="correo" value="{{ $cliente->correo }}" class="form-control" placeholder="">
+                        <strong>Par Secundario:</strong>
+                        <input type="email" name="correo" value="{{ $telefono->par_secundario }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
             <!--fila-->
             <div class="row mt-3">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="form-group">
-                        <strong>Dirección:</strong>
-                        <input type="text" name="direccion" value="{{ $cliente->direccion }}" class="form-control" placeholder="">
+                        <strong>Numero de Cable:</strong>
+                        <input type="text" name="apellido" value="{{ $telefono->numero_cable }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Caja Terminal:</strong>
+                        <input type="text" name="direccion" value="{{ $telefono->caja_terminal }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <!--fila-->
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Borne:</strong>
+                        <input type="tel" name="celular" value="{{ $telefono->borne }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Ruta:</strong>
+                        <input type="email" name="correo" value="{{ $telefono->ruta }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <!--fila-->
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Codigo POTS:</strong>
+                        <input type="tel" name="celular" value="{{ $telefono->codigo_pots }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Codigo Puerto POTS:</strong>
+                        <input type="email" name="correo" value="{{ $telefono->codigo_puerto_pots }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <!--fila-->
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Codigo ADSL:</strong>
+                        <input type="tel" name="celular" value="{{ $telefono->codigo_adsl }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Codigo Puerto ADSL:</strong>
+                        <input type="email" name="correo" value="{{ $telefono->codigo_puerto_adsl }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <!--fila-->
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Velocidad:</strong>
+                        <input type="tel" name="celular" value="{{ $telefono->velocidad }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>IP Pública:</strong>
+                        <input type="email" name="correo" value="{{ $telefono->ip_publica }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <!--fila-->
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Numero de Enlace:</strong>
+                        <input type="text" name="nombre" value="{{ $telefono->numero_de_enlace }}" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <strong>Nodo:</strong>
+                        <input type="tel" name="celular" value="{{ $telefono->nodo }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>

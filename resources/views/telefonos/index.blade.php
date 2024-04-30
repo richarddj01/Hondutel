@@ -42,7 +42,7 @@
                             <td>
                                 <form action="{{ route('telefonos.destroy',$telefono) }}" method="POST">
                                     <a class="btn btn-info" href="{{ route('telefonos.show',$telefono->numero) }}">Ver</a>
-                                    <a class="btn btn-warning" href="{{ route('telefonos.edit',$telefono) }}">Editar</a>
+                                    <a class="btn btn-warning" href="{{ route('telefonos.edit',$telefono->numero) }}">Editar</a>
                                 </form>
                             </td>
                         </tr>
