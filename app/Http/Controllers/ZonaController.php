@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Zona;
+use App\Models\zona;
 use Illuminate\Http\Request;
 
 class ZonaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Zona::whereNull('deleted_at');
+        $query = zona::whereNull('deleted_at');
 
         if ($request->has('search')) {
             $search = $request->get('search');
@@ -37,7 +37,7 @@ class ZonaController extends Controller
             'nombre_corto' => 'required',
         ]);
 
-        Zona::create($request->all());
+        zona::create($request->all());
 
         return redirect()->route('zonas.index')
             ->with('success', 'Zona creada exitosamente.');
