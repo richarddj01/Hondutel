@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="py-4 align-items-center text-center">
             <h2>
-                Editar Datos del Cliente
+                Editar Datos Técnicos Teléfono
             </h2>
             <p>
                 {{$cliente->nombre.' '.$cliente->apellido.' '}}
@@ -24,7 +24,7 @@
         @endif
 
         <!--Formulario de UPDATE-->
-        <form action="{{ route('clientes.update',$cliente->id) }} " class="mt-3" method="POST">
+        <form action="{{ route('telefonos.update',$telefono->numero) }} " class="mt-3" method="POST">
             @csrf
             @method('PUT')
             <!--fila-->

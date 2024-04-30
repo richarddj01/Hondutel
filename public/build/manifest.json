@@ -1,0 +1,16 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-DHLjfHgQ.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/images/logo-gobierno-y-Hondutel2022.png": {
+    "file": "assets/logo-gobierno-y-Hondutel2022-BhOWeDL7.png",
+    "src": "resources/images/logo-gobierno-y-Hondutel2022.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-9mbrzSRH.js",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
