@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auth;
-use App\Models\Averia;
+use App\Models\averia;
 use App\Models\tipo_averia;
 use App\Models\abonado;
 use App\Models\telefono;
@@ -13,7 +13,7 @@ class AveriaController extends Controller
 {
     public function index()
     {
-        $averias = Averia::all();
+        $averias = averia::all();
         return view('averias.index', compact('averias'));
     }
 
@@ -39,7 +39,7 @@ class AveriaController extends Controller
             'detalle_problema' => 'sometimes'
         ]);
 
-        $averia = new Averia($request->all());
+        $averia = new averia($request->all());
 
         $averia->solucionado = false;
         $averia->user_id = auth()->id();
