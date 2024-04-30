@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="py-4 align-items-center text-center">
             <h2>Telefonos</h2>
-            <a class="btn btn-success mt-3" href="{{ route('servicios.create') }}">Agregar Datos de Teléfonos</a>
+            <a class="btn btn-success mt-3" href="{{ route('telefonos.create') }}">Agregar Datos de Teléfonos</a>
         </div>
     </x-slot>
 
@@ -15,7 +15,7 @@
         @endif
         <div class="row mb-3">
             <div class="col">
-                <form action="{{ route('servicios.index') }}" method="GET">
+                <form action="{{ route('telefonos.index') }}" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar..." name="search">
                         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
@@ -27,28 +27,22 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Codigo</th>
-                        <th scope="col">Acción</th>
+                        <th scope="col">Número</th>
+                        <th scope="col">Zona</th>
+                        <th scope="col">Armario</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $i = 0;
-                    @endphp
-                    @foreach ($servicios as $servicio)
+                    @foreach ($telefonos as $telefono)
                         <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{ $servicio->descripcion }}</td>
-                            <td>{{ $servicio->id }}</td>
+                            <td>{{ $telefono->numero }}</td>
+                            <td>{{ $telefono->zona->nombre_corto}}</td>
+                            <td>{{ $telefono->armario }}</td>
                             <td>
-                                <form action="{{ route('servicios.destroy',$servicio->id) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('servicios.show',$servicio->id) }}">Ver</a>
-                                    <a class="btn btn-warning" href="{{ route('servicios.edit',$servicio->id) }}">Editar</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <form action="{{ route('telefonos.destroy',$telefono) }}" method="POST">
+                                    <a class="btn btn-info" href="{{ route('telefonos.show',$telefono->numero) }}">Ver</a>
+                                    <a class="btn btn-warning" href="{{ route('telefonos.edit',$telefono) }}">Editar</a>
                                 </form>
                             </td>
                         </tr>

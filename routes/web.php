@@ -54,6 +54,9 @@ Route::resource('clientes', ClienteController::class)->middleware(['auth','verif
 //Averias
 Route::resource('averias', ClienteController::class)->middleware(['auth', 'verified']);
 
+//Telefonos
+Route::resource('telefonos', TelefonoController::class)->middleware(['auth', 'verified']);
+
 //CRUD Zonas
 /*
 Route::get('/zonas', [ZonaController::class, 'index'])->middleware(['auth', 'verified'])->name('zonas.index');

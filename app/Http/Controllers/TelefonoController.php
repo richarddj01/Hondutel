@@ -9,20 +9,9 @@ class TelefonoController extends Controller
 {
     public function index(Request $request)
     {
-        $query = telefono::whereNull('deleted_at');
+        $telefonos = telefono::all();
 
-        if ($request->has('search')) {
-            $search = $request->get('search');
-            $query->where(function($query) use ($search) {
-                $query->where('descripcion', 'like', '%'.$search.'%')
-                      ->orWhere('nombre_corto', 'like', '%'.$search.'%');
-            })->where('oculto', false);
-        }
-
-        //$zonas = $query->get();
-        $zonas = $query->paginate(10);
-
-        return view('zonas.index', compact('zonas'));
+        return view('telefonos.index', compact('telefonos'));
     }
 
     /**
@@ -45,12 +34,9 @@ class TelefonoController extends Controller
      * Display the specified resource.
      */
     //public function show(datos_tecnicos_telefono $datos_tecnicos_telefono)
-    public function show(Request $request)
+    public function show(telefono $telefono)
     {
-        //$datos = datos_tecnicos_telefono::findOrFail($id);
-
-        //return view('consulta_datos_telefono', ['datos' => $datos]);
-
+        return view('telefonos.show', compact('telefono'));
     }
 
     /**
