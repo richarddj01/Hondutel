@@ -52,7 +52,8 @@ Route::resource('servicios', ServicioController::class)->middleware(['auth', 've
 Route::resource('clientes', ClienteController::class)->middleware(['auth','verified']);
 
 //Averias
-Route::resource('averias', ClienteController::class)->middleware(['auth', 'verified']);
+Route::resource('averias', AveriaController::class)->middleware(['auth', 'verified']);
+Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
 
 //Telefonos
 Route::resource('telefonos', TelefonoController::class)->middleware(['auth', 'verified']);
