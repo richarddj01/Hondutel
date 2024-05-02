@@ -29,7 +29,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Zona</strong>
-                        <select name="tipo_cliente_id" id="tipo_cliente_id" class="form-select" tabindex="3" required>
+                        <select name="zona_id" id="zona_id" class="form-select" tabindex="3" required>
                             <option value="{{$telefono->zona->id}}">{{$telefono->zona->descripcion}} - (Actual)</option>
                             @foreach($zonas as $zona)
                             <option value="{{$zona->id}}">{{$zona->descripcion}}</option>
@@ -64,13 +64,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Numero de Cable:</strong>
-                        <input type="text" name="apellido" value="{{ $telefono->numero_cable }}" class="form-control" placeholder="">
+                        <input type="number" name="numero_de_cable" value="{{ $telefono->numero_cable }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Caja Terminal:</strong>
-                        <input type="text" name="direccion" value="{{ $telefono->caja_terminal }}" class="form-control" placeholder="">
+                        <input type="number" name="caja_terminal" value="{{ $telefono->caja_terminal }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -79,13 +79,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Borne:</strong>
-                        <input type="tel" name="celular" value="{{ $telefono->borne }}" class="form-control" placeholder="">
+                        <input type="number" name="borne" value="{{ $telefono->borne }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Ruta:</strong>
-                        <input type="email" name="correo" value="{{ $telefono->ruta }}" class="form-control" placeholder="">
+                        <input type="text" name="ruta" value="{{ $telefono->ruta }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -94,13 +94,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Codigo POTS:</strong>
-                        <input type="tel" name="celular" value="{{ $telefono->codigo_pots }}" class="form-control" placeholder="">
+                        <input type="number" name="codigo_pots" value="{{ $telefono->codigo_pots }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Codigo Puerto POTS:</strong>
-                        <input type="email" name="correo" value="{{ $telefono->codigo_puerto_pots }}" class="form-control" placeholder="">
+                        <input type="number" name="codigo_puerto_pots" value="{{ $telefono->codigo_puerto_pots }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -109,13 +109,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Codigo ADSL:</strong>
-                        <input type="tel" name="celular" value="{{ $telefono->codigo_adsl }}" class="form-control" placeholder="">
+                        <input type="numer" name="codigo_adsl" value="{{ $telefono->codigo_adsl }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Codigo Puerto ADSL:</strong>
-                        <input type="email" name="correo" value="{{ $telefono->codigo_puerto_adsl }}" class="form-control" placeholder="">
+                        <input type="number" name="codigo_puerto_adsl" value="{{ $telefono->codigo_puerto_adsl }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -124,13 +124,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Velocidad:</strong>
-                        <input type="tel" name="celular" value="{{ $telefono->velocidad }}" class="form-control" placeholder="">
+                        <input type="text" name="velocidad" value="{{ $telefono->velocidad }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>IP Pública:</strong>
-                        <input type="email" name="correo" value="{{ $telefono->ip_publica }}" class="form-control" placeholder="">
+                        <input type="text" name="ip_publica" value="{{ $telefono->ip_publica }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
@@ -139,19 +139,19 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Numero de Enlace:</strong>
-                        <input type="text" name="nombre" value="{{ $telefono->numero_de_enlace }}" class="form-control" placeholder="">
+                        <input type="number" name="numero_de_enlace" value="{{ $telefono->numero_de_enlace }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Nodo:</strong>
-                        <input type="tel" name="celular" value="{{ $telefono->nodo }}" class="form-control" placeholder="">
+                        <input type="text" name="nodo" value="{{ $telefono->nodo }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
             <div class="row my-5">
                 <div class="col-6">
-                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
+                    <a class="btn btn-primary" href="{{ route('telefonos.index') }}"> Volver</a>
                 </div>
                 <div class="col-6">
                     <div class="form-group">

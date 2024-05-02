@@ -52,9 +52,16 @@ class TelefonoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, telefono $datosTecnicos)
+    public function update(Request $request, telefono $telefono)
     {
-        //
+        $request->validate([
+            'par_primario' => 'sometimes|numeric',
+        ]);
+
+        $telefono->update($request->all());
+
+        return redirect()->route('telefonos.index')
+            ->with('success', 'Teléfono actualizado exitosamente.');
     }
 
     /**
