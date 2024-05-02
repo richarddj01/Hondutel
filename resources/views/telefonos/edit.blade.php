@@ -49,13 +49,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Par Primario:</strong>
-                        <input type="tel" name="celular" value="{{ $telefono->par_primario }}" class="form-control" placeholder="">
+                        <input type="number" name="par_primario" value="{{ $telefono->par_primario }}" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <strong>Par Secundario:</strong>
-                        <input type="email" name="correo" value="{{ $telefono->par_secundario }}" class="form-control" placeholder="">
+                        <input type="number" name="par_secundario" value="{{ $telefono->par_secundario }}" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>
