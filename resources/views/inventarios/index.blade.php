@@ -51,6 +51,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$inventarios->links()}}
         </div>
     </div>
 </x-app-layout>
