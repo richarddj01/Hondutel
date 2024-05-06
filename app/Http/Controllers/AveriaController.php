@@ -13,7 +13,8 @@ class AveriaController extends Controller
 {
     public function index()
     {
-        $averias = averia::all();
+        $averias = averia::paginate(10);
+
         return view('averias.index', compact('averias'));
     }
 

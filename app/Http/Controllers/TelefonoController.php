@@ -10,7 +10,7 @@ class TelefonoController extends Controller
 {
     public function index(Request $request)
     {
-        $telefonos = telefono::all();
+        $telefonos = telefono::paginate(10);
 
         return view('telefonos.index', compact('telefonos'));
     }

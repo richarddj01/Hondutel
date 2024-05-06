@@ -49,6 +49,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$telefonos->links()}}
         </div>
     </div>
 </x-app-layout>

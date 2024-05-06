@@ -9,7 +9,7 @@
                     <a class="btn btn-success" href="{{ route('zonas.create') }}"> Crear nueva Zona</a>
                 </div>
             </div>
-        </div>      
+        </div>
     </x-slot>
 
     <div class="container mt-5">
@@ -28,7 +28,7 @@
                 </form>
             </div>
         </div>
-        <div class="table-responsive"> 
+        <div class="table-responsive">
             <table class="table table-bordered">
                 <tr>
                     <th>No</th>
@@ -58,6 +58,7 @@
                     </tr>
                 @endforeach
             </table>
+            {{$zonas->links()}}
         </div>
     </div>
 </x-app-layout>

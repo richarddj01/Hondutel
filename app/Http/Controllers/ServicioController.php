@@ -16,7 +16,7 @@ class ServicioController extends Controller
             $query->where('descripcion', 'like', '%'.$search.'%');
         }
 
-        $servicios = $query->get();
+        $servicios = $query->paginate(10);
 
         return view('servicio.index', compact('servicios'));
     }

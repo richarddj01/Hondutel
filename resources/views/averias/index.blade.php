@@ -34,6 +34,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{$averias->links()}}
                 </div>
             </div>
         </div>

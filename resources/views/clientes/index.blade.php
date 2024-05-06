@@ -57,6 +57,7 @@
                 </tr>
             @endforeach
         </table>
+        {{$clientes->links()}}
     </div>
 
 </x-app-layout>
