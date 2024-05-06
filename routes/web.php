@@ -6,6 +6,7 @@ use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\AveriaController;
+use App\Http\Controllers\InventarioController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,9 @@ Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->m
 
 //Telefonos
 Route::resource('telefonos', TelefonoController::class)->middleware(['auth', 'verified']);
+
+//Inventarios
+Route::resource('inventarios', InventarioController::class)->middleware(['auth', 'verified']);
 
 //CRUD Zonas
 /*

@@ -28,7 +28,7 @@ class TelefonoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -76,7 +76,6 @@ class TelefonoController extends Controller
     {
         $request->validate([
             'numero' => 'numeric|gt:0',
-            // Agrega más reglas de validación según sea necesario para otros campos
         ]);
         $numero_telefono_formulario = $request->get('numero');
 
@@ -89,9 +88,8 @@ class TelefonoController extends Controller
             return view('telefonos.consulta_datos_telefono', compact('datos_resultado_busqueda'));
         }
         else{
-            return view('telefonos.consulta_datos_telefono');
+            return view('telefonos.consulta_datos_telefono')->with('success','Número no encontrado');
         }
-
         //return view('consulta_datos_telefono', ['datos' =>$datos]);
         //return view('consulta_datos_telefono',['datos'=>0]);
     }
