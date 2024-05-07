@@ -10,7 +10,6 @@
     <div class="container">
         <div class="card mt-4 ">
             <div class="card-header bg-info"><strong>Detalles de Avería</strong></div>
-
             <div class="card-body">
                 <div class="card">
                     <div class="card-header">
@@ -58,6 +57,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="text-center mb-3">
+                <a href="{{ url()->previous() }}" class="btn btn-info col-6">
+                        <i class="bi bi-arrow-left"></i> Regresar
+                </a>
             </div>
         </div>
     </div>

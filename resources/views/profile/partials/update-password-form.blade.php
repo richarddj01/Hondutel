@@ -38,7 +38,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-4">
-            <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+            <button type="submit" class="btn btn-success">{{ __('Guardar') }}</button>
 
             @if (session('status') === 'password-updated')
                 <p

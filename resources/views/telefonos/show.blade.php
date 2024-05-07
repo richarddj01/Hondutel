@@ -10,7 +10,7 @@
 
     @if(isset($telefono))
         <div class="container">
-            <div class="text-center my-3 card shadow">
+            <div class="text-center mt-3 card shadow">
                 <div class="px-3 py-5 rounded">
                 <div class="row mb-4">
                     <div class="col-12"><h5><strong>Número: </strong>{{ $telefono->numero }}</h5></div>
@@ -64,6 +64,13 @@
                     <div class="col-4">{{ $telefono->codigo_puerto_adsl ?? 'N/D'}}</div>
                     <div class="col-4">{{ $telefono->velocidad ?? 'N/D'}}</div>
                     <div class="col-4">{{ $telefono->ip_publica ?? 'N/D'}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto">
+                    <a href="{{ url()->previous() }}" class="btn btn-primary col-6">
+                        <i class="bi bi-arrow-left"></i> Regresar
+                    </a>
                 </div>
             </div>
         </div>

@@ -77,20 +77,15 @@ class TelefonoController extends Controller
         $request->validate([
             'numero' => 'numeric|gt:0',
         ]);
-        $numero_telefono_formulario = $request->get('numero');
+        $numero_telefono_formulario = $request->input('numero');
 
         $datos_resultado_busqueda = telefono::find($numero_telefono_formulario);
 
-        if(isset($datos_resultado_busqueda)){
-            if($datos_resultado_busqueda == null){
-                $datos_resultado_busqueda = 'no_encontrado';
-            }
-            return view('telefonos.consulta_datos_telefono', compact('datos_resultado_busqueda'));
+        if($datos_resultado_busqueda===null){
+            return view('telefonos.consulta_datos_telefono')->with('status','Número no encontrado');
         }
         else{
-            return view('telefonos.consulta_datos_telefono')->with('success','Número no encontrado');
+            return view('telefonos.consulta_datos_telefono', compact('datos_resultado_busqueda'));
         }
-        //return view('consulta_datos_telefono', ['datos' =>$datos]);
-        //return view('consulta_datos_telefono',['datos'=>0]);
     }
 }

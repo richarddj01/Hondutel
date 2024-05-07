@@ -19,7 +19,7 @@
                     <div class="col-md-6">
                         <p><strong>Descripcion:</strong> {{$producto->descripcion ?? '---' }}</p>
                         </div>
-                </div>
+                    </div>
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Cantidad Disponible:</strong> {{ $producto->cantidad ?? '---' }} </p>

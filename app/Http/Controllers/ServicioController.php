@@ -57,7 +57,7 @@ class ServicioController extends Controller
         $servicio->update($request->all());
 
         return redirect()->route('servicios.index')
-            ->with('success', 'Zona actualizada exitosamente.');
+            ->with('success', 'Servicio actualizado exitosamente.');
     }
 
     public function destroy(servicio $servicio)
@@ -65,6 +65,6 @@ class ServicioController extends Controller
         $servicio->delete();
 
         return redirect()->route('servicios.index')
-            ->with('success', 'Zona eliminada exitosamente.');
+            ->with('success', 'Servicio eliminado exitosamente.');
     }
 }

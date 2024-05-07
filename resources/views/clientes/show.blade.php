@@ -16,9 +16,6 @@
                 <div class="pull-left">
                     <h2>Detalles del Cliente</h2>
                 </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
-                </div>
             </div>
         </div>
         <div class="row my-3 card">
@@ -75,6 +72,9 @@
                             <div class='alert alert-warning'>No tiene numeros asignados</div>
                         </div>
                     @endif
+                    <div class="pull-right">
+                        <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
+                    </div>
                 </div>
             </div>
         </div>

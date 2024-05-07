@@ -15,9 +15,6 @@
                 <div class="pull-left">
                     <h2>Editar Producto</h2>
                 </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('inventarios.index') }}"> Volver</a>
-                </div>
             </div>
         </div>
         @if ($errors->any())
@@ -42,6 +39,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
+                        <a class="btn btn-primary" href="{{ route('inventarios.index') }}"> Volver</a>
                         <button type="submit" class="btn btn-success">Actualizar</button>
                     </div>
                 </div>
