@@ -30,7 +30,7 @@
                         <th scope="col">Número</th>
                         <th scope="col">Zona</th>
                         <th scope="col">Armario</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col" width="230px">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

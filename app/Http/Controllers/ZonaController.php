@@ -9,14 +9,14 @@ class ZonaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = zona::whereNull('deleted_at');
+        $query = zona::query();
 
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where(function($query) use ($search) {
                 $query->where('descripcion', 'like', '%'.$search.'%')
                       ->orWhere('nombre_corto', 'like', '%'.$search.'%');
-            })->where('oculto', false);
+            });
         }
 
         //$zonas = $query->get();

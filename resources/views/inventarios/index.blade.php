@@ -30,6 +30,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Cantidad</th>
+                        <th scope="col" width="230px">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,11 +41,11 @@
                             <td>{{ $inventario->cantidad}}</td>
                             <td>
                                 <form action="{{ route('inventarios.destroy',$inventario) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('inventarios.show',$inventario) }}">Ver</a>
-                                    <a class="btn btn-warning" href="{{ route('inventarios.edit',$inventario) }}">Editar</a>
+                                    <a class="btn btn-info" href="{{ route('inventarios.show',$inventario) }}">  <i class="bi-eye-fill"></i>   </a>
+                                    <a class="btn btn-warning" href="{{ route('inventarios.edit',$inventario) }}"> <i class="bi bi-pencil-square"></i> </a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger">  <i class="bi bi-trash-fill"></i>  </button>
                                 </form>
                             </td>
                         </tr>

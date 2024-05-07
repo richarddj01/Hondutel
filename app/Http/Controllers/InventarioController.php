@@ -9,7 +9,16 @@ class InventarioController extends Controller
 {
     public function index(Request $request)
     {
-        $inventarios = inventario::paginate(10);
+        $query = inventario::query();
+
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where(function($query) use ($search) {
+                $query->where('descripcion', 'like', '%'.$search.'%');
+            });
+        }
+
+        $inventarios = $query->paginate(10);
 
         return view('inventarios.index', compact('inventarios'));
     }

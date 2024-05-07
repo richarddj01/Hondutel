@@ -16,7 +16,7 @@
         <form action="{{ route('consulta_datos_telefono.index') }}" class="p-4 bg-white shadow-sm rounded">
             <div class="d-flex flex-row align-items-center">
                 <a href="{{ url()->previous() }}" class="btn btn-primary me-2">
-                    <i class="bi bi-arrow-left"></i> Regresar
+                    <i class="bi bi-arrow-left"></i>
                 </a>
                 <input class="form-control me-2" id="numero" type="tel" name="numero" value="{{ $datos_resultado_busqueda->numero ?? '' }}" placeholder="Ingrese un número">
                 <button class="btn btn-success " type="submit">Buscar</button>

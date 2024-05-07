@@ -30,7 +30,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Codigo</th>
-                        <th scope="col">Acción</th>
+                        <th scope="col" width="230px">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,11 +44,11 @@
                             <td>{{ $servicio->id }}</td>
                             <td>
                                 <form action="{{ route('servicios.destroy',$servicio->id) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('servicios.show',$servicio->id) }}">Ver</a>
-                                    <a class="btn btn-warning" href="{{ route('servicios.edit',$servicio->id) }}">Editar</a>
+                                    <a class="btn btn-info" href="{{ route('servicios.show',$servicio->id) }}">  <i class="bi-eye-fill"></i>   </a>
+                                    <a class="btn btn-warning" href="{{ route('servicios.edit',$servicio->id) }}"> <i class="bi bi-pencil-square"></i> </a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger">  <i class="bi bi-trash-fill"></i>  </button>
                                 </form>
                             </td>
                         </tr>

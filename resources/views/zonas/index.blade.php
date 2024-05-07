@@ -1,13 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="row py-4 align-items-center text-center">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col">
                 <h2>Zonas</h2>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="text-lg-end text-md-end text-sm-start">
-                    <a class="btn btn-success" href="{{ route('zonas.create') }}"> Crear nueva Zona</a>
-                </div>
+                <a class="btn btn-success" href="{{ route('zonas.create') }}"> Crear nueva Zona</a>
             </div>
         </div>
     </x-slot>
@@ -48,11 +44,11 @@
                         <td>{{ $zona->id }}</td>
                         <td>
                             <form action="{{ route('zonas.destroy',$zona->id) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('zonas.show',$zona->id) }}">Ver</a>
-                                <a class="btn btn-warning" href="{{ route('zonas.edit',$zona->id) }}">Editar</a>
+                                <a class="btn btn-info" href="{{ route('zonas.show',$zona->id) }}">   <i class="bi-eye-fill"></i>   </a>
+                                <a class="btn btn-warning" href="{{ route('zonas.edit',$zona->id) }}">  <i class="bi bi-pencil-square"></i>  </a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger"> <i class="bi bi-trash-fill"></i>  </button>
                             </form>
                         </td>
                     </tr>
