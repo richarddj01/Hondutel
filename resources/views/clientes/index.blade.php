@@ -47,11 +47,11 @@
                     <td>{{ $cliente->tipo_cliente->descripcion }}</td>
                     <td>
                         <form action="{{ route('clientes.destroy',$cliente->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('clientes.show',$cliente->id) }}">Ver</a>
-                            <a class="btn btn-warning" href="{{ route('clientes.edit',$cliente->id) }}">Editar</a>
+                            <a class="btn btn-info" href="{{ route('clientes.show',$cliente->id) }}">   <i class="bi-eye-fill"></i>   </a>
+                            <a class="btn btn-warning" href="{{ route('clientes.edit',$cliente->id) }}">  <i class="bi bi-pencil-square"></i>  </a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-danger">  <i class="bi bi-trash-fill"></i>  </button>
                         </form>
                     </td>
                 </tr>
