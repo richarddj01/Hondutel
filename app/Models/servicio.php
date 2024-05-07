@@ -13,7 +13,7 @@ class servicio extends Model
     protected $fillable = [
         'descripcion'
     ];
-    public function servicios():HasMany{
-        return $this->hasMany(servicio::class);
+    public function abonado():HasMany{
+        return $this->hasMany(abonado::class);
     }
 }

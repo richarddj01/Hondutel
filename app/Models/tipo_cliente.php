@@ -14,6 +14,6 @@ class tipo_cliente extends Model
         'descripcion'
     ];
     public function clientes():HasMany{
-        return $this->hasMany(cliente::class);
+        return $this->hasMany(cliente::class)->withTrashed();
     }
 }

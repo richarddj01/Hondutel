@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="mx-auto">
+                <div class="mx-auto mb-3">
                     <a href="{{ url()->previous() }}" class="btn btn-primary col-6">
                         <i class="bi bi-arrow-left"></i> Regresar
                     </a>

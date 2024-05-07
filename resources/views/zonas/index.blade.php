@@ -47,7 +47,7 @@
                         <td>{{ $zona->nombre_corto }}</td>
                         <td>{{ $zona->id }}</td>
                         <td>
-                            <form action="{{ route('zonas.hide',$zona->id) }}" method="POST">
+                            <form action="{{ route('zonas.destroy',$zona->id) }}" method="POST">
                                 <a class="btn btn-info" href="{{ route('zonas.show',$zona->id) }}">Ver</a>
                                 <a class="btn btn-warning" href="{{ route('zonas.edit',$zona->id) }}">Editar</a>
                                 @csrf

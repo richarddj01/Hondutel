@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="pull-right">
+        <div class="text-center">
             <a class="btn btn-primary" href="{{ route('zonas.index') }}"> Volver</a>
         </div>
     </div>

@@ -26,6 +26,9 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center mb-3">
+                <a class="btn btn-primary" href="{{ route('inventarios.index') }}"> Volver</a>
+            </div>
         </div>
     </div>
 </x-app-layout>

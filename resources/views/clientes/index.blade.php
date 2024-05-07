@@ -29,7 +29,7 @@
                 </form>
             </div>
         </div>
-        <label>Clientes encontrados:</label>{{$clientes->count()}} <br>
+        <label>Clientes encontrados: </label>{{$clientes->count()}} <br>
         <table class="table table-bordered">
             <tr>
                 <th>No</th>

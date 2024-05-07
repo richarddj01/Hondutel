@@ -65,17 +65,11 @@ class ZonaController extends Controller
         return redirect()->route('zonas.index')
             ->with('success', 'Zona actualizada exitosamente.');
     }
-
     public function destroy(Zona $zona)
     {
         $zona->delete();
 
         return redirect()->route('zonas.index')
             ->with('success', 'Zona eliminada exitosamente.');
-    }
-    public function hide(Zona $zona)
-    {
-        $zona->update(['oculto' => true]);
-        return redirect()->route('zonas.index')->with('success', 'La zona ha sido ocultada correctamente');
     }
 }

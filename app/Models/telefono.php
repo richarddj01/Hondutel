@@ -35,7 +35,7 @@ class telefono extends Model
         return $this->hasMany(averia::class);
     }
     public function zona():BelongsTo{
-        return $this->belongsTo(zona::class);
+        return $this->belongsTo(zona::class)->withTrashed();
     }
     public function abonado():HasOne{
         return $this->hasOne(zona::class);
