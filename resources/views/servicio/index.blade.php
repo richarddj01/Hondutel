@@ -48,7 +48,30 @@
                                     <a class="btn btn-warning" href="{{ route('servicios.edit',$servicio->id) }}"> <i class="bi bi-pencil-square"></i> </a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">  <i class="bi bi-trash-fill"></i>  </button>
+
+                                    <!--Modal para confirmar DELETE-->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$servicio->id}}">
+                                    <i class="bi bi-trash-fill"></i> <!-- Icono basurero DELETE-->
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{$servicio->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Confirma que deseas eliminar el servicio "{{$servicio->descripcion}}"
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-danger">  <i class="bi bi-trash-fill"></i> Eliminar </button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </form>
                             </td>
                         </tr>

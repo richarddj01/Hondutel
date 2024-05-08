@@ -28,7 +28,7 @@
                                     <td>
                                         <a href="{{ route('averias.show', $averia->id) }}" class="btn btn-primary">   <i class="bi-eye-fill"></i>   </a>
                                         <a href="{{ route('averias.edit', $averia->id) }}" class="btn btn-warning">  <i class="bi bi-pencil-square"></i>  </a>
-                                        <a href="{{ route('averias.execute', $averia->id) }}" class="btn btn-success">  <i class="bi bi-trash-fill"></i>  </a>
+                                        <a href="{{ route('averias.execute', $averia->id) }}" class="btn btn-success">  <i class="bi bi-tools"></i>  </a>
                                     </td>
                                 </tr>
                             @endforeach

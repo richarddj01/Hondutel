@@ -41,8 +41,8 @@
                             <td>{{ $telefono->armario }}</td>
                             <td>
                                 <form action="{{ route('telefonos.destroy',$telefono) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('telefonos.show',$telefono->numero) }}">Ver</a>
-                                    <a class="btn btn-warning" href="{{ route('telefonos.edit',$telefono->numero) }}">Editar</a>
+                                    <a class="btn btn-info" href="{{ route('telefonos.show',$telefono->numero) }}"> <i class="bi-eye-fill"></i> </a>
+                                    <a class="btn btn-warning" href="{{ route('telefonos.edit',$telefono->numero) }}"> <i class="bi bi-pencil-square"></i> </a>
                                 </form>
                             </td>
                         </tr>

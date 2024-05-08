@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    //return view('auth/login');
+    //return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware('auth')->group(function () {
@@ -61,6 +61,16 @@ Route::resource('telefonos', TelefonoController::class)->middleware(['auth', 've
 
 //Inventarios
 Route::resource('inventarios', InventarioController::class)->middleware(['auth', 'verified']);
+
+
+// web.php
+
+use App\Http\Controllers\ReportController;
+
+Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.index');
+Route::post('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
+
+
 
 //CRUD Zonas
 /*

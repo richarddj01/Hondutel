@@ -34,19 +34,13 @@ class ClienteController extends Controller
 
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $tipo_cliente = tipo_cliente::all();
         return view('clientes.create', compact('tipo_cliente'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -62,9 +56,6 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')->with('success', 'Cliente registrado exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(cliente $cliente)
     {
         //Consulta de numeros asignados en la tabla abonados (usando la relación creada en el modelo cliente)
@@ -75,19 +66,12 @@ class ClienteController extends Controller
         return view('clientes.show', compact('cliente', 'abonados_servicios'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(cliente $cliente)
     {
         $tipo_cliente = tipo_cliente::all();
         return view('clientes.edit', compact('cliente', 'tipo_cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     */
     public function update(Request $request, cliente $cliente)
     {
         $request->validate([
@@ -104,9 +88,6 @@ class ClienteController extends Controller
             ->with('success', 'Cliente '.$cliente->identidad.' actualizado exitosamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(cliente $cliente)
     {
         $cliente->delete();
