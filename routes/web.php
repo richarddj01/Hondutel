@@ -70,6 +70,12 @@ use App\Http\Controllers\ReportController;
 Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.index');
 Route::post('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
 
+//Clientes, mover despues
+Route::get('/clientes/{cliente}/agregar-numero', [ClienteController::class, 'mostrarFormularioAgregarNumero'])->name('clientes.agregar-numero');
+Route::post('/clientes/{cliente}/guardar-numero', [ClienteController::class, 'guardarNumero'])->name('clientes.guardar-numero');
+Route::get('/buscar-numeros', [ClienteController::class, 'buscarNumeros'])->name('buscar-numeros');
+
+
 
 
 //CRUD Zonas

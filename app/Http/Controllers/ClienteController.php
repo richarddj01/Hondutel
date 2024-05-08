@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\telefono;
+use App\Models\abonado;
 use App\Models\tipo_cliente;
 use Illuminate\Http\Request;
 use App\Models\cliente;
@@ -24,7 +26,7 @@ class ClienteController extends Controller
                               ->orWhere('apellido', 'like', '%' . $term . '%');
                     });
                 }
-            })->whereNull('deleted_at');
+            });
         }
 
         $clientes = $query->paginate(10);
@@ -95,4 +97,44 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')
             ->with('success', 'cliente eliminada exitosamente.');
     }
+
+    //Vista para agregar número a cliente
+    public function mostrarFormularioAgregarNumero(Cliente $cliente)
+    {
+        return view('clientes.agregar_numero', compact('cliente'));
+    }
+    //Para guardar el registro en abondos
+    public function guardarNumero(Request $request, Cliente $cliente)
+    {
+        $request->validate([
+            'numero' => 'required',
+            'cliente_id' => 'required',
+        ]);
+
+        abonado::create($request->all());
+
+        return redirect()->route('clientes.show', ['cliente' => $cliente])
+                        ->with('success', 'Número asignado correctamente.');
+    }
+
+    //Para la búsqueda escrita
+    public function buscarNumeros(Request $request)
+    {
+        // Obtener números de teléfono que no están en la tabla abonados
+        $numerosDisponibles = Telefono::whereNotIn('numero', function ($query) {
+            $query->select('numero')
+                ->from('abonados');
+        })->get();
+
+        $results = [];
+        foreach ($numerosDisponibles as $numero) {
+            $results[] = [
+                'value' => $numero->id,
+                'label' => $numero->numero,
+            ];
+        }
+
+        return response()->json($results);
+    }
+
 }
