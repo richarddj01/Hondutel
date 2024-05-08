@@ -62,9 +62,18 @@ class ClienteController extends Controller
     {
         //Consulta de numeros asignados en la tabla abonados (usando la relación creada en el modelo cliente)
         $query = abonados_servicio::query();
-        $query->where('abonado_id','=',$cliente->id);
+        $query->where('abonado_id','=',$cliente->abonados[0]->id);
 
         $abonados_servicios = $query->get();
+/*
+        // Recorrer todos los abonados asociados al cliente
+        foreach ($cliente->abonados as $abonado) {
+            // Consultar los servicios asociados a cada abonado
+            $servicios = abonados_servicio::where('abonado_id', $abonado->id)->get();
+            // Agregar los resultados al array de abonados_servicios
+            $abonados_servicios[$abonado->id] = $servicios;
+        }
+*/
         return view('clientes.show', compact('cliente', 'abonados_servicios'));
     }
 

@@ -40,6 +40,8 @@
                     {{ $cliente->direccion ?? '----'}}
                     <br>
                     <br>
+                    <a class="btn btn-primary mb-3" style="color:white"href="{{route('clientes.agregar-numero', $cliente->id)}}"> <i class="bi bi-add"></i> Agregar Número</a>
+                    <br>
                     <strong>Numeros Asignados:</strong>
                     @if(count($cliente->abonados) > 0)
                     <table class="table table-bordered mt-3">

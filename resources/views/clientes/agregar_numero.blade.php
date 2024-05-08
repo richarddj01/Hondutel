@@ -1,30 +1,28 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Agregar Número a Cliente') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h3>Seleccione un número para asignar al cliente {{ $cliente->nombre }}</h3>
-
-                    <form method="POST" action="{{ route('clientes.guardar-numero', ['cliente' => $cliente->id]) }}">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="telefono" class="form-label">Buscar Número de Teléfono</label>
-                            <input type="text" class="form-control" id="numero" name="numero" placeholder="Escribe para buscar...">
-                            <input type="hidden" id="cliente_id" name="cliente_id" value="{{$cliente->id}}">
-                            <input type="hidden" id="numero_id" name="numero_id">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
+    <div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Seleccione un número para asignar al cliente:</h3>
+            <h3> {{ $cliente->nombre }}</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('clientes.guardar-numero', ['cliente' => $cliente->id]) }}">
+                @csrf
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Buscar Número de Teléfono</label>
+                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Escribe para buscar...">
+                    <input type="hidden" id="cliente_id" name="cliente_id" value="{{ $cliente->id }}">
+                    <input type="hidden" id="numero_id" name="numero_id">
                 </div>
-            </div>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="{{route('clientes.show', $cliente->id)}}"><i class="bi bi-arrow-left-circle-fill"></i> Regresar</a>
+                    <button type="submit" class="btn btn-success"> <i class="bi bi-floppy-fill"></i> Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 
     <script>
         // Configurar autocompletado para el campo de búsqueda de teléfonos

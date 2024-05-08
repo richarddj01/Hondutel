@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\ZonaController;
@@ -52,6 +53,9 @@ Route::resource('servicios', ServicioController::class)->middleware(['auth', 've
 
 //Clientes
 Route::resource('clientes', ClienteController::class)->middleware(['auth', 'verified']);
+Route::get('/clientes/{cliente}/agregar-numero', [ClienteController::class, 'mostrarFormularioAgregarNumero'])->name('clientes.agregar-numero');
+Route::post('/clientes/{cliente}/guardar-numero', [ClienteController::class, 'guardarNumero'])->name('clientes.guardar-numero');
+Route::get('/buscar-numeros', [ClienteController::class, 'buscarNumeros'])->name('buscar-numeros');
 
 //Averias
 Route::resource('averias', AveriaController::class)->middleware(['auth', 'verified']);
@@ -71,13 +75,14 @@ use App\Http\Controllers\ReportController;
 Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.index');
 Route::post('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
 
-//Clientes, mover despues
-Route::get('/clientes/{cliente}/agregar-numero', [ClienteController::class, 'mostrarFormularioAgregarNumero'])->name('clientes.agregar-numero');
-Route::post('/clientes/{cliente}/guardar-numero', [ClienteController::class, 'guardarNumero'])->name('clientes.guardar-numero');
-Route::get('/buscar-numeros', [ClienteController::class, 'buscarNumeros'])->name('buscar-numeros');
+//Usuarios
+Route::resource('/users', 'App\Http\Controllers\UserController')->middleware(['auth', 'verified']);
 
+//Permisos
+Route::resource('/permisos', PermissionsController::class)->middleware(['auth', 'verified'])->names('permisos');
 
-
+//Roles
+Route::resource('/roles', RolesController::class)->middleware(['auth', 'verified'])->names('roles');
 
 //Usuarios
 Route::resource('/users', 'App\Http\Controllers\UserController')->middleware(['auth', 'verified']);
