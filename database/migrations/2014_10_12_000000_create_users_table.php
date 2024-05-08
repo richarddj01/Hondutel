@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('tipo_usuario_id')->nullable();
-                $table->foreign('tipo_usuario_id')->references('id')->on('tipo_usuarios');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

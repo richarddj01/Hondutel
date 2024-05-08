@@ -6,8 +6,10 @@ use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\AveriaController;
-
-
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UserController;
+use App\Models\Permissions;
 use Illuminate\Support\Facades\Route;
 
 
@@ -49,7 +51,7 @@ Route::delete('/zonas/{zona}/hide', [ZonaController::class, 'hide'])->middleware
 Route::resource('servicios', ServicioController::class)->middleware(['auth', 'verified']);
 
 //Clientes
-Route::resource('clientes', ClienteController::class)->middleware(['auth','verified']);
+Route::resource('clientes', ClienteController::class)->middleware(['auth', 'verified']);
 
 //Averias
 Route::resource('averias', AveriaController::class)->middleware(['auth', 'verified']);
@@ -58,6 +60,14 @@ Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->m
 //Telefonos
 Route::resource('telefonos', TelefonoController::class)->middleware(['auth', 'verified']);
 
+//Usuarios
+Route::resource('/users', 'App\Http\Controllers\UserController')->middleware(['auth', 'verified']);
+
+//Permisos
+Route::resource('/permisos', PermissionsController::class)->middleware(['auth', 'verified'])->names('permisos');
+
+//Roles
+Route::resource('/roles', RolesController::class)->middleware(['auth', 'verified'])->names('roles');
 //CRUD Zonas
 /*
 Route::get('/zonas', [ZonaController::class, 'index'])->middleware(['auth', 'verified'])->name('zonas.index');
@@ -103,4 +113,4 @@ Route::put('/averias/{averia}', [AveriaController::class, 'update'])->middleware
 Route::delete('/averias/{averia}', [AveriaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('averias.destroy');
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

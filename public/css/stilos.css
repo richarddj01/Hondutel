@@ -1,0 +1,32 @@
+:root {
+    --colorVerdeAzulado: #086f6f;
+    --colorVerdeAzuladoOscuro: #0d5e5e;
+    --colorRosa: #de1860;
+    --colorMorado: #6a0dad;
+}
+
+.usuarioColor {
+    background-color: var(--colorVerdeAzulado);
+}
+
+.usuarioIcon {
+    background-color: var(--colorVerdeAzuladoOscuro);
+}
+
+.llaveIcon {
+    width: 30px;
+    margin-right: 0.5rem;
+}
+
+#titulo_roles_permisos hr {
+    border: 1px solid;
+    border-color: gray;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.contenedor_Roles_Permisos {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.173);
+    padding: 2rem;
+}

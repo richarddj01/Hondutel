@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    use HasRoles;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -44,11 +46,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function averias():HasMany
+    public function averias(): HasMany
     {
         return $this->hasMany(Averia::class);
     }
-    public function tipo_usuario():BelongsTo{
+    public function tipo_usuario(): BelongsTo
+    {
         return $this->belongsTo(tipo_usuario::class);
     }
 }

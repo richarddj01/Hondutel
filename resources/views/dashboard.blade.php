@@ -9,15 +9,19 @@
         <div class="row">
             <div class="col-6">
                 <div class="card text-bg-primary mb-3">
-                    <div class="card-header"><h5>Clientes</h5></div>
-                        <div class="card-body">
-                            <a href="{{ route('clientes.index') }}" class="btn btn-light">Ingresar</a>
-                        </div>
+                    <div class="card-header">
+                        <h5>Clientes</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ route('clientes.index') }}" class="btn btn-light">Ingresar</a>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="card text-bg-secondary mb-3">
-                    <div class="card-header"><h5>Zonas</h5></div>
+                    <div class="card-header">
+                        <h5>Zonas</h5>
+                    </div>
                     <div class="card-body">
                         <a href="{{ route('zonas.index') }}" class="btn btn-light">Ingresar</a>
                     </div>
@@ -30,15 +34,19 @@
         <div class="row ">
             <div class="col-6">
                 <div class="card text-bg-success mb-3">
-                    <div class="card-header"><h5>Servicios</h5></div>
-                        <div class="card-body">
-                            <a href="{{ route('servicios.index') }}" class="btn btn-light">Ingresar</a>
-                        </div>
+                    <div class="card-header">
+                        <h5>Servicios</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ route('servicios.index') }}" class="btn btn-light">Ingresar</a>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="card text-bg-danger mb-3">
-                    <div class="card-header"><h5>Datos Técnicos</h5></div>
+                    <div class="card-header">
+                        <h5>Datos Técnicos</h5>
+                    </div>
                     <div class="card-body">
                         <a href="{{ route('consulta_datos_telefono.index') }}" class="btn btn-light">Ingresar</a>
                     </div>
@@ -48,17 +56,39 @@
         <div class="row ">
             <div class="col-6">
                 <div class="card text-bg-warning mb-3">
-                    <div class="card-header"><h5>Averías</h5></div>
-                        <div class="card-body">
-                            <a href="{{ route('averias.index') }}" class="btn btn-light">Pendientes</a>
-                            <a href="{{ route('averias.create') }}" class="btn btn-light">Registrar</a>
+                    <div class="card-header">
+                        <h5>Averías</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ route('averias.index') }}" class="btn btn-light">Pendientes</a>
+                        <a href="{{ route('averias.create') }}" class="btn btn-light">Registrar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card  mb-3">
+                    <div class="row p-3">
+                        <div class="col-3 align-content-center text-center  usuarioIcon">
+                            <img src="/img/icon/usuariosIcon.png" class="w-50" alt="...">
                         </div>
+                        <div class="col-9 usuarioColor">
+                            <div class="card-body">
+                                <h5 class="text-white ">Usuarios</h5>
+                                <a href="/users" class="btn btn-light">Ingresar</a>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
+
+
     </div>
 
-<!--
+    <!--
 
 <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
   <div class="card-header">Header</div>
