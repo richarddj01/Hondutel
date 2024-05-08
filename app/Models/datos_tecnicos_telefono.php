@@ -11,7 +11,7 @@ class datos_tecnicos_telefono extends Model
     protected $primaryKey = 'numero';
     public function zona()
     {
-        return $this->belongsTo(zona::class, 'zonas_id');
+        return $this->belongsTo(zona::class, 'zonas_id')->withTrashed();
     }
     public function abonado()
     {

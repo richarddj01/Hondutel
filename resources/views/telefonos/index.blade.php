@@ -30,7 +30,7 @@
                         <th scope="col">Número</th>
                         <th scope="col">Zona</th>
                         <th scope="col">Armario</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col" width="230px">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,14 +41,15 @@
                             <td>{{ $telefono->armario }}</td>
                             <td>
                                 <form action="{{ route('telefonos.destroy',$telefono) }}" method="POST">
-                                    <a class="btn btn-info" href="{{ route('telefonos.show',$telefono->numero) }}">Ver</a>
-                                    <a class="btn btn-warning" href="{{ route('telefonos.edit',$telefono) }}">Editar</a>
+                                    <a class="btn btn-info" href="{{ route('telefonos.show',$telefono->numero) }}"> <i class="bi-eye-fill"></i> </a>
+                                    <a class="btn btn-warning" href="{{ route('telefonos.edit',$telefono->numero) }}"> <i class="bi bi-pencil-square"></i> </a>
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{$telefonos->links()}}
         </div>
     </div>
 </x-app-layout>

@@ -15,33 +15,30 @@
                 <div class="pull-left">
                     <h2>Editar Servicios</h2>
                 </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('servicios.index') }}"> Volver</a>
-                </div>
             </div>
-        </div>
-        @if ($errors->any())
+            @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Ups!</strong> Hubo un problema con tus entradas.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                    <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
-        @endif
-        <form action="{{ route('servicios.update',$servicio->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Descripcion:</strong>
-                        <input type="text" name="descripcion" value="{{ $servicio->descripcion }}" class="form-control" placeholder="Descripcion">
+            @endif
+            <form action="{{ route('servicios.update',$servicio->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Descripcion:</strong>
+                            <input type="text" name="descripcion" value="{{ $servicio->descripcion }}" class="form-control" placeholder="Descripcion">
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                        <div class="form-group text-center">
+                        <a class="btn btn-primary" href="{{ route('servicios.index') }}"> Volver</a>
                         <button type="submit" class="btn btn-success">Actualizar</button>
                     </div>
                 </div>

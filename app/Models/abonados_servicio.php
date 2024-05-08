@@ -11,6 +11,6 @@ class abonados_servicio extends Model
     use HasFactory;
     protected $fillable = [ 'descripcion' ];
     public function servicio():BelongsTo{
-        return $this->belongsTo(servicio::class);
+        return $this->belongsTo(servicio::class)->withTrashed();
     }
 }

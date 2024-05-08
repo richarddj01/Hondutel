@@ -17,7 +17,7 @@ class abonado extends Model
     ];
     public function cliente():BelongsTo
     {
-        return $this->belongsTo(cliente::class);
+        return $this->belongsTo(cliente::class)->withTrashed();
     }
 
     public function telefono(): HasOne

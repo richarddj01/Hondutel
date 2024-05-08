@@ -16,7 +16,7 @@ class ServicioController extends Controller
             $query->where('descripcion', 'like', '%'.$search.'%');
         }
 
-        $servicios = $query->get();
+        $servicios = $query->paginate(10);
 
         return view('servicio.index', compact('servicios'));
     }
@@ -57,7 +57,7 @@ class ServicioController extends Controller
         $servicio->update($request->all());
 
         return redirect()->route('servicios.index')
-            ->with('success', 'Zona actualizada exitosamente.');
+            ->with('success', 'Servicio actualizado exitosamente.');
     }
 
     public function destroy(servicio $servicio)
@@ -65,6 +65,6 @@ class ServicioController extends Controller
         $servicio->delete();
 
         return redirect()->route('servicios.index')
-            ->with('success', 'Zona eliminada exitosamente.');
+            ->with('success', 'Servicio eliminado exitosamente.');
     }
 }

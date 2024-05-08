@@ -53,15 +53,18 @@
                                         @else
                                             <option value=""></option>
                                         @endif
-                                            @foreach ($tipo_averia as $tipo)
-                                            <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
-                                            @endforeach
+
+                                        @foreach ($tipo_averia as $tipo)
+                                        <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                     <textarea type="text" rows="5" name="detalle_problema" id="detalle_problema" class="form-control mt-3">{{$averia->tipo_averia->descripcion}}</textarea>
                                 </div>
                             </div>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                </div>
                             </form>
                         @endif
                     </div>

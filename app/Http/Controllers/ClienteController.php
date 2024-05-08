@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\telefono;
+use App\Models\abonado;
 use App\Models\tipo_cliente;
 use Illuminate\Http\Request;
 use App\Models\cliente;
@@ -24,7 +26,7 @@ class ClienteController extends Controller
                               ->orWhere('apellido', 'like', '%' . $term . '%');
                     });
                 }
-            })->whereNull('deleted_at');
+            });
         }
 
         $clientes = $query->paginate(10);
@@ -34,19 +36,13 @@ class ClienteController extends Controller
 
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $tipo_cliente = tipo_cliente::all();
         return view('clientes.create', compact('tipo_cliente'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -62,33 +58,22 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')->with('success', 'Cliente registrado exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(cliente $cliente)
     {
         //Consulta de numeros asignados en la tabla abonados (usando la relación creada en el modelo cliente)
-        //$cliente = cliente::with('abonados')->find($cliente->identidad);
         $query = abonados_servicio::query();
-        $query->where('abonado_id','==',$cliente->id);
+        $query->where('abonado_id','=',$cliente->id);
 
         $abonados_servicios = $query->get();
         return view('clientes.show', compact('cliente', 'abonados_servicios'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(cliente $cliente)
     {
         $tipo_cliente = tipo_cliente::all();
         return view('clientes.edit', compact('cliente', 'tipo_cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     */
     public function update(Request $request, cliente $cliente)
     {
         $request->validate([
@@ -105,9 +90,6 @@ class ClienteController extends Controller
             ->with('success', 'Cliente '.$cliente->identidad.' actualizado exitosamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(cliente $cliente)
     {
         $cliente->delete();
@@ -115,4 +97,44 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')
             ->with('success', 'cliente eliminada exitosamente.');
     }
+
+    //Vista para agregar número a cliente
+    public function mostrarFormularioAgregarNumero(Cliente $cliente)
+    {
+        return view('clientes.agregar_numero', compact('cliente'));
+    }
+    //Para guardar el registro en abondos
+    public function guardarNumero(Request $request, Cliente $cliente)
+    {
+        $request->validate([
+            'numero' => 'required',
+            'cliente_id' => 'required',
+        ]);
+
+        abonado::create($request->all());
+
+        return redirect()->route('clientes.show', ['cliente' => $cliente])
+                        ->with('success', 'Número asignado correctamente.');
+    }
+
+    //Para la búsqueda escrita
+    public function buscarNumeros(Request $request)
+    {
+        // Obtener números de teléfono que no están en la tabla abonados
+        $numerosDisponibles = Telefono::whereNotIn('numero', function ($query) {
+            $query->select('numero')
+                ->from('abonados');
+        })->get();
+
+        $results = [];
+        foreach ($numerosDisponibles as $numero) {
+            $results[] = [
+                'value' => $numero->id,
+                'label' => $numero->numero,
+            ];
+        }
+
+        return response()->json($results);
+    }
+
 }

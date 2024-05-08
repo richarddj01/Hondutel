@@ -47,7 +47,7 @@
             </div>
             <!--fila-->
             <div class="row mt-3">
-                <div class="col-6">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
                     <div class="form-group">
                         <strong>Tipo Cliente:</strong>
                         <select name="tipo_cliente_id" id="tipo_cliente_id" class="form-select" tabindex="3" required>
@@ -58,7 +58,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <strong>Telefono:</strong>
                         <input type="tel" name="telefono" value="{{ $cliente->telefono }}" class="form-control" placeholder="">
@@ -67,13 +67,13 @@
             </div>
             <!--fila-->
             <div class="row mt-3">
-                <div class="col-6">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
                     <div class="form-group">
                         <strong>Celular:</strong>
                         <input type="tel" name="celular" value="{{ $cliente->celular }}" class="form-control" placeholder="">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <strong>Correo:</strong>
                         <input type="email" name="correo" value="{{ $cliente->correo }}" class="form-control" placeholder="">
@@ -90,11 +90,8 @@
                 </div>
             </div>
             <div class="row my-5">
-                <div class="col-6">
-                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group text-center">
+                        <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
                         <button type="submit" class="btn btn-success">Actualizar</button>
                     </div>
                 </div>

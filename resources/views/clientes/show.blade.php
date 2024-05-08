@@ -16,9 +16,6 @@
                 <div class="pull-left">
                     <h2>Detalles del Cliente</h2>
                 </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
-                </div>
             </div>
         </div>
         <div class="row my-3 card">
@@ -66,7 +63,7 @@
                                 <div class="btn btn-success">{{$servicio_contratado->servicio->descripcion}}</div>
                                 @endforeach
                              </td>
-                            <td><a href="{{route('consulta_datos_telefono.index', ['numero'=>$abonado->numero])}}" class="btn btn-warning">Consultar Datos</a></td>
+                            <td><a href="{{route('telefonos.show', $abonado->numero)}}" class="btn btn-warning">Consultar Datos</a></td>
                         </tr>
                         @endforeach
                     </table>
@@ -75,6 +72,9 @@
                             <div class='alert alert-warning'>No tiene numeros asignados</div>
                         </div>
                     @endif
+                    <div class="text-center">
+                        <a class="btn btn-primary" href="{{ route('clientes.index') }}">Volver</a>
+                    </div>
                 </div>
             </div>
         </div>

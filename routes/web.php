@@ -25,8 +25,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    //return view('auth/login');
+    //return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware('auth')->group(function () {
@@ -59,6 +59,25 @@ Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->m
 
 //Telefonos
 Route::resource('telefonos', TelefonoController::class)->middleware(['auth', 'verified']);
+
+//Inventarios
+Route::resource('inventarios', InventarioController::class)->middleware(['auth', 'verified']);
+
+
+// web.php
+
+use App\Http\Controllers\ReportController;
+
+Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.index');
+Route::post('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
+
+//Clientes, mover despues
+Route::get('/clientes/{cliente}/agregar-numero', [ClienteController::class, 'mostrarFormularioAgregarNumero'])->name('clientes.agregar-numero');
+Route::post('/clientes/{cliente}/guardar-numero', [ClienteController::class, 'guardarNumero'])->name('clientes.guardar-numero');
+Route::get('/buscar-numeros', [ClienteController::class, 'buscarNumeros'])->name('buscar-numeros');
+
+
+
 
 //Usuarios
 Route::resource('/users', 'App\Http\Controllers\UserController')->middleware(['auth', 'verified']);

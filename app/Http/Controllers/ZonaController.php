@@ -9,14 +9,14 @@ class ZonaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = zona::whereNull('deleted_at');
+        $query = zona::query();
 
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where(function($query) use ($search) {
                 $query->where('descripcion', 'like', '%'.$search.'%')
                       ->orWhere('nombre_corto', 'like', '%'.$search.'%');
-            })->where('oculto', false);
+            });
         }
 
         //$zonas = $query->get();
@@ -65,17 +65,11 @@ class ZonaController extends Controller
         return redirect()->route('zonas.index')
             ->with('success', 'Zona actualizada exitosamente.');
     }
-
     public function destroy(Zona $zona)
     {
         $zona->delete();
 
         return redirect()->route('zonas.index')
             ->with('success', 'Zona eliminada exitosamente.');
-    }
-    public function hide(Zona $zona)
-    {
-        $zona->update(['oculto' => true]);
-        return redirect()->route('zonas.index')->with('success', 'La zona ha sido ocultada correctamente');
     }
 }
