@@ -7,6 +7,7 @@ use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\AveriaController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
@@ -37,9 +38,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //Escritorio
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->names('dashboard');
 
 //Consultas Datos Técnicos
 Route::get('/telefonos/consulta_datos_telefono', [TelefonoController::class, 'mostrarDatosTelefono'])->middleware(['auth', 'verified'])->name('consulta_datos_telefono.index');

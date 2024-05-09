@@ -71,6 +71,20 @@ return new class extends Migration
             Permission::create(['name' => 'Del Averias']);
             Permission::create(['name' => 'Crear Averias']);
 
+            //Permisos modulo Telefonos
+            Permission::create(['name' => 'Listar Telefonos']);
+            Permission::create(['name' => 'Editar Telefonos']);
+            Permission::create(['name' => 'Upd Telefonos']);
+            Permission::create(['name' => 'Del Telefonos']);
+            Permission::create(['name' => 'Crear Telefonos']);
+
+            //Permisos modulo Inventario    
+            Permission::create(['name' => 'Listar Inventario']);
+            Permission::create(['name' => 'Editar Inventario']);
+            Permission::create(['name' => 'Upd Inventario']);
+            Permission::create(['name' => 'Del Inventario']);
+            Permission::create(['name' => 'Crear Inventario']);
+
             //Permisos modulo Usuarios
             Permission::create(['name' => 'Listar Usuarios']);
             Permission::create(['name' => 'Editar Usuarios']);

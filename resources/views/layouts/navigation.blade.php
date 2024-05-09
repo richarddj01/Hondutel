@@ -2,7 +2,7 @@
     <div id="sidebar-nav" class="list-group  border-0 rounded-0 text-sm-start min-vh-100 pt-3 ">
 
         <!-- Logo -->
-        <a class="" href="{{ route('dashboard') }}">
+        <a class="" href="{{ route('dashboard.index') }}">
             <img src="{{ asset('/img/logo/logoHondutel2022.png') }}" alt="Logo" class="img-fluid ">
         </a>
         <br>
@@ -37,11 +37,11 @@
         <hr>
 
         <!-- NavTelefonos -->
-        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate item-below-dropdown" data-bs-parent="#sidebar"><i class="bi bi-telephone-fill"></i> <span>Telefonos</span></a>
+        <a href="{{route('telefonos.index')}}" class="list-group-item border-end-0 d-inline-block text-truncate item-below-dropdown" data-bs-parent="#sidebar"><i class="bi bi-telephone-fill"></i> <span>Telefonos</span></a>
         <hr>
 
         <!-- NavInventario -->
-        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><i class="bi bi-calendar"></i> <span>Inventario</span></a>
+        <a href="{{route('inventarios.index')}}" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><i class="bi bi-calendar"></i> <span>Inventario</span></a>
         <hr>
 
         <!-- NavAdministracion -->
@@ -52,13 +52,11 @@
 
             <div class="dropdown-menu mx-3" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="/users">Usuarios</a>
-                <a class="dropdown-item" href="#">Roles</a>
-                <a class="dropdown-item" href="#">Permisos</a>
+                <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
+                <a class="dropdown-item" href="{{ route('permisos.index') }}">Permisos</a>
             </div>
         </div>
         <hr>
-
-
 
     </div>
 </div>

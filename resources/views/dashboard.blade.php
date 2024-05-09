@@ -6,81 +6,104 @@
     </x-slot>
 
     <div class="cointainer mx-md-5 shadow">
-        <div class="row">
+        <div class="row px-4">
             <div class="col-6">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <h5>Clientes</h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="{{ route('clientes.index') }}" class="btn btn-light">Ingresar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card text-bg-secondary mb-3">
-                    <div class="card-header">
-                        <h5>Zonas</h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="{{ route('zonas.index') }}" class="btn btn-light">Ingresar</a>
-                    </div>
-                </div>
-            </div>
-            <!--
-            <div class="card text-bg-secondary mb-3 col-6" style="max-width: 18rem;">
-            -->
-        </div>
-        <div class="row ">
-            <div class="col-6">
-                <div class="card text-bg-success mb-3">
-                    <div class="card-header">
-                        <h5>Servicios</h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="{{ route('servicios.index') }}" class="btn btn-light">Ingresar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card text-bg-danger mb-3">
-                    <div class="card-header">
-                        <h5>Datos Técnicos</h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="{{ route('consulta_datos_telefono.index') }}" class="btn btn-light">Ingresar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col-6">
-                <div class="card text-bg-warning mb-3">
-                    <div class="card-header">
-                        <h5>Averías</h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="{{ route('averias.index') }}" class="btn btn-light">Pendientes</a>
-                        <a href="{{ route('averias.create') }}" class="btn btn-light">Registrar</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <div class="card  mb-3">
-                    <div class="row p-3">
-                        <div class="col-3 align-content-center text-center  usuarioIcon">
+                <div class="card mb-3">
+                    <div class="row px-3">
+                        <div class="col-3 rounded-start-3  align-content-center text-center colorAzulOscuro">
                             <img src="/img/icon/usuariosIcon.png" class="w-50" alt="...">
                         </div>
-                        <div class="col-9 usuarioColor">
+                        <div class="col-9  bg-primary rounded-end-3 ">
                             <div class="card-body">
-                                <h5 class="text-white ">Usuarios</h5>
-                                <a href="/users" class="btn btn-light">Ingresar</a>
+                                <h5 class="text-white ">Clientes</h5>
+                                <h3 class="text-white ">{{$clientes}}</h3>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
+            <div class="col-6">
+                <div class="card mb-3 ">
+                    <div class="row px-3">
+                        <div class="col-3 rounded-start-3  align-content-center text-center colorgrisOscuro">
+                            <img src="/img/icon/usuariosIcon.png" class="w-50" alt="...">
+                        </div>
+                        <div class="col-9 bg-secondary rounded-end-3 ">
+                            <div class="card-body">
+                                <h5 class="text-white ">Zonas</h5>
+                                <h3 class="text-white ">{{$users}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row px-4">
+            <div class="col-6">
+                <div class="card mb-3">
+                    <div class="row px-3">
+                        <div class="col-3 rounded-start-3  align-content-center text-center colorverdeOscuro">
+                            <img src="/img/icon/usuariosIcon.png" class="w-50" alt="...">
+                        </div>
+                        <div class="col-9  bg-success rounded-end-3 ">
+                            <div class="card-body">
+                                <h5 class="text-white ">Servicios</h5>
+                                <h3 class="text-white ">{{$users}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card mb-3 ">
+                    <div class="row px-3">
+                        <div class="col-3 rounded-start-3  align-content-center text-center colorRosaOscuro">
+                            <img src="/img/icon/usuariosIcon.png" class="w-50" alt="...">
+                        </div>
+                        <div class="col-9 bg-danger rounded-end-3 ">
+                            <div class="card-body">
+                                <h5 class="text-white ">Datos Técnicos</h5>
+                                <h3 class="text-white ">{{$users}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-4">
+            <div class="col-6">
+                <div class="card mb-3 ">
+                    <div class="row px-3">
+                        <div class="col-3 rounded-start-3  align-content-center text-center coloramarilloOscuro">
+                            <img src="/img/icon/usuariosIcon.png" class="w-50" alt="...">
+                        </div>
+                        <div class="col-9 bg-warning rounded-end-3 ">
+                            <div class="card-body">
+                                <h5 class="text-white ">Averias</h5>
+                                <h3 class="text-white ">{{$users}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card mb-3 ">
+                    <div class="row px-3">
+                        <div class="col-3 rounded-start-3  align-content-center text-center usuarioIcon">
+                            <img src="/img/icon/usuariosIcon.png" class="w-50" alt="...">
+                        </div>
+                        <div class="col-9 usuarioColor rounded-end-3 ">
+                            <div class="card-body">
+                                <h5 class="text-white ">Usuarios</h5>
+                                <h3 class="text-white ">{{$users}}</h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -30,8 +30,7 @@
             </div>
             <div class="col-4 gap-3 d-flex justify-content-end ">
                 <a class="btn btn-success " href="/users/create">Agregar Usuario</a>
-                <a class="btn btn-primary" href="{{ route('roles.index') }}">Roles</a>
-                <a class="btn btn-primary" href="{{ route('permisos.index') }}">Permisos</a>
+
             </div>
         </div>
 

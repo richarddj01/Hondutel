@@ -1,16 +1,47 @@
 :root {
     --colorVerdeAzulado: #086f6f;
     --colorVerdeAzuladoOscuro: #0d5e5e;
+    --colorAzul: #0d6efd;
+    --colorAzulOscuro: rgb(10, 67, 146);
     --colorRosa: #de1860;
+    --colorRosaOscuro: #9e1346;
     --colorMorado: #6a0dad;
+    --colorMoradoOscuro: #4a0a7f;
+    --colorAmarillo: #ffc107;
+    --colorAmarilloOscuro: #d39e00;
+    --colorVerde: #198754;
+    --colorVerdeOscuro: #105f3a;
+    --colorgris: #6c757d;
+    --colorgrisOscuro: #343a40;
 }
 
 .usuarioColor {
     background-color: var(--colorVerdeAzulado);
 }
 
+/*Color del apartado de iconos en las cards*/
 .usuarioIcon {
     background-color: var(--colorVerdeAzuladoOscuro);
+}
+
+.colorAzulOscuro {
+    background-color: var(--colorAzulOscuro);
+}
+
+.colorRosaOscuro {
+    background-color: var(--colorRosaOscuro);
+}
+
+.colorgrisOscuro {
+    background-color: var(--colorgrisOscuro);
+}
+
+.colorverdeOscuro {
+    background-color: var(--colorVerdeOscuro);
+}
+
+.coloramarilloOscuro {
+    background-color: var(--colorAmarilloOscuro);
 }
 
 .llaveIcon {
@@ -36,7 +67,7 @@
 }
 
 .colNav {
-    background-color: #0a2225e8;
+    background-color: #06243b;
     color: white;
 }
 
@@ -54,7 +85,7 @@
 }
 
 #sidebar-nav a:hover {
-    background-color: #0a2225e8 !important;
+    background-color: #1c2d3a !important;
     color: white;
 }
 
