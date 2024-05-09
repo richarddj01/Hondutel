@@ -13,7 +13,7 @@ class AveriaController extends Controller
 {
     public function index()
     {
-        $averias = averia::paginate(10);
+        $averias = averia::whereNull('hora_finalizado')->paginate(10);
 
         return view('averias.index', compact('averias'));
     }
@@ -120,7 +120,7 @@ class AveriaController extends Controller
 
         return redirect()->route('averias.index')->with('success', 'Avería eliminada exitosamente.');
     }
-    public function execute(Averia $averia)
+    public function execute(Averia $averia, Request $request)
     {
         $telefono = telefono::find($averia->numero);
         $abonado = abonado::get()->first();
@@ -144,5 +144,25 @@ class AveriaController extends Controller
         $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema'=>$detalle_problema, 'descripcion'=> $descripcion, 'iniciado'=> $iniciado, 'id'=>$averia->id];
 
         return view('averias.execute', compact('datos_averia', 'cliente'));
+    }
+    public function executeAveria(Request $request, Averia $averia)
+    {
+        $request->validate([
+            'user_id_tecnico' => 'nullable',
+            'iniciado' => 'nullable|boolean',
+            'hora_inicio' => 'nullable',
+            'ubicacion_inicio' => 'nullable'
+        ]);
+
+        $averia->fill($request->only([
+            'user_id_tecnico',
+            'iniciado',
+            'hora_inicio',
+            'ubicacion_inicio'
+        ]));
+
+        $averia->save();
+
+        return redirect()->route('averias.index')->with('success', 'Avería actualizada exitosamente.');
     }
 }

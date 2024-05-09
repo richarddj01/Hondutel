@@ -13,6 +13,7 @@
                                 <th>Hora</th>
                                 <th>Número de Abonado</th>
                                 <th width="230px">Acciones</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,6 +30,14 @@
                                         <a href="{{ route('averias.show', $averia->id) }}" class="btn btn-primary">   <i class="bi-eye-fill"></i>   </a>
                                         <a href="{{ route('averias.edit', $averia->id) }}" class="btn btn-warning">  <i class="bi bi-pencil-square"></i>  </a>
                                         <a href="{{ route('averias.execute', $averia->id) }}" class="btn btn-success">  <i class="bi bi-tools"></i>  </a>
+                                    </td>
+                                    <td>
+                                        @if ($averia->iniciado == 1)
+                                        <a class="btn btn-success">Iniciado</a>
+                                        @else
+                                        <a class="btn btn-warning">Pendiente</a>
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -101,9 +101,19 @@ class ClienteController extends Controller
 
         abonados_servicio::create($request->all());
 
-        //$servicios = servicio::all();
+        $servicios = servicio::all();
 
-        return view('clientes.agregar_servicio', compact('abonado', 'cliente'));
+        return view('clientes.agregar_servicio', compact('abonado', 'cliente', 'servicios'));
+    }
+
+    //Falta Corregir
+    public function destroyServiciosContratados(request $abonados_servicio_id, cliente $cliente, string $abonado)
+    {
+        abonados_servicio::destroy($abonados_servicio_id);
+
+        $servicios = servicio::all();
+        return redirect()->route('clientes.servicios', compact('abonado','cliente','servicios'))
+            ->with('success', 'servicio eliminado exitosamente.');
     }
     public function edit(cliente $cliente)
     {

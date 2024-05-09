@@ -6,7 +6,7 @@
             <h3> {{ $cliente->nombre }}</h3>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('clientes.guardar-numero', ['cliente' => $cliente->id]) }}">
+            <form method="POST" action="{{ route('clientes.serviciosStore', ['cliente' => $cliente->id, 'abonado' => $abonado]) }}">
                 @csrf
                 <div class="form-group mb-3">
                     <select name="servicio_id" id="servicio_id" class="form-select">

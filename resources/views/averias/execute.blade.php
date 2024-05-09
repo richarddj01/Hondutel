@@ -59,14 +59,13 @@
                         <div class="row text-center">
                             @if($datos_averia['iniciado'] != true)
                             <div class="col">
-                                <form id="form_reparacion" action="{{ route('averias.update' , $datos_averia['id']) }}" method="POST">
+                                <form id="form_reparacion" action="{{ route('averias.executeAveria' , $datos_averia['id']) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="user_id_tecnico" value="{{ auth()->id() }}">
                                 <input type="hidden" id="ubicacion" name="ubicacion_inicio">
                                 <input type="hidden" id="iniciado" name="iniciado" value="1">
                                 <input type="hidden" name="hora_inicio" value='{{date('H:i:s')}}'>
-                                <input type="hidden" name="problema_presentado" value=''>
                                 <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="iniciarReparacion()" class="btn btn-success">Iniciar Reparación</button>
                                 </div>
                                 </form>

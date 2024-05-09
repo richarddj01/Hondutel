@@ -57,11 +57,28 @@ Route::post('/clientes/{cliente}/guardar-numero', [ClienteController::class, 'gu
 Route::get('/buscar-numeros', [ClienteController::class, 'buscarNumeros'])->name('buscar-numeros');
 Route::get('/clientes/{cliente}/servicios/{abonado}', [ClienteController::class, 'showServiciosContratados'])->name('clientes.servicios');
 Route::get('/clientes/{cliente}/servicios/{abonado}/create', [ClienteController::class, 'createServiciosContratados'])->name('clientes.serviciosCreate');
-Route::post('/clientes/{cliente}/servicios/{abonado}', [ClienteController::class, 'store'])->middleware(['auth', 'verified'])->name('clientes.serviciosStore');
+Route::post('/clientes/{cliente}/servicios/{abonado}', [ClienteController::class, 'storeServiciosContratados'])->middleware(['auth', 'verified'])->name('clientes.serviciosStore');
+Route::delete('/clientes/{cliente}/servicios/{abonado}', [ClienteController::class, 'destroyServiciosContratados'])->middleware(['auth', 'verified'])->name('clientes.serviciosDelete');
 
 //Averias
 Route::resource('averias', AveriaController::class)->middleware(['auth', 'verified']);
+Route::get('/averias/{averia}', [AveriaController::class, 'show'])->middleware(['auth', 'verified'])->name('averias.show');
 Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
+Route::put('/averias/{averia}', [AveriaController::class, 'executeAveria'])->middleware(['auth', 'verified'])->name('averias.executeAveria');
+//Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
+
+//CRUD Averias
+/*
+Route::get('/averias', [AveriaController::class, 'index'])->middleware(['auth', 'verified'])->name('averias.index');
+Route::get('/averias/create', [AveriaController::class, 'create'])->middleware(['auth', 'verified'])->name('averias.create');
+Route::post('/averias', [AveriaController::class, 'store'])->middleware(['auth', 'verified'])->name('averias.store');
+Route::get('/averias/{averia}', [AveriaController::class, 'show'])->middleware(['auth', 'verified'])->name('averias.show');
+Route::get('/averias/{averia}/edit', [AveriaController::class, 'edit'])->middleware(['auth', 'verified'])->name('averias.edit');
+Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
+Route::get('/averias/{averia}', [AveriaController::class, 'executeAveria'])->middleware(['auth', 'verified'])->name('averias.executeAveria');
+Route::put('/averias/{averia}', [AveriaController::class, 'update'])->middleware(['auth', 'verified'])->name('averias.update');
+Route::delete('/averias/{averia}', [AveriaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('averias.destroy');
+*/
 
 //Telefonos
 Route::resource('telefonos', TelefonoController::class)->middleware(['auth', 'verified']);
@@ -75,7 +92,7 @@ Route::resource('inventarios', InventarioController::class)->middleware(['auth',
 use App\Http\Controllers\ReportController;
 
 Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.index');
-Route::post('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
+Route::put('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
 
 //Usuarios
 Route::resource('/users', 'App\Http\Controllers\UserController')->middleware(['auth', 'verified']);
@@ -94,6 +111,7 @@ Route::resource('/permisos', PermissionsController::class)->middleware(['auth', 
 
 //Roles
 Route::resource('/roles', RolesController::class)->middleware(['auth', 'verified'])->names('roles');
+
 //CRUD Zonas
 /*
 Route::get('/zonas', [ZonaController::class, 'index'])->middleware(['auth', 'verified'])->name('zonas.index');
@@ -127,16 +145,5 @@ Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->middlew
 Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->middleware(['auth', 'verified'])->name('clientes.destroy');
 */
 
-//CRUD Averias
-/*
-Route::get('/averias', [AveriaController::class, 'index'])->middleware(['auth', 'verified'])->name('averias.index');
-Route::get('/averias/create', [AveriaController::class, 'create'])->middleware(['auth', 'verified'])->name('averias.create');
-Route::post('/averias', [AveriaController::class, 'store'])->middleware(['auth', 'verified'])->name('averias.store');
-Route::get('/averias/{averia}', [AveriaController::class, 'show'])->middleware(['auth', 'verified'])->name('averias.show');
-Route::get('/averias/{averia}/edit', [AveriaController::class, 'edit'])->middleware(['auth', 'verified'])->name('averias.edit');
-Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
-Route::put('/averias/{averia}', [AveriaController::class, 'update'])->middleware(['auth', 'verified'])->name('averias.update');
-Route::delete('/averias/{averia}', [AveriaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('averias.destroy');
-*/
 
 require __DIR__ . '/auth.php';

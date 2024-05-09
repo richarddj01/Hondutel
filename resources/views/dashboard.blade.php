@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <div class="card mb-3 ">
                     <div class="row px-3">
                         <div class="col-3 rounded-start-3  align-content-center text-center colorgrisOscuro">

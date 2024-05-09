@@ -16,6 +16,7 @@ class Averia extends Model
         'detalle_problema',
         'tipo_averia_id',
         'user_id',
+        'iniciado',
         'user_id_tecnico',
         'hora_inicio',
         'ubicacion_inicio',
