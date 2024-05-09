@@ -56,17 +56,36 @@
                             <input type="text" class="form-control" placeholder="{{ $datos_averia['descripcion'] }}" readonly>
                             <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $datos_averia['detalle_problema']}}</textarea>
                         </div>
-                        <div class="row text-center">
+                        <div class="row">
                             @if($datos_averia['iniciado'] != true)
                             <div class="col">
-                                <form id="form_reparacion" action="{{ route('averias.executeAveria' , $datos_averia['id']) }}" method="POST">
+                                <form id="form_reparacion" action="{{ route('averias.executeAverias', $datos_averia['id']) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="user_id_tecnico" value="{{ auth()->id() }}">
                                 <input type="hidden" id="ubicacion" name="ubicacion_inicio">
                                 <input type="hidden" id="iniciado" name="iniciado" value="1">
                                 <input type="hidden" name="hora_inicio" value='{{date('H:i:s')}}'>
-                                <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="iniciarReparacion()" class="btn btn-success">Iniciar Reparación</button>
+                                <div class="text-center">
+                                    <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="iniciarReparacion()" class="btn btn-success">Iniciar Reparación</button>
+                                </div>
+                                </div>
+                                </form>
+                            </div>
+                            @else
+                            <div class="col">
+                                <form id="form_reparacion" action="{{ route('averias.finalizarAveria' , $datos_averia['id']) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" id="ubicacion" name="ubicacion_final">
+                                <input type="hidden" name="hora_finalizado" value='{{date('H:i:s')}}'>
+                                <label>Tecnicos que repararon: </label>
+                                <input type="text" id="Q" name="tecnicos_encargados" class="form form-control mb-3">
+                                <label>Observación: </label>
+                                <input type="text" id="observacion" name="observacion" class="form form-control mb-3">
+                                <div class="text-center">
+                                    <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="iniciarReparacion()" class="btn btn-success">Finalizar</button>
+                                </div>
                                 </div>
                                 </form>
                             </div>

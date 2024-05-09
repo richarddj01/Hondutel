@@ -165,4 +165,64 @@ class AveriaController extends Controller
 
         return redirect()->route('averias.index')->with('success', 'Avería actualizada exitosamente.');
     }
+    public function finalizarAveria(Request $request, Averia $averia)
+    {
+        $request->validate([
+            'tecnicos_encargados' => 'nullable',
+            'finalizado' => 'nullable|boolean',
+            'hora_finalizado' => 'nullable',
+            'ubicacion_final' => 'nullable'
+        ]);
+
+        $averia->fill($request->only([
+            'tecnicos_encargados',
+            'finalizado',
+            'hora_finalizado',
+            'ubicacion_final'
+        ]));
+
+        $averia->save();
+
+        return redirect()->route('averias.index')->with('success', 'Avería actualizada exitosamente.');
+    }
+    public function finalizadasf()
+    {
+        $averias = averia::whereNotNull('hora_finalizado')->paginate(10);
+
+        return view('averias.finalizadas', compact('averias'));
+    }
+
+    public function finalizadas(Request $request)
+    {
+        // Validar los campos de fecha recibidos en la solicitud
+        $request->validate([
+            'fecha_inicio' => 'nullable|date',
+            'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio',
+        ]);
+
+        // Obtener los valores de fecha de la solicitud
+        $fechaInicio = $request->input('fecha_inicio');
+        $fechaFin = $request->input('fecha_fin');
+
+        // Consulta de averías finalizadas con rango de fechas
+        $query = Averia::whereNotNull('hora_finalizado');
+
+        if ($fechaInicio && $fechaFin) {
+            // Si se especifican ambas fechas, aplicar el rango
+            $query->whereBetween('updated_at', [$fechaInicio, $fechaFin]);
+        } elseif ($fechaInicio) {
+            // Si solo se especifica la fecha de inicio, buscar desde esa fecha en adelante
+            $query->where('updated_at', '>=', $fechaInicio);
+        } elseif ($fechaFin) {
+            // Si solo se especifica la fecha de fin, buscar hasta esa fecha
+            $query->where('updated_at', '<=', $fechaFin);
+        }
+
+        // Obtener los resultados paginados
+        $averias = $query->paginate(10);
+
+        // Devolver la vista con los datos de las averías finalizadas
+        return view('averias.finalizadas', compact('averias'));
+    }
+
 }

@@ -23,6 +23,7 @@ class Averia extends Model
         'ubicacion_final',
         'hora_finalizado',
         'solucionado',
+        'tecnicos_encargados',
         'observacion',
     ];
 

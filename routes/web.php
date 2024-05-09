@@ -10,6 +10,7 @@ use App\Http\Controllers\AveriaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Models\Permissions;
 use Illuminate\Support\Facades\Route;
@@ -64,7 +65,9 @@ Route::delete('/clientes/{cliente}/servicios/{abonado}', [ClienteController::cla
 Route::resource('averias', AveriaController::class)->middleware(['auth', 'verified']);
 Route::get('/averias/{averia}', [AveriaController::class, 'show'])->middleware(['auth', 'verified'])->name('averias.show');
 Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
-Route::put('/averias/{averia}', [AveriaController::class, 'executeAveria'])->middleware(['auth', 'verified'])->name('averias.executeAveria');
+Route::put('/averias/{averia}', [AveriaController::class, 'executeAveria'])->middleware(['auth', 'verified'])->name('averias.executeAverias');
+Route::put('/averiasFinalizar/{averia}', [AveriaController::class, 'finalizarAveria'])->middleware(['auth', 'verified'])->name('averias.finalizarAveria');
+Route::get('/averiasFinalizadas', [AveriaController::class, 'finalizadas'])->middleware(['auth', 'verified'])->name('averias.finalizadas');
 //Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
 
 //CRUD Averias
@@ -89,7 +92,7 @@ Route::resource('inventarios', InventarioController::class)->middleware(['auth',
 
 // web.php
 
-use App\Http\Controllers\ReportController;
+
 
 Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.index');
 Route::put('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
