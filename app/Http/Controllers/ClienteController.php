@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\cliente;
 use App\Models\abonados_servicio;
 
+use App\Models\servicio;
+
 class ClienteController extends Controller
 {
     public function index(Request $request)
@@ -77,6 +79,32 @@ class ClienteController extends Controller
         return view('clientes.show', compact('cliente', 'abonados_servicios'));
     }
 
+    public function showServiciosContratados(cliente $cliente, string $abonado){
+
+        $abonados_servicios = abonados_servicio::where('abonado_id', $abonado)->get();
+
+        return view('clientes.show_servicios', compact('cliente', 'abonados_servicios', 'abonado'));
+    }
+    public function createServiciosContratados(cliente $cliente, string $abonado){
+
+        $servicios = servicio::all();
+
+        return view('clientes.agregar_servicio', compact('abonado', 'cliente', 'servicios'));
+    }
+    public function storeServiciosContratados(request $request, cliente $cliente, string $abonado){
+
+        $request->validate([
+            //'identidad' => 'required|unique:clientes',
+            'servicio_id' => 'required',
+            'abonado_id' => 'required',
+        ]);
+
+        abonados_servicio::create($request->all());
+
+        //$servicios = servicio::all();
+
+        return view('clientes.agregar_servicio', compact('abonado', 'cliente'));
+    }
     public function edit(cliente $cliente)
     {
         $tipo_cliente = tipo_cliente::all();

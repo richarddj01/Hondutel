@@ -21,7 +21,6 @@
                             <li><strong>{{ $key }}:</strong> {{ $value }}</li>
                         @endforeach
                     </ul>
-
                     <!-- Aquí podrías agregar la lógica para mostrar los resultados del reporte -->
                     <!-- Por ejemplo, una tabla con datos obtenidos según la lógica del reporte -->
                     <table class="table">
@@ -40,7 +39,6 @@
 
                         </tbody>
                     </table>
-
                     <!-- Puedes adaptar esta sección para mostrar los resultados del reporte -->
                 </div>
             </div>

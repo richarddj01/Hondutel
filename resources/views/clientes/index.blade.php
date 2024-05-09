@@ -6,7 +6,7 @@
                     <h2>Listado de Clientes</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-success" href="{{ route('clientes.create') }}"> Agregar</a>
+                    <a class="btn btn-success" href="{{ route('clientes.create') }}"><i class="bi bi-plus-circle-fill"></i> Agregar</a>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <form action="{{ route('clientes.index') }}" method="GET">
                     <div class="input-group">
                         <input type="search" class="form-control" placeholder="Buscar..." name="search">
-                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Buscar</button>
                     </div>
                 </form>
             </div>

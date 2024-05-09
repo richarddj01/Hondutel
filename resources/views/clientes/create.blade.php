@@ -73,11 +73,11 @@
                             </div>
                             <div class="row my-3">
                                 <div class="col-6">
-                                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Volver</a>
+                                    <a class="btn btn-primary" href="{{ route('clientes.index') }}"><i class="bi bi-arrow-left"></i> Volver</a>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success" tabindex="8">Guardar</button>
+                                        <button type="submit" class="btn btn-success" tabindex="8"><i class="bi bi-floppy-fill"></i> Guardar</button>
                                     </div>
                                 </div>
                             </div>

@@ -56,6 +56,9 @@ Route::resource('clientes', ClienteController::class)->middleware(['auth', 'veri
 Route::get('/clientes/{cliente}/agregar-numero', [ClienteController::class, 'mostrarFormularioAgregarNumero'])->name('clientes.agregar-numero');
 Route::post('/clientes/{cliente}/guardar-numero', [ClienteController::class, 'guardarNumero'])->name('clientes.guardar-numero');
 Route::get('/buscar-numeros', [ClienteController::class, 'buscarNumeros'])->name('buscar-numeros');
+Route::get('/clientes/{cliente}/servicios/{abonado}', [ClienteController::class, 'showServiciosContratados'])->name('clientes.servicios');
+Route::get('/clientes/{cliente}/servicios/{abonado}/create', [ClienteController::class, 'createServiciosContratados'])->name('clientes.serviciosCreate');
+Route::post('/clientes/{cliente}/servicios/{abonado}', [ClienteController::class, 'store'])->middleware(['auth', 'verified'])->name('clientes.serviciosStore');
 
 //Averias
 Route::resource('averias', AveriaController::class)->middleware(['auth', 'verified']);
