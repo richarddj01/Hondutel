@@ -40,7 +40,7 @@
                     {{ $cliente->direccion ?? '----'}}
                     <br>
                     <br>
-                    <a class="btn btn-primary mb-3" style="color:white"href="{{route('clientes.agregar-numero', $cliente->id)}}"> <i class="bi bi-add"></i> Agregar Número</a>
+                    <a class="btn btn-primary mb-3" style="color:white"href="{{route('clientes.agregar-numero', $cliente->id)}}"> <i class="bi bi-plus-circle-fill"></i> Agregar Número</a>
                     <br>
                     <strong>Numeros Asignados:</strong>
                     @if(count($cliente->abonados) > 0)
@@ -48,7 +48,6 @@
                         <tr>
                             <th>#</th>
                             <th>Número</th>
-                            <th>Servicios Contratados</th>
                             <th>Acción</th>
                         </tr>
                         @php
@@ -59,13 +58,9 @@
                             <td>{{$i++}}</td>
                             <td>{{ $abonado->numero ?? '----'}}</td>
                             <td>
-                                @foreach($abonados_servicios as $servicio_contratado)
-                                <!--Por cada item disponible en la tabla abonados-servicio (tabla de union) se accede
-                                a la relacion con servicios para obtener la descripcion de cada servicio-->
-                                <div class="btn btn-success">{{$servicio_contratado->servicio->descripcion}}</div>
-                                @endforeach
-                             </td>
-                            <td><a href="{{route('telefonos.show', $abonado->numero)}}" class="btn btn-warning">Consultar Datos</a></td>
+                                <a class="btn btn-success" href="{{ route('clientes.servicios', ['cliente' => $cliente, 'abonado' => $abonado->id]) }}"> <i class="bi bi-eye-fill"></i> Ver Servicios</a>
+                                <a href="{{route('telefonos.show', $abonado->numero)}}" class="btn btn-warning"> <i class="bi bi-table"></i> Consultar Datos</a>
+                            </td>
                         </tr>
                         @endforeach
                     </table>
@@ -75,7 +70,7 @@
                         </div>
                     @endif
                     <div class="text-center">
-                        <a class="btn btn-primary" href="{{ route('clientes.index') }}">Volver</a>
+                        <a class="btn btn-primary" href="{{ route('clientes.index') }}"> <i class="bi bi-arrow-left"></i> Volver</a>
                     </div>
                 </div>
             </div>
