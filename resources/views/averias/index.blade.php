@@ -33,7 +33,7 @@
                                     </td>
                                     <td>
                                         @if ($averia->iniciado == 1)
-                                        <a class="btn btn-success">Iniciado</a>
+                                        <a class="btn btn-success">Trabajando</a>
                                         @else
                                         <a class="btn btn-warning">Pendiente</a>
                                         @endif
