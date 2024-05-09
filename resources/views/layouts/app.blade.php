@@ -35,26 +35,58 @@
     </style>
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased container-fluid ">
+    <div class="row flex-nowrap">
+        <nav class="col-auto px-0 colNav">
+            @include('layouts.navigation')
+        </nav>
+        <!-- Page Heading -->
 
-    @include('layouts.navigation')
+        <div class="col p-0">
+            <div class="w-100 barraDetalles ">
+                <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"><i class="bi bi-list bi-lg "></i> </a>
 
-    <!-- Page Heading -->
-    @if (isset($header))
-    <header class="shadow-sm">
-        <div class="container py-6 px-4 sm:px-6 lg:px-8">
-            {{ $header }}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 float-end me-5" id="Datos-Usuario">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Perfil') }}</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">{{ __('Cerrar Sesión') }}</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="ps-md-2 mt-3">
+                @if (isset($header))
+                <header class="shadow-sm">
+                    <div class="container py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+                @endif
+
+                <!-- Page Content -->
+                <main>
+                    <div class="min-h-screen">
+                        {{ $slot }}
+                    </div>
+                </main>
+            </div>
+
         </div>
-    </header>
-    @endif
 
-    <!-- Page Content -->
-    <main>
-        <div class="min-h-screen">
-            {{ $slot }}
-        </div>
-    </main>
-
+    </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

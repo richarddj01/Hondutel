@@ -30,3 +30,48 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.173);
     padding: 2rem;
 }
+
+#sidebar-nav {
+    width: 200px;
+}
+
+.colNav {
+    background-color: #0a2225e8;
+    color: white;
+}
+
+#sidebar-nav .list-group-item {
+    border: none !important;
+    background-color: transparent !important;
+    color: white;
+}
+
+#sidebar-nav hr {
+    border: 1px solid;
+    border-color: gray;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#sidebar-nav a:hover {
+    background-color: #0a2225e8 !important;
+    color: white;
+}
+
+.barraDetalles {
+    margin: 0 auto;
+    background-color: #fafafae8;
+    color: white;
+    padding: 0.8rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.173);
+}
+
+.bi-list {
+    color: rgb(115, 115, 115);
+    font-size: 2rem;
+}
+
+#Datos-Usuario {
+    font-size: 1.2rem;
+    color: rgb(58, 58, 58);
+}

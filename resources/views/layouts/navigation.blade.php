@@ -1,68 +1,82 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-gray-100 dark:border-gray-700">
-    <!-- Primary Navigation Menu -->
-    <div class="container">
-        <a class="navbar-brand col-4" href="{{ route('dashboard') }}">
-            <img src="{{ asset('/img/logo/logo-gobierno-y-Hondutel2022.png') }}" alt="Logo" class="d-inline-block align-top">
+<div id="sidebar" class="collapse collapse-horizontal show border-end">
+    <div id="sidebar-nav" class="list-group  border-0 rounded-0 text-sm-start min-vh-100 pt-3 ">
+
+        <!-- Logo -->
+        <a class="" href="{{ route('dashboard') }}">
+            <img src="{{ asset('/img/logo/logoHondutel2022.png') }}" alt="Logo" class="img-fluid ">
         </a>
+        <br>
 
-        <!-- Hamburger -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- NavClientes -->
+        <a href="{{ route('clientes.index') }}" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><i class="bi bi-people-fill"></i> <span>Clientes</span> </a>
+        <hr>
 
-        <!-- Navigation Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" aria-current="page" href="{{ route('dashboard') }}">{{ __('Escritorio') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('consulta_datos_telefono') ? 'active' : '' }}" href="{{ route('consulta_datos_telefono.index') }}">{{ __('Consulta de Datos') }}</a>
-                </li>
-            </ul>
+        <!-- NavZonas -->
+        <a href="{{ route('zonas.index') }}" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><i class="bi bi-map-fill"></i> <span>Zonas</span></a>
+        <hr>
 
-            <!-- Settings Dropdown -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Perfil') }}</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button class="dropdown-item" type="submit">{{ __('Cerrar Sesión') }}</button>
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        <!-- NavServicios -->
+        <a href="{{ route('servicios.index') }}" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><i class="bi bi-pass-fill"></i> <span>Servicios</span></a>
+        <hr>
+
+        <!-- NavDatosTecnicos -->
+        <a href="{{ route('consulta_datos_telefono.index') }}" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><i class="bi bi-bricks"></i> <span>Datos Tecnicos</span></a>
+        <hr>
+
+        <!-- NavAverias -->
+        <div class="dropdown w-100">
+            <a class="list-group-item border-end-0 d-inline-block text-truncate dropdown-toggle w-100 " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-exclamation-triangle-fill"></i> <span>Averias</span>
+            </a>
+
+            <div class="dropdown-menu mx-3" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{{ route('averias.index') }}">Pendientes</a>
+                <a class="dropdown-item" href="{{ route('averias.create') }}">Registrar</a>
+            </div>
         </div>
+        <hr>
+
+        <!-- NavTelefonos -->
+        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate item-below-dropdown" data-bs-parent="#sidebar"><i class="bi bi-telephone-fill"></i> <span>Telefonos</span></a>
+        <hr>
+
+        <!-- NavInventario -->
+        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><i class="bi bi-calendar"></i> <span>Inventario</span></a>
+        <hr>
+
+        <!-- NavAdministracion -->
+        <div class="dropdown ">
+            <a class="list-group-item border-end-0 d-inline-block text-truncate dropdown-toggle w-100 " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-gear"></i> <span>Administracion</span>
+            </a>
+
+            <div class="dropdown-menu mx-3" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/users">Usuarios</a>
+                <a class="dropdown-item" href="#">Roles</a>
+                <a class="dropdown-item" href="#">Permisos</a>
+            </div>
+        </div>
+        <hr>
+
+
+
     </div>
-</nav>
+</div>
 
 <script>
-
-    //Compatibilidad con modo oscuro
-
     document.addEventListener('DOMContentLoaded', function() {
-        // Detecta la configuración del sistema
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        const navbar = document.querySelector('.navbar');
+        let dropdown = document.querySelector('.dropdown');
 
-        // Aplica las clases correspondientes según la configuración del sistema
-        if (prefersDarkScheme.matches) {
-            navbar.classList.remove('navbar-light');
-            navbar.classList.add('navbar-dark');
-            navbar.classList.remove('bg-light');
-            navbar.classList.add('bg-dark');
-        } else {
-            navbar.classList.remove('navbar-dark');
-            navbar.classList.add('navbar-light');
-            navbar.classList.remove('bg-dark');
-            navbar.classList.add('bg-light');
-        }
+        dropdown.addEventListener('shown.bs.dropdown', function() {
+            let dropdownMenu = this.querySelector('.dropdown-menu');
+            let dropdownHeight = dropdownMenu.offsetHeight;
+            let itemBelowDropdown = document.querySelector('.item-below-dropdown');
+            itemBelowDropdown.style.marginTop = dropdownHeight + 'px';
+        });
+
+        dropdown.addEventListener('hidden.bs.dropdown', function() {
+            let itemBelowDropdown = document.querySelector('.item-below-dropdown');
+            itemBelowDropdown.style.marginTop = '0';
+        });
     });
 </script>
