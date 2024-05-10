@@ -63,9 +63,8 @@ Route::delete('/clientes/{cliente}/servicios/{abonado}', [ClienteController::cla
 
 //Averias
 Route::resource('averias', AveriaController::class)->middleware(['auth', 'verified']);
-Route::get('/averias/{averia}', [AveriaController::class, 'show'])->middleware(['auth', 'verified'])->name('averias.show');
 Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
-Route::put('/averias/{averia}', [AveriaController::class, 'executeAveria'])->middleware(['auth', 'verified'])->name('averias.executeAverias');
+Route::put('/averiasExecute/{averia}', [AveriaController::class, 'executeAveria'])->middleware(['auth', 'verified'])->name('averias.executeAverias');
 Route::put('/averiasFinalizar/{averia}', [AveriaController::class, 'finalizarAveria'])->middleware(['auth', 'verified'])->name('averias.finalizarAveria');
 Route::get('/averiasFinalizadas', [AveriaController::class, 'finalizadas'])->middleware(['auth', 'verified'])->name('averias.finalizadas');
 //Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');

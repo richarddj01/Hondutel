@@ -96,20 +96,12 @@ class AveriaController extends Controller
         $request->validate([
             'tipo_averia_id' => 'required|numeric',
             'detalle_problema' => 'sometimes',
-            'user_id_tecnico' => 'nullable',
-            'hora_inicio' => 'nullable|date_format:H:i:s',
-            'ubicacion_latitud' => 'nullable|string',
-            'ubicacion_longitud' => 'nullable|string',
-            'hora_finalizado' => 'nullable|date_format:H:i:s',
-            'observacion' => 'nullable|string',
-            'tecnicos_encargados' => 'nullable|string',
         ]);
 
-        //si tiene id de técnico, significa que
-        if ($request->has('user_id_tecnico')) {
-            $averia->user_id_tecnico = $request->user_id_tecnico;
-        }
-        $averia->update($request->all());
+        $averia->update([
+            'tipo_averia_id' => $request->tipo_averia_id,
+            'detalle_problema' => $request->detalle_problema,
+        ]);
 
         return redirect()->route('averias.index')->with('success', 'Avería actualizada exitosamente.');
     }
@@ -163,7 +155,7 @@ class AveriaController extends Controller
 
         $averia->save();
 
-        return redirect()->route('averias.index')->with('success', 'Avería actualizada exitosamente.');
+        return redirect()->route('averias.index')->with('success', 'Se inició la reparación de la avería.');
     }
     public function finalizarAveria(Request $request, Averia $averia)
     {

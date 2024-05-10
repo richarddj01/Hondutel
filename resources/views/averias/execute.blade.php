@@ -57,8 +57,8 @@
                             <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $datos_averia['detalle_problema']}}</textarea>
                         </div>
                         <div class="row">
-                            @if($datos_averia['iniciado'] != true)
                             <div class="col">
+                            @if($datos_averia['iniciado'] != true)
                                 <form id="form_reparacion" action="{{ route('averias.executeAverias', $datos_averia['id']) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -67,13 +67,12 @@
                                 <input type="hidden" id="iniciado" name="iniciado" value="1">
                                 <input type="hidden" name="hora_inicio" value='{{date('H:i:s')}}'>
                                 <div class="text-center">
-                                    <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="iniciarReparacion()" class="btn btn-success">Iniciar Reparación</button>
+                                    <a href="{{route('averias.index')}}" class="btn btn-primary bi bi-arrow-left"></a>
+                                    <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="geolocalizar()" class="btn btn-success"><i class="bi bi-wrench"></i>Iniciar Reparación</button>
                                 </div>
                                 </div>
                                 </form>
-                            </div>
                             @else
-                            <div class="col">
                                 <form id="form_reparacion" action="{{ route('averias.finalizarAveria' , $datos_averia['id']) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -84,12 +83,13 @@
                                 <label>Observación: </label>
                                 <input type="text" id="observacion" name="observacion" class="form form-control mb-3">
                                 <div class="text-center">
-                                    <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="iniciarReparacion()" class="btn btn-success">Finalizar</button>
+                                    <a href="{{route('averias.index')}}" class="btn btn-primary bi bi-arrow-left"></a>
+                                    <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="geolocalizar()" class="btn btn-success"><i class="bi bi-check2-circle"></i> Finalizar</button>
                                 </div>
                                 </div>
                                 </form>
-                            </div>
                             @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
     </div>
 
     <script>
-    function iniciarReparacion() {
+    function geolocalizar() {
         // Verificar si el navegador del usuario soporta la geolocalización
         if ("geolocation" in navigator) {
             // Obtener la ubicación del usuario
