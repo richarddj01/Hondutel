@@ -80,7 +80,7 @@ return new class extends Migration
             Permission::create(['name' => 'Listar Telefonos']);
             Permission::create(['name' => 'Upd Telefonos']);
             Permission::create(['name' => 'Del Telefonos']);
-            Permission::create(['name' => 'Crear Telefonos']);
+
 
             //Permisos modulo Inventario    
             Permission::create(['name' => 'Listar Inventario']);

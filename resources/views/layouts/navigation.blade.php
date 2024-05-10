@@ -39,8 +39,9 @@
             </a>
 
             <div class="dropdown-menu mx-3" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{ route('averias.index') }}">Pendientes</a>
                 <a class="dropdown-item" href="{{ route('averias.create') }}">Registrar</a>
+                <a class="dropdown-item" href="{{ route('averias.index') }}">Pendientes</a>
+                <a class="dropdown-item" href="{{ route('averias.finalizadas') }}">Finalizadas</a>
             </div>
         </div>
         <hr>

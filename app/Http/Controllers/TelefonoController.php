@@ -12,7 +12,6 @@ class TelefonoController extends Controller
     public function __construct()
     {
         $this->middleware('can:Modulo Telefonos')->only('index');
-        $this->middleware('can:Crear Telefonos')->only('create', 'store');
         $this->middleware('can:Editar Telefonos')->only('edit', 'update');
         $this->middleware('can:Del Telefonos')->only('destroy');
     }

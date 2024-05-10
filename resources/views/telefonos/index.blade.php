@@ -3,9 +3,7 @@
     <x-slot name="header">
         <div class="py-4 align-items-center text-center">
             <h2>Telefonos</h2>
-            @can('Crear Telefonos')
-            <a class="btn btn-success mt-3" href="{{ route('telefonos.create') }}">Agregar Datos de Teléfonos</a>
-            @endcan
+
         </div>
     </x-slot>
 
