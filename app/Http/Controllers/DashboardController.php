@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $zonas = zona::count();
         $servicios = servicio::count();
         $telefonos = telefono::count();
-        $averias = Averia::count();
+        $averias = averia::count();
 
 
         return view('dashboard', compact('users', 'clientes', 'zonas', 'servicios', 'telefonos', 'averias'));
