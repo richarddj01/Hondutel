@@ -7,12 +7,12 @@
             </h2>
         </div>
     </x-slot>
-    @if ($message = Session::get('status'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @else
     <div class="container mt-3">
+        @if ($message = Session::get('status'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @else
         <form action="{{ route('consulta_datos_telefono.index') }}" class="p-4 bg-white shadow-sm rounded">
             <div class="d-flex flex-row align-items-center">
                 <a href="{{ url()->previous() }}" class="btn btn-primary me-2">

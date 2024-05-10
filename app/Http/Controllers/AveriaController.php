@@ -174,14 +174,16 @@ class AveriaController extends Controller
             'tecnicos_encargados' => 'nullable',
             'finalizado' => 'nullable|boolean',
             'hora_finalizado' => 'nullable',
-            'ubicacion_final' => 'nullable'
+            'ubicacion_final' => 'nullable',
+            'observacion'
         ]);
 
         $averia->fill($request->only([
             'tecnicos_encargados',
             'finalizado',
             'hora_finalizado',
-            'ubicacion_final'
+            'ubicacion_final',
+            'observacion'
         ]));
 
         $averia->save();
@@ -226,5 +228,31 @@ class AveriaController extends Controller
 
         // Devolver la vista con los datos de las averías finalizadas
         return view('averias.finalizadas', compact('averias'));
+    }
+    public function showFinalizadas(Averia $averia)
+    {
+        $telefono = telefono::get()->first();
+        $abonado = abonado::get()->first();
+
+        //Obtencion de datos Cliente
+        $numero= $abonado->numero;
+        $direccion = $abonado->cliente->direccion;
+        $nombre = $abonado->cliente->nombre.' '.$abonado->cliente->apellido;
+        $zona = $telefono->zona->nombre_corto.' - '.$telefono->zona->descripcion;
+        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre'=>$nombre,'zona'=>$zona];
+
+        //Datos avería
+        $usuario_reporte = $averia->user->name;
+        $fecha_reporte = $averia->created_at;
+        $detalle_problema = $averia->detalle_problema;
+        $descripcion = $averia->tipo_averia->descripcion;
+        $descripcion = $averia->tipo_averia->descripcion;
+        $fecha_reparacion = $averia->updated_at;
+        $tecnicos = $averia->tecnicos_encargados;
+        $ubicacion_inicio = $averia->ubicacion_inicio;
+        $ubicacion_final = $averia->ubicacion_final;
+        $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema'=>$detalle_problema, 'descripcion'=> $descripcion, 'fecha_reparacion' => $fecha_reparacion, 'tecnicos'=>$tecnicos, 'ubicacion_inicio' => $ubicacion_inicio, 'ubicacion_final'=>$ubicacion_final];
+
+        return view('averias.showFinalizadas', compact('cliente', 'datos_averia'));
     }
 }

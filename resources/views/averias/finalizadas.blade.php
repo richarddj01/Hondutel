@@ -53,7 +53,7 @@
                                     <td>{{$averia->tecnicos_encargados}}</td>
                                     <td>{{$averia->observacion}}</td>
                                     <td>
-                                        <a href="{{ route('averias.show', $averia->id) }}" class="btn btn-primary">   <i class="bi-eye-fill"></i>   </a>
+                                        <a href="{{ route('averias.showFinalizadas', $averia->id) }}" class="btn btn-primary">   <i class="bi-eye-fill"></i>   </a>
                                     </td>
                                 </tr>
                             @endforeach

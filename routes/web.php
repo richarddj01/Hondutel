@@ -67,6 +67,7 @@ Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->m
 Route::put('/averiasExecute/{averia}', [AveriaController::class, 'executeAveria'])->middleware(['auth', 'verified'])->name('averias.executeAverias');
 Route::put('/averiasFinalizar/{averia}', [AveriaController::class, 'finalizarAveria'])->middleware(['auth', 'verified'])->name('averias.finalizarAveria');
 Route::get('/averiasFinalizadas', [AveriaController::class, 'finalizadas'])->middleware(['auth', 'verified'])->name('averias.finalizadas');
+Route::get('/averiasFinalizadas/{averia}', [AveriaController::class, 'showFinalizadas'])->middleware(['auth', 'verified'])->name('averias.showFinalizadas');
 //Route::get('/averias/{averia}/execute', [AveriaController::class, 'execute'])->middleware(['auth', 'verified'])->name('averias.execute');
 
 //CRUD Averias
