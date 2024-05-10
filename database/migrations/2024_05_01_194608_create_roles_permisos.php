@@ -36,6 +36,16 @@ return new class extends Migration
 
         /*Permisos*/
         DB::transaction(function () {
+            //acesos modulos 
+            Permission::create(['name' => 'Modulo Clientes']);
+            Permission::create(['name' => 'Modulo Zonas']);
+            Permission::create(['name' => 'Modulo Servicios']);
+            Permission::create(['name' => 'Modulo Datos Tecnicos']);
+            Permission::create(['name' => 'Modulo Averias']);
+            Permission::create(['name' => 'Modulo Telefonos']);
+            Permission::create(['name' => 'Modulo Inventario']);
+            Permission::create(['name' => 'Modulo Administracion']);
+
             //Permisos Clientes
             Permission::create(['name' => 'Listar Clientes']);
             Permission::create(['name' => 'Editar Clientes']);

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class TelefonoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can');
+    }
+
     public function index(Request $request)
     {
         $telefonos = telefono::paginate(10);
@@ -28,7 +34,6 @@ class TelefonoController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -46,7 +51,7 @@ class TelefonoController extends Controller
     public function edit(telefono $telefono)
     {
         $zonas = zona::all();
-        return view('telefonos.edit', compact('telefono','zonas'));
+        return view('telefonos.edit', compact('telefono', 'zonas'));
     }
 
     /**
@@ -81,10 +86,9 @@ class TelefonoController extends Controller
 
         $datos_resultado_busqueda = telefono::find($numero_telefono_formulario);
 
-        if($datos_resultado_busqueda===null){
-            return view('telefonos.consulta_datos_telefono')->with('status','Número no encontrado');
-        }
-        else{
+        if ($datos_resultado_busqueda === null) {
+            return view('telefonos.consulta_datos_telefono')->with('status', 'Número no encontrado');
+        } else {
             return view('telefonos.consulta_datos_telefono', compact('datos_resultado_busqueda'));
         }
     }

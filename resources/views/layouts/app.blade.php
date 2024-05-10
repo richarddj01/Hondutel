@@ -76,7 +76,7 @@
                 @endif
 
                 <!-- Page Content -->
-                <main>
+                <main class="mt-4">
                     <div class="min-h-screen">
                         {{ $slot }}
                     </div>

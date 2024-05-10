@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\cliente;
+use App\Models\zona;
+use App\Models\servicio;
+use App\Models\telefono;
+use App\Models\Averia;
 
 
 class DashboardController extends Controller
@@ -16,7 +20,13 @@ class DashboardController extends Controller
     {
         $users = User::count();
         $clientes = cliente::count();
-        return view('dashboard', compact('users', 'clientes'));
+        $zonas = zona::count();
+        $servicios = servicio::count();
+        $telefonos = telefono::count();
+        $averias = Averia::count();
+
+
+        return view('dashboard', compact('users', 'clientes', 'zonas', 'servicios', 'telefonos', 'averias'));
     }
 
     /**

@@ -91,9 +91,6 @@ Route::resource('inventarios', InventarioController::class)->middleware(['auth',
 
 
 // web.php
-
-
-
 Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.index');
 Route::put('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
 
