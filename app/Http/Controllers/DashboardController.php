@@ -8,7 +8,7 @@ use App\Models\cliente;
 use App\Models\zona;
 use App\Models\servicio;
 use App\Models\telefono;
-use App\Models\Averia;
+use App\Models\averia;
 
 
 class DashboardController extends Controller
