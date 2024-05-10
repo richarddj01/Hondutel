@@ -7,14 +7,23 @@ use App\Models\inventario;
 
 class InventarioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Inventario')->only('index');
+        $this->middleware('can:Crear Inventario')->only('create', 'store');
+        $this->middleware('can:Upd Inventario')->only('edit', 'update');
+        $this->middleware('can:Del Inventario')->only('destroy');
+        $this->middleware('can:Ver Inventario')->only('show');
+    }
+
     public function index(Request $request)
     {
         $query = inventario::query();
 
         if ($request->has('search')) {
             $search = $request->get('search');
-            $query->where(function($query) use ($search) {
-                $query->where('descripcion', 'like', '%'.$search.'%');
+            $query->where(function ($query) use ($search) {
+                $query->where('descripcion', 'like', '%' . $search . '%');
             });
         }
 
@@ -50,7 +59,7 @@ class InventarioController extends Controller
         $producto = $inventario;
         return view('inventarios.edit', compact('producto'));
     }
-    public function update(Request $request,Inventario $inventario)
+    public function update(Request $request, Inventario $inventario)
     {
         $request->validate([
             'descripcion' => 'required',

@@ -29,10 +29,12 @@
             <div class="col-4 gap-3 d-flex justify-content-end ">
 
                 <!-- Button modal -->
+                @can('Crear Roles')
                 <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
                     <img src="/img/icon/llave.png" class="llaveIcon" alt="Permisos">
                     Nuevo Rol
                 </button>
+                @endcan
 
                 <!-- Modal Permisos -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -75,10 +77,14 @@
                 <td class="justify-content-center text-center ">
 
                     <form action="{{route('roles.destroy',$rol->id)}}" method="POST">
+                        @can('Asignar Permisos')
                         <a class="btn btn-success " href="{{route('roles.show',$rol->id)}}">Asignar Permiso</a>
+                        @endcan
                         @csrf
                         @method('DELETE')
+                        @can('Del Roles')
                         <button type="submit" class="btn btn-danger ">Eliminar</button>
+                        @endcan
                     </form>
                 </td>
             </tr>

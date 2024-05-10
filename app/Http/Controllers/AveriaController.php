@@ -11,6 +11,18 @@ use Illuminate\Http\Request;
 
 class AveriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Averias')->only('index');
+        $this->middleware('can:Crear Averias')->only('create', 'store');
+        $this->middleware('can:Upd Averias')->only('edit', 'update');
+        $this->middleware('can:Del Averias')->only('destroy');
+        $this->middleware('can:Ver Averia')->only('show');
+        $this->middleware('can:Iniciar Averia')->only('execute', 'executeAveria');
+        $this->middleware('can:Finalizar Averia')->only('finalizarAveria');
+        $this->middleware('can:Listar Averias Finalizadas')->only('finalizadas', 'finalizadasf');
+    }
+
     public function index()
     {
         $averias = averia::whereNull('hora_finalizado')->paginate(10);
@@ -24,13 +36,12 @@ class AveriaController extends Controller
             $terminoBusqueda = $request->get('search');
 
             $abonado = abonado::get()->where('numero', '==', $terminoBusqueda)->first();
-
-        }else{
+        } else {
             $abonado = null;
         }
         $tipo_averia = tipo_averia::all();
 
-        return view('averias.create', compact('abonado','tipo_averia'));
+        return view('averias.create', compact('abonado', 'tipo_averia'));
     }
     public function store(Request $request)
     {
@@ -56,18 +67,18 @@ class AveriaController extends Controller
         $abonado = abonado::get()->first();
 
         //Obtencion de datos Cliente
-        $numero= $abonado->numero;
+        $numero = $abonado->numero;
         $direccion = $abonado->cliente->direccion;
-        $nombre = $abonado->cliente->nombre.' '.$abonado->cliente->apellido;
-        $zona = $telefono->zona->nombre_corto.' - '.$telefono->zona->descripcion;
-        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre'=>$nombre,'zona'=>$zona];
+        $nombre = $abonado->cliente->nombre . ' ' . $abonado->cliente->apellido;
+        $zona = $telefono->zona->nombre_corto . ' - ' . $telefono->zona->descripcion;
+        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre' => $nombre, 'zona' => $zona];
 
         //Datos avería
         $usuario_reporte = $averia->user->name;
         $fecha_reporte = $averia->created_at;
         $detalle_problema = $averia->detalle_problema;
         $descripcion = $averia->tipo_averia->descripcion;
-        $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema'=>$detalle_problema, 'descripcion'=> $descripcion];
+        $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema' => $detalle_problema, 'descripcion' => $descripcion];
 
         return view('averias.show', compact('cliente', 'datos_averia'));
     }
@@ -78,14 +89,14 @@ class AveriaController extends Controller
         $abonado = abonado::get()->first();
         $tipo_averia = tipo_averia::all();
 
-        $numero= $abonado->numero;
-        $nombre = $abonado->cliente->nombre.' '.$abonado->cliente->apellido;
+        $numero = $abonado->numero;
+        $nombre = $abonado->cliente->nombre . ' ' . $abonado->cliente->apellido;
         $telefono = $abonado->cliente->telefono;
         $celular = $abonado->cliente->celular;
         $direccion = $abonado->cliente->direccion;
         $correo = $abonado->cliente->correo;
-        $zona = $abonado->telefono->zona->nombre_corto.' - '.$abonado->telefono->zona->descripcion;
-        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre'=>$nombre,'zona'=>$zona];
+        $zona = $abonado->telefono->zona->nombre_corto . ' - ' . $abonado->telefono->zona->descripcion;
+        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre' => $nombre, 'zona' => $zona];
 
 
         return view('averias.edit', compact('cliente', 'averia', 'abonado', 'telefono', 'tipo_averia'));
@@ -118,14 +129,14 @@ class AveriaController extends Controller
         $abonado = abonado::get()->first();
 
         // Datos cliente/abonado
-        $numero= $abonado->numero;
-        $nombre = $abonado->cliente->nombre.' '.$abonado->cliente->apellido;
+        $numero = $abonado->numero;
+        $nombre = $abonado->cliente->nombre . ' ' . $abonado->cliente->apellido;
         $telefono = $abonado->cliente->telefono;
         $celular = $abonado->cliente->celular;
         $direccion = $abonado->cliente->direccion;
         $correo = $abonado->cliente->correo;
-        $zona = $abonado->telefono->zona->nombre_corto.' - '.$abonado->telefono->zona->descripcion;
-        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre'=>$nombre,'zona'=>$zona];
+        $zona = $abonado->telefono->zona->nombre_corto . ' - ' . $abonado->telefono->zona->descripcion;
+        $cliente = ['numero' => $numero, 'direccion' => $direccion, 'nombre' => $nombre, 'zona' => $zona];
 
         //Datos avería
         $usuario_reporte = $averia->user->name;
@@ -133,7 +144,7 @@ class AveriaController extends Controller
         $detalle_problema = $averia->detalle_problema;
         $descripcion = $averia->tipo_averia->descripcion;
         $iniciado = $averia->iniciado;
-        $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema'=>$detalle_problema, 'descripcion'=> $descripcion, 'iniciado'=> $iniciado, 'id'=>$averia->id];
+        $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema' => $detalle_problema, 'descripcion' => $descripcion, 'iniciado' => $iniciado, 'id' => $averia->id];
 
         return view('averias.execute', compact('datos_averia', 'cliente'));
     }
@@ -216,5 +227,4 @@ class AveriaController extends Controller
         // Devolver la vista con los datos de las averías finalizadas
         return view('averias.finalizadas', compact('averias'));
     }
-
 }

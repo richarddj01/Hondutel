@@ -7,15 +7,25 @@ use Illuminate\Http\Request;
 
 class ZonaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Zonas')->only('index');
+        $this->middleware('can:Crear Zonas')->only('create', 'store');
+        $this->middleware('can:Upd Zonas')->only('edit', 'update');
+        $this->middleware('can:Ver Zona')->only('show');
+        $this->middleware('can:Del Zonas')->only('destroy');
+    }
+
     public function index(Request $request)
     {
         $query = zona::query();
 
         if ($request->has('search')) {
             $search = $request->get('search');
-            $query->where(function($query) use ($search) {
-                $query->where('descripcion', 'like', '%'.$search.'%')
-                      ->orWhere('nombre_corto', 'like', '%'.$search.'%');
+            $query->where(function ($query) use ($search) {
+                $query->where('descripcion', 'like', '%' . $search . '%')
+                    ->orWhere('nombre_corto', 'like', '%' . $search . '%');
             });
         }
 

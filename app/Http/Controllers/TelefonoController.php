@@ -11,9 +11,10 @@ class TelefonoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:Modulo Telefonos')->only('index');
+        $this->middleware('can:Listar Telefonos')->only('index');
         $this->middleware('can:Editar Telefonos')->only('edit', 'update');
         $this->middleware('can:Del Telefonos')->only('destroy');
+        $this->middleware('can:Modulo Datos Tecnicos')->only('mostrarDatosTelefono');
     }
 
     public function index(Request $request)

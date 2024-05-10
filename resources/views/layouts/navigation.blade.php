@@ -39,9 +39,17 @@
             </a>
 
             <div class="dropdown-menu mx-3" aria-labelledby="dropdownMenuLink">
+                @can('Crear Averias')
                 <a class="dropdown-item" href="{{ route('averias.create') }}">Registrar</a>
+                @endcan
+
+                @can('Listar Averias')
                 <a class="dropdown-item" href="{{ route('averias.index') }}">Pendientes</a>
+                @endcan
+
+                @can('Listar Averias Finalizadas')
                 <a class="dropdown-item" href="{{ route('averias.finalizadas') }}">Finalizadas</a>
+                @endcan
             </div>
         </div>
         <hr>
@@ -67,9 +75,17 @@
             </a>
 
             <div class="dropdown-menu mx-3" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="/users">Usuarios</a>
+                @can('Listar Usuarios')
+                <a class="dropdown-item" href="{{route('users.index')}}">Usuarios</a>
+                @endcan
+
+                @can('Listar Roles')
                 <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
+                @endcan
+
+                @can('Listar Permisos')
                 <a class="dropdown-item" href="{{ route('permisos.index') }}">Permisos</a>
+                @endcan
             </div>
         </div>
         <hr>

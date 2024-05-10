@@ -41,7 +41,9 @@
 
                 <div class="row mt-5">
                     <div class="col-12">
+                        @can('Asignar Permisos')
                         <button type="submit" class="btn btn-primary">Asignar Permisos</button>
+                        @endcan
                     </div>
                 </div>
             </form>

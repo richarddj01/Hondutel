@@ -51,30 +51,31 @@ return new class extends Migration
             Permission::create(['name' => 'Upd Clientes']);
             Permission::create(['name' => 'Del Clientes']);
             Permission::create(['name' => 'Crear Clientes']);
+            Permission::create(['name' => 'Ver Cliente']);
 
             //Permisos modulo Zonas
             Permission::create(['name' => 'Listar Zonas']);
+            Permission::create(['name' => 'Ver Zona']);
             Permission::create(['name' => 'Upd Zonas']);
             Permission::create(['name' => 'Del Zonas']);
             Permission::create(['name' => 'Crear Zonas']);
 
             //Permisos modulo Servicios
             Permission::create(['name' => 'Listar Servicios']);
+            Permission::create(['name' => 'Ver Servicio']);
             Permission::create(['name' => 'Upd Servicios']);
             Permission::create(['name' => 'Del Servicios']);
             Permission::create(['name' => 'Crear Servicios']);
-
-            //Permisos modulo Datos Tecnicos
-            Permission::create(['name' => 'Listar Datos Tecnicos']);
-            Permission::create(['name' => 'Upd Datos Tecnicos']);
-            Permission::create(['name' => 'Del Datos Tecnicos']);
-            Permission::create(['name' => 'Crear Datos Tecnicos']);
 
             //Permisos modulo Averias
             Permission::create(['name' => 'Listar Averias']);
             Permission::create(['name' => 'Upd Averias']);
             Permission::create(['name' => 'Del Averias']);
             Permission::create(['name' => 'Crear Averias']);
+            Permission::create(['name' => 'Ver Averia']);
+            Permission::create(['name' => 'Iniciar Averia']);
+            Permission::create(['name' => 'Finalizar Averia']);
+            Permission::create(['name' => 'Listar Averias Finalizadas']);
 
             //Permisos modulo Telefonos
             Permission::create(['name' => 'Listar Telefonos']);
@@ -87,6 +88,7 @@ return new class extends Migration
             Permission::create(['name' => 'Upd Inventario']);
             Permission::create(['name' => 'Del Inventario']);
             Permission::create(['name' => 'Crear Inventario']);
+            Permission::create(['name' => 'Ver Inventario']);
 
             //Permisos modulo Usuarios
             Permission::create(['name' => 'Listar Usuarios']);
@@ -96,13 +98,12 @@ return new class extends Migration
 
             //Permisos modulo Roles
             Permission::create(['name' => 'Listar Roles']);
-            Permission::create(['name' => 'Upd Roles']);
             Permission::create(['name' => 'Del Roles']);
             Permission::create(['name' => 'Crear Roles']);
+            Permission::create(['name' => 'Asignar Permisos']);
 
             //Permisos modulo Permisos
             Permission::create(['name' => 'Listar Permisos']);
-            Permission::create(['name' => 'Upd Permisos']);
             Permission::create(['name' => 'Del Permisos']);
             Permission::create(['name' => 'Crear Permisos']);
         });

@@ -13,6 +13,15 @@ use App\Models\servicio;
 
 class ClienteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Clientes')->only('index');
+        $this->middleware('can:Crear Clientes')->only('create', 'store');
+        $this->middleware('can:Upd Clientes')->only('edit', 'update');
+        $this->middleware('can:Del Clientes')->only('destroy');
+        $this->middleware('can:Ver Cliente')->only('show');
+    }
+
     public function index(Request $request)
     {
         $query = cliente::query();
@@ -25,7 +34,7 @@ class ClienteController extends Controller
                 foreach ($terminosBusqueda as $term) {
                     $query->where(function ($query) use ($term) {
                         $query->where('nombre', 'like', '%' . $term . '%')
-                              ->orWhere('apellido', 'like', '%' . $term . '%');
+                            ->orWhere('apellido', 'like', '%' . $term . '%');
                     });
                 }
             });
@@ -51,7 +60,7 @@ class ClienteController extends Controller
             //'identidad' => 'required|unique:clientes',
             'nombre' => 'required|alpha:ascii',
             'apellido' => 'sometimes|nullable|alpha:ascii',
-            'tipo_cliente_id'=>'required|numeric',
+            'tipo_cliente_id' => 'required|numeric',
             'correo' => 'sometimes|nullable|email:rfc,dns'
         ]);
 
@@ -64,10 +73,10 @@ class ClienteController extends Controller
     {
         //Consulta de numeros asignados en la tabla abonados (usando la relación creada en el modelo cliente)
         $query = abonados_servicio::query();
-        $query->where('abonado_id','=',$cliente->abonados[0]->id);
+        $query->where('abonado_id', '=', $cliente->abonados[0]->id);
 
         $abonados_servicios = $query->get();
-/*
+        /*
         // Recorrer todos los abonados asociados al cliente
         foreach ($cliente->abonados as $abonado) {
             // Consultar los servicios asociados a cada abonado
@@ -79,19 +88,22 @@ class ClienteController extends Controller
         return view('clientes.show', compact('cliente', 'abonados_servicios'));
     }
 
-    public function showServiciosContratados(cliente $cliente, string $abonado){
+    public function showServiciosContratados(cliente $cliente, string $abonado)
+    {
 
         $abonados_servicios = abonados_servicio::where('abonado_id', $abonado)->get();
 
         return view('clientes.show_servicios', compact('cliente', 'abonados_servicios', 'abonado'));
     }
-    public function createServiciosContratados(cliente $cliente, string $abonado){
+    public function createServiciosContratados(cliente $cliente, string $abonado)
+    {
 
         $servicios = servicio::all();
 
         return view('clientes.agregar_servicio', compact('abonado', 'cliente', 'servicios'));
     }
-    public function storeServiciosContratados(request $request, cliente $cliente, string $abonado){
+    public function storeServiciosContratados(request $request, cliente $cliente, string $abonado)
+    {
 
         $request->validate([
             //'identidad' => 'required|unique:clientes',
@@ -112,7 +124,7 @@ class ClienteController extends Controller
         abonados_servicio::destroy($abonados_servicio_id);
 
         $servicios = servicio::all();
-        return redirect()->route('clientes.servicios', compact('abonado','cliente','servicios'))
+        return redirect()->route('clientes.servicios', compact('abonado', 'cliente', 'servicios'))
             ->with('success', 'servicio eliminado exitosamente.');
     }
     public function edit(cliente $cliente)
@@ -126,7 +138,7 @@ class ClienteController extends Controller
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'sometimes|nullable',
-            'tipo_cliente_id'=>'required|numeric',
+            'tipo_cliente_id' => 'required|numeric',
             'correo' => 'sometimes|nullable|email:rfc,dns'
             // Agrega aquí otras reglas de validación según sea necesario
         ]);
@@ -134,7 +146,7 @@ class ClienteController extends Controller
         $cliente->update($request->all());
 
         return redirect()->route('clientes.index')
-            ->with('success', 'Cliente '.$cliente->identidad.' actualizado exitosamente.');
+            ->with('success', 'Cliente ' . $cliente->identidad . ' actualizado exitosamente.');
     }
 
     public function destroy(cliente $cliente)
@@ -161,7 +173,7 @@ class ClienteController extends Controller
         abonado::create($request->all());
 
         return redirect()->route('clientes.show', ['cliente' => $cliente])
-                        ->with('success', 'Número asignado correctamente.');
+            ->with('success', 'Número asignado correctamente.');
     }
 
     //Para la búsqueda escrita
@@ -183,5 +195,4 @@ class ClienteController extends Controller
 
         return response()->json($results);
     }
-
 }

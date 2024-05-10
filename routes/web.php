@@ -94,7 +94,7 @@ Route::get('/reportes', [ReportController::class, 'index'])->name('reportes.inde
 Route::put('/reportes/generar', [ReportController::class, 'generate'])->name('reportes.generate');
 
 //Usuarios
-Route::resource('/users', 'App\Http\Controllers\UserController')->middleware(['auth', 'verified']);
+Route::resource('/users', UserController::class)->middleware(['auth', 'verified'])->names('users');
 
 //Permisos
 Route::resource('/permisos', PermissionsController::class)->middleware(['auth', 'verified'])->names('permisos');
@@ -102,14 +102,7 @@ Route::resource('/permisos', PermissionsController::class)->middleware(['auth', 
 //Roles
 Route::resource('/roles', RolesController::class)->middleware(['auth', 'verified'])->names('roles');
 
-//Usuarios
-Route::resource('/users', 'App\Http\Controllers\UserController')->middleware(['auth', 'verified']);
 
-//Permisos
-Route::resource('/permisos', PermissionsController::class)->middleware(['auth', 'verified'])->names('permisos');
-
-//Roles
-Route::resource('/roles', RolesController::class)->middleware(['auth', 'verified'])->names('roles');
 
 //CRUD Zonas
 /*

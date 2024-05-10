@@ -7,13 +7,21 @@ use App\Models\servicio;
 
 class ServicioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Servicios')->only('index');
+        $this->middleware('can:Crear Servicios')->only('create', 'store');
+        $this->middleware('can:Upd Servicios')->only('edit', 'update');
+        $this->middleware('can:Ver Servicio')->only('show');
+    }
+
     public function index(Request $request)
     {
         $query = servicio::query();
 
         if ($request->has('search')) {
             $search = $request->get('search');
-            $query->where('descripcion', 'like', '%'.$search.'%');
+            $query->where('descripcion', 'like', '%' . $search . '%');
         }
 
         $servicios = $query->paginate(10);

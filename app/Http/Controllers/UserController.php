@@ -13,6 +13,14 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Usuarios')->only('index');
+        $this->middleware('can:Crear Usuarios')->only('create', 'store');
+        $this->middleware('can:Upd Usuarios')->only('edit', 'update');
+        $this->middleware('can:Del Usuarios')->only('destroy');
+    }
+
     public function index()
     {
         $users = DB::table('users')

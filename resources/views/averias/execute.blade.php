@@ -53,27 +53,27 @@
                         </div>
                         <div class="row">
                             <p><strong>Problema Presentado:</strong>
-                            <input type="text" class="form-control" placeholder="{{ $datos_averia['descripcion'] }}" readonly>
-                            <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $datos_averia['detalle_problema']}}</textarea>
+                                <input type="text" class="form-control" placeholder="{{ $datos_averia['descripcion'] }}" readonly>
+                                <textarea readonly type="text" rows="5" name="problema_presentado" id="problema_presentado" class="form-control mt-2">{{ $datos_averia['detalle_problema']}}</textarea>
                         </div>
                         <div class="row">
                             <div class="col">
-                            @if($datos_averia['iniciado'] != true)
+                                @if($datos_averia['iniciado'] != true)
                                 <form id="form_reparacion" action="{{ route('averias.executeAverias', $datos_averia['id']) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="user_id_tecnico" value="{{ auth()->id() }}">
-                                <input type="hidden" id="ubicacion" name="ubicacion_inicio">
-                                <input type="hidden" id="iniciado" name="iniciado" value="1">
-                                <input type="hidden" name="hora_inicio" value='{{date('H:i:s')}}'>
-                                <div class="text-center">
-                                    <a href="{{route('averias.index')}}" class="btn btn-primary bi bi-arrow-left"></a>
-                                    <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="geolocalizar()" class="btn btn-success"><i class="bi bi-wrench"></i>Iniciar Reparación</button>
-                                </div>
-                                </div>
-                                </form>
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="user_id_tecnico" value="{{ auth()->id() }}">
+                                    <input type="hidden" id="ubicacion" name="ubicacion_inicio">
+                                    <input type="hidden" id="iniciado" name="iniciado" value="1">
+                                    <input type="hidden" name="hora_inicio" value='{{date('H:i:s')}}'>
+                                    <div class="text-center">
+                                        <a href="{{route('averias.index')}}" class="btn btn-primary bi bi-arrow-left"></a>
+                                        <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="geolocalizar()" class="btn btn-success"><i class="bi bi-wrench"></i>Iniciar Reparación</button>
+                                    </div>
+                            </div>
+                            </form>
                             @else
-                                <form id="form_reparacion" action="{{ route('averias.finalizarAveria' , $datos_averia['id']) }}" method="POST">
+                            <form id="form_reparacion" action="{{ route('averias.finalizarAveria' , $datos_averia['id']) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" id="ubicacion" name="ubicacion_final">
@@ -84,42 +84,44 @@
                                 <input type="text" id="observacion" name="observacion" class="form form-control mb-3">
                                 <div class="text-center">
                                     <a href="{{route('averias.index')}}" class="btn btn-primary bi bi-arrow-left"></a>
+
+                                    @can('Finalizar Averia')
                                     <button type="button" id="btn_iniciar_reparacion" name="btn_iniciar_reparacion" onclick="geolocalizar()" class="btn btn-success"><i class="bi bi-check2-circle"></i> Finalizar</button>
+                                    @endcan
                                 </div>
-                                </div>
-                                </form>
-                            @endif
-                            </div>
                         </div>
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
 
     <script>
-    function geolocalizar() {
-        // Verificar si el navegador del usuario soporta la geolocalización
-        if ("geolocation" in navigator) {
-            // Obtener la ubicación del usuario
-            navigator.geolocation.getCurrentPosition(function (position) {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
+        function geolocalizar() {
+            // Verificar si el navegador del usuario soporta la geolocalización
+            if ("geolocation" in navigator) {
+                // Obtener la ubicación del usuario
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
 
-                // Llenar los campos ocultos con la ubicación
-                const locationInput = document.getElementById('ubicacion');
-                locationInput.value = latitude + ',' + longitude;
+                    // Llenar los campos ocultos con la ubicación
+                    const locationInput = document.getElementById('ubicacion');
+                    locationInput.value = latitude + ',' + longitude;
 
-                // Enviar el formulario
-                const repairForm = document.getElementById('form_reparacion');
-                repairForm.submit();
-            }, function (error) {
-                alert("Error al obtener la ubicación: " + error.message);
-            });
-        } else {
-            alert("Tu navegador no soporta la geolocalización.");
+                    // Enviar el formulario
+                    const repairForm = document.getElementById('form_reparacion');
+                    repairForm.submit();
+                }, function(error) {
+                    alert("Error al obtener la ubicación: " + error.message);
+                });
+            } else {
+                alert("Tu navegador no soporta la geolocalización.");
+            }
         }
-    }
     </script>
 </x-app-layout>
-

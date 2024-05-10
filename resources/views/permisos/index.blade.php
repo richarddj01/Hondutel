@@ -28,10 +28,12 @@
             </div>
             <div class="col-4 gap-3 d-flex justify-content-end ">
 
+                @can('Crear Permisos')
                 <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
                     <img src="/img/icon/llave.png" class="llaveIcon" alt="Permisos">
                     Nuevo Permiso
                 </button>
+                @endcan
 
                 <!-- Modal Permisos -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -76,7 +78,9 @@
                     <form action="{{route('permisos.destroy',$perm->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
+                        @can('Del Permisos')
                         <button type="submit" class="btn btn-danger ">Eliminar</button>
+                        @endcan
                     </form>
                 </td>
             </tr>

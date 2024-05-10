@@ -12,10 +12,15 @@ class PermissionsController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Permisos')->only('index');
+        $this->middleware('can:Crear Permisos')->only('create', 'store');
+        $this->middleware('can:Del Permisos')->only('destroy');
+    }
+
     public function index()
     {
-
-
         $permisos = Permissions::all();
 
         return view('permisos.index', compact('permisos'));
