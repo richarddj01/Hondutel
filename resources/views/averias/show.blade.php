@@ -47,7 +47,7 @@
                                 <p><strong>Fecha de Reporte:</strong> {{ $datos_averia['fecha_reporte']->format('d/m/Y') }}</p>
                             </div>
                             <div class="col-6">
-                                <p><strong>Hora de Reporte:</strong> {{ $datos_averia['fecha_reporte']->format('h:m A') }}</p>
+                                <p><strong>Hora de Reporte:</strong> {{ $datos_averia['fecha_reporte']->format('h:i A') }}</p>
                             </div>
                         </div>
                         <div class="row">

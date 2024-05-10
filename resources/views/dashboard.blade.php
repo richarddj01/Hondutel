@@ -11,7 +11,7 @@
                 <div class="card mb-3">
                     <div class="row px-3">
                         <div class="col-3 rounded-start-3  align-content-center text-center colorAzulOscuro">
-                            <img src="{{asset('img/icon/personas.png')}}" class="w-50" alt="...">
+                            <img src="{{asset('/img/icon/usuariosIcon.png')}}" class="w-50" alt="...">
                         </div>
                         <div class="col-9  bg-primary rounded-end-3 ">
                             <div class="card-body">
@@ -27,7 +27,7 @@
                 <div class="card mb-3 ">
                     <div class="row px-3">
                         <div class="col-3 rounded-start-3  align-content-center text-center colorgrisOscuro">
-                            <img src="{{asset('img/icon/mapa.png')}}" class="w-50" alt="...">
+                            <img src="{{asset('/img/icon/usuariosIcon.png')}}" class="w-50" alt="...">
                         </div>
                         <div class="col-9 bg-secondary rounded-end-3 ">
                             <div class="card-body">
@@ -45,7 +45,7 @@
                 <div class="card mb-3">
                     <div class="row px-3">
                         <div class="col-3 rounded-start-3  align-content-center text-center colorverdeOscuro">
-                            <img src="{{asset('img/icon/ajustes.png')}}" class="w-50" alt="...">
+                            <img src="{{asset('/img/icon/usuariosIcon.png')}}" class="w-50" alt="...">
                         </div>
                         <div class="col-9  bg-success rounded-end-3 ">
                             <div class="card-body">
@@ -61,7 +61,7 @@
                 <div class="card mb-3 ">
                     <div class="row px-3">
                         <div class="col-3 rounded-start-3  align-content-center text-center colorRosaOscuro">
-                            <img src="{{asset('img/icon/tecnico.png')}}" class="w-50" alt="...">
+                            <img src="{{asset('/img/icon/usuariosIcon.png')}}" class="w-50" alt="...">
                         </div>
                         <div class="col-9 bg-danger rounded-end-3 ">
                             <div class="card-body">
@@ -79,7 +79,7 @@
                 <div class="card mb-3 ">
                     <div class="row px-3">
                         <div class="col-3 rounded-start-3  align-content-center text-center coloramarilloOscuro">
-                            <img src="{{asset('img/icon/averias.png')}}" class="w-50" alt="...">
+                            <img src="{{asset('/img/icon/usuariosIcon.png')}}" class="w-50" alt="...">
                         </div>
                         <div class="col-9 bg-warning rounded-end-3 ">
                             <div class="card-body">
@@ -95,7 +95,7 @@
                 <div class="card mb-3 ">
                     <div class="row px-3">
                         <div class="col-3 rounded-start-3  align-content-center text-center usuarioIcon">
-                            <img src="{{asset('img/icon/usuariosIcon.png')}}" class="w-50" alt="...">
+                            <img src="{{asset('/img/icon/usuariosIcon.png')}}" class="w-50" alt="...">
                         </div>
                         <div class="col-9 usuarioColor rounded-end-3 ">
                             <div class="card-body">

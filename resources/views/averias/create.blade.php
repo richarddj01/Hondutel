@@ -59,7 +59,10 @@
                                 <div class="card-header">Problema presentado</div>
                                 <div class="card-body">
                                     <div class="form-group">
+                                    <select name="tipo_averia_id" id="tipo_averia_id" class="form-select">
+                                    <!--
                                     <select name="tipo_averia_id" id="tipo_averia_id" class="form-select" onchange="mostrarOtros()">
+                                    -->
                                         <option value=""></option>
                                         @foreach ($tipo_averia as $tipo)
                                         <option value="{{$tipo->id}}">{{$tipo->descripcion}}</option>

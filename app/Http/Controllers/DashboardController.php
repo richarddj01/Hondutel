@@ -8,7 +8,7 @@ use App\Models\cliente;
 use App\Models\zona;
 use App\Models\servicio;
 use App\Models\telefono;
-use App\Models\Averia;
+use App\Models\averia;
 
 
 class DashboardController extends Controller
@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $zonas = zona::count();
         $servicios = servicio::count();
         $telefonos = telefono::count();
-        $averias = Averia::count();
+        $averias = averia::count();
 
 
         return view('dashboard', compact('users', 'clientes', 'zonas', 'servicios', 'telefonos', 'averias'));

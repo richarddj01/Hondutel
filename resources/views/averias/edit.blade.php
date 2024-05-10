@@ -42,14 +42,13 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="card my-3">
-                                <input type="hidden" name="numero" value='{{$cliente['numero']}}'>
                                 <div class="card-header">Problema presentado</div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                    <select name="tipo_averia_id" id="tipo_averia_id" class="form-select" onchange="mostrarOtros()">
+                                    <select name="tipo_averia_id" id="tipo_averia_id" class="form-select">
                                         <!--Validación si se seleccionó problema o eligió "otro"-->
-                                        @if(isset($averia->detalle_problema))
-                                            <option value="{{$averia->tipo_averia->id}}">{{$averia->detalle_problema}}</option>
+                                        @if(isset($averia->tipo_averia_id))
+                                            <option value="{{$averia->tipo_averia->id}}">{{$averia->tipo_averia->descripcion.' - Actual'}}</option>
                                         @else
                                             <option value=""></option>
                                         @endif
@@ -59,7 +58,7 @@
                                         @endforeach
                                         </select>
                                     </div>
-                                    <textarea type="text" rows="5" name="detalle_problema" id="detalle_problema" class="form-control mt-3">{{$averia->tipo_averia->descripcion}}</textarea>
+                                    <textarea type="text" rows="5" name="detalle_problema" id="detalle_problema" class="form-control mt-3">{{$averia->detalle_problema}}</textarea>
                                 </div>
                             </div>
                                 <div class="text-center">
