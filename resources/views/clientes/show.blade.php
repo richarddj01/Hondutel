@@ -60,6 +60,11 @@
                             <td>
                                 <a class="btn btn-success" href="{{ route('clientes.servicios', ['cliente' => $cliente, 'abonado' => $abonado->id]) }}"> <i class="bi bi-eye-fill"></i> Ver Servicios</a>
                                 <a href="{{route('telefonos.show', $abonado->numero)}}" class="btn btn-warning"> <i class="bi bi-table"></i> Consultar Datos</a>
+                                <form action="{{ route('clientes.eliminar-numero', $abonado->id) }}" method="POST" style="display:inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este número?');"> <i class="bi bi-trash-fill"></i> Eliminar</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

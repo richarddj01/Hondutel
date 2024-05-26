@@ -38,6 +38,12 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                        <strong>Cantidad a agregar:</strong>
+                        <input type="number" class="form-control" name="cantidad" value="{{ $producto->cantidad }}">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group text-center">
                         <a class="btn btn-primary" href="{{ route('inventarios.index') }}"> Volver</a>
                         <button type="submit" class="btn btn-success">Actualizar</button>
@@ -45,5 +51,8 @@
                 </div>
             </div>
         </form>
+
+
+
     </div>
 </x-app-layout>

@@ -44,4 +44,8 @@ class Averia extends Model
     public function abonado():BelongsTo{
         return $this->belongsTo(abonado::class, 'numero', 'numero');
     }
+    public function inventarios()
+    {
+        return $this->belongsToMany(Inventario::class, 'averia_inventarios')->withPivot('cantidad'); // conPivot para obtener la cantidad usada
+    }
 }

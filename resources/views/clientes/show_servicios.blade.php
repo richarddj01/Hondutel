@@ -4,6 +4,11 @@
             <h3>Cliente: {{ $cliente->nombre }}</h3>
         </div>
     <div class="card">
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
         <div class="card-header">
             <h4>Servicios contratados para este número:</h4>
         </div>
@@ -24,7 +29,7 @@
                         {{$servicios_contratados->servicio->descripcion}}
                     </td>
                     <td>
-                    <form action="{{ route('clientes.serviciosDelete', ['abonados_servicio_id'=>$servicios_contratados->id, 'cliente' => $cliente, 'abonado'=> $abonado]) }}" method="POST">
+                    <form action="{{ route('clientes.serviciosDelete', $servicios_contratados->id ) }}" method="POST">
                             @csrf
                             @method('DELETE')
 

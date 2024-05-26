@@ -8,7 +8,6 @@ use App\Models\tipo_cliente;
 use Illuminate\Http\Request;
 use App\Models\cliente;
 use App\Models\abonados_servicio;
-
 use App\Models\servicio;
 
 class ClienteController extends Controller
@@ -57,11 +56,13 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            //'identidad' => 'required|unique:clientes',
-            'nombre' => 'required|alpha:ascii',
-            'apellido' => 'sometimes|nullable|alpha:ascii',
+            'nombre' => 'required|max:50',
+            'apellido' => 'sometimes|nullable|max:50',
             'tipo_cliente_id' => 'required|numeric',
-            'correo' => 'sometimes|nullable|email:rfc,dns'
+            'telefono' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+            'celular' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+            'correo' => 'nullable|email:rfc,dns',
+            'direccion' => 'max:255',
         ]);
 
         cliente::create($request->all());
@@ -72,19 +73,16 @@ class ClienteController extends Controller
     public function show(cliente $cliente)
     {
         //Consulta de numeros asignados en la tabla abonados (usando la relación creada en el modelo cliente)
-        $query = abonados_servicio::query();
-        $query->where('abonado_id', '=', $cliente->abonados[0]->id);
+        if (isset($cliente->abonados[0]->id)){
+            $query = abonados_servicio::query();
+            $query->where('abonado_id', '=', $cliente->abonados[0]->id);
 
-        $abonados_servicios = $query->get();
-        /*
-        // Recorrer todos los abonados asociados al cliente
-        foreach ($cliente->abonados as $abonado) {
-            // Consultar los servicios asociados a cada abonado
-            $servicios = abonados_servicio::where('abonado_id', $abonado->id)->get();
-            // Agregar los resultados al array de abonados_servicios
-            $abonados_servicios[$abonado->id] = $servicios;
+            $abonados_servicios = $query->get();
         }
-*/
+        else{
+            $abonados_servicios = null;
+        }
+
         return view('clientes.show', compact('cliente', 'abonados_servicios'));
     }
 
@@ -106,7 +104,6 @@ class ClienteController extends Controller
     {
 
         $request->validate([
-            //'identidad' => 'required|unique:clientes',
             'servicio_id' => 'required',
             'abonado_id' => 'required',
         ]);
@@ -115,17 +112,34 @@ class ClienteController extends Controller
 
         $servicios = servicio::all();
 
-        return view('clientes.agregar_servicio', compact('abonado', 'cliente', 'servicios'));
+        $abonados_servicios = abonados_servicio::where('abonado_id', $abonado)->get();
+
+        return view('clientes.show_servicios', compact('abonado', 'cliente', 'servicios', 'abonados_servicios'))->with('success', 'Servicio asignado correctamente');;
     }
 
     //Falta Corregir
-    public function destroyServiciosContratados(request $abonados_servicio_id, cliente $cliente, string $abonado)
+    public function destroyServiciosContratados($abonados_servicio_id)
     {
-        abonados_servicio::destroy($abonados_servicio_id);
+        //$integerValue = intval($abonados_servicio_id); // $integerValue ahora es 123
+
+        $abonado_servicio = abonados_servicio::find($abonados_servicio_id);
+        $abonado = $abonado_servicio->abonado_id;
+        $cliente = $abonado_servicio->abonado->cliente_id;
+        $abonado_servicio->delete();
 
         $servicios = servicio::all();
+
         return redirect()->route('clientes.servicios', compact('abonado', 'cliente', 'servicios'))
             ->with('success', 'servicio eliminado exitosamente.');
+    }
+    //Eliminar servicios contratados
+    public function destroyAbonado($id)
+    {
+        $abonado = Abonado::find($id);
+        $abonado->delete();
+
+        return redirect()->route('clientes.show', $abonado->cliente_id)
+                        ->with('success', 'Número eliminado correctamente');
     }
     public function edit(cliente $cliente)
     {

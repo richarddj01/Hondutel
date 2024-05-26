@@ -59,6 +59,14 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-6">
+                                <p><strong>Coordenadas Inicio:</strong> {{$datos_averia['ubicacion_inicio']}}</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong>Coordenadas Finalización:</strong> {{$datos_averia['ubicacion_final']}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
                             <p><strong>Problema Presentado:</strong><br>
                             <p>{{$datos_averia['descripcion']}}</p>
                             <p><strong>Detalle:</strong></p><br>
@@ -66,32 +74,31 @@
                             <p><strong>Reparado por:</strong></p><br>
                             <p>{{ $datos_averia['tecnicos'] }}</p>
                         </div>
-
-                        <gmp-map center="40.731,-73.997" zoom="8" map-id="DEMO_MAP_ID">
-      <div id="floating-panel" slot="control-block-start-inline-center">
-        <input id="latlng" type="text" value="{{$datos_averia['ubicacion_inicio']}},{{$datos_averia['ubicacion_final']}}"/>
-        <input id="submit" type="button" value="Reverse Geocode"/>
-      </div>
-      <gmp-advanced-marker></gmp-advanced-marker>
-    </gmp-map>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_API_KEY&callback=initMap&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v2"
-      defer
-    ></script>
-                        <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
-                        <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
-                        <script>(function () {
-                        var setting = {"width":800,"height":600,"satellite":false,"zoom":12,"placeId":"ChIJ-XK4gzuRY48Rg_QfPNWb42o","cid":"0x6ae39bd53c1ff483","coords":[{{$datos_averia['ubicacion_inicio']}},{{$datos_averia['ubicacion_final']}}],"centerCoord":[{{$datos_averia['ubicacion_inicio']}},{{$datos_averia['ubicacion_final']}}],"id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"1107483"};
-                        var d = document;
-                        var s = d.createElement('script');
-                        s.src = 'https://1map.com/js/script-for-user.js?embed_id=1107483';
-                        s.async = true;
-                        s.onload = function (e) {
-                        window.OneMap.initMap(setting)
-                        };
-                        var to = d.getElementsByTagName('script')[0];
-                        to.parentNode.insertBefore(s, to);
-                        })();</script><a href="https://1map.com/es/map-embed">1 Map</a></div>
+                        <div class="card mt-3">
+                    <div class="card-header">
+                        <strong>Productos Utilizados</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($productos_utilizados as $producto)
+                                        <tr>
+                                            <td>{{ $producto->descripcion }}</td>
+                                            <td>{{ $producto->pivot->cantidad }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

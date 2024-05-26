@@ -88,6 +88,7 @@
                             </tbody>
                         </table>
                         {{$averias->links()}}
+                        <a href="{{ route('report.averiasPendientes') }}" class="btn btn-info float-right"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar PDF</a>
                     </div>
                 </div>
             </div>

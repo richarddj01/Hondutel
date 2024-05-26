@@ -63,12 +63,26 @@ class InventarioController extends Controller
     {
         $request->validate([
             'descripcion' => 'required',
+            'cantidad' => 'required|integer|min:0', // Asegura que la cantidad ingresada sea un número entero positivo
         ]);
 
-        $inventario->update($request->all());
+        // Busca el producto en el inventario por su ID
+        $inventario = Inventario::findOrFail(1);
 
-        return redirect()->route('inventarios.index')
-            ->with('success', 'Producto actualizado exitosamente.');
+        // Obtiene la cantidad actual del producto en el inventario
+        $cantidad_actual = $inventario->cantidad;
+
+        // Obtiene la cantidad adicional ingresada por el usuario
+        $cantidad_adicional = $request->cantidad;
+
+        // Suma la cantidad actual con la cantidad adicional
+        $nueva_cantidad = $cantidad_actual + $cantidad_adicional;
+
+        // Actualiza la cantidad del producto en el inventario con la nueva cantidad calculada
+        $inventario->update(['cantidad' => $nueva_cantidad]);
+
+        return redirect()->route('inventarios.index')->with('success', 'Cantidad actualizada exitosamente.');
+
     }
     public function destroy(Inventario $inventario)
     {

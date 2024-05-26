@@ -17,4 +17,8 @@ class inventario extends Model
     public function averia_inventarios():HasMany{
         return $this->hasMany(averia_inventario::class);
     }
+    public function averias()
+    {
+        return $this->belongsToMany(Averia::class, 'averia_inventarios')->withPivot('cantidad'); // conPivot para obtener la cantidad usada
+    }
 }

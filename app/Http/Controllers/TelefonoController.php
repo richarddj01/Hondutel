@@ -19,7 +19,20 @@ class TelefonoController extends Controller
 
     public function index(Request $request)
     {
-        $telefonos = telefono::paginate(10);
+        $query = telefono::query();
+
+        if ($request->has('search')) {
+            // Divide la cadena de búsqueda en términos individuales
+            $terminosBusqueda = explode(' ', $request->get('search'));
+
+            $query->where(function ($query) use ($terminosBusqueda) {
+                foreach ($terminosBusqueda as $term) {
+                    $query->where('numero', 'like', '%' . $term . '%');
+                }
+            });
+        }
+
+        $telefonos = $query->paginate(10);
 
         return view('telefonos.index', compact('telefonos'));
     }
@@ -63,7 +76,17 @@ class TelefonoController extends Controller
     public function update(Request $request, telefono $telefono)
     {
         $request->validate([
-            'par_primario' => 'sometimes|numeric',
+            'armario' => 'nullable|numeric|max:11',
+            'par_primario' => 'nullable|numeric',
+            'par_secundario' => 'nullable|numeric',
+            'caja_terminal' => 'nullable|max:11',
+            'borne' => 'nullable|numeric|max:11',
+            'ruta' => 'nullable|numeric|max:11',
+            'codigo_pots' => 'nullable|numeric|max:11',
+            'codigo_puerto_pots' => 'nullable|numeric|max:11',
+            'codigo_adsl' => 'nullable|numeric|max:11',
+            'coidgo_puerto_adsl' => 'nullable|numeric',
+            'numero_de_cable' => 'nullable|numeric',
         ]);
 
         $telefono->update($request->all());

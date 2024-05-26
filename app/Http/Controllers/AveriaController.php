@@ -7,6 +7,7 @@ use App\Models\averia;
 use App\Models\tipo_averia;
 use App\Models\abonado;
 use App\Models\telefono;
+use App\Models\inventario;
 use Illuminate\Http\Request;
 
 class AveriaController extends Controller
@@ -26,6 +27,8 @@ class AveriaController extends Controller
     public function index()
     {
         $averias = averia::whereNull('hora_finalizado')->paginate(10);
+
+        session(['averias' => $averias]);
 
         return view('averias.index', compact('averias'));
     }
@@ -79,6 +82,8 @@ class AveriaController extends Controller
         $detalle_problema = $averia->detalle_problema;
         $descripcion = $averia->tipo_averia->descripcion;
         $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema' => $detalle_problema, 'descripcion' => $descripcion];
+
+        session(['cliente' => $cliente, 'datos_averia'=> $datos_averia]);
 
         return view('averias.show', compact('cliente', 'datos_averia'));
     }
@@ -146,7 +151,9 @@ class AveriaController extends Controller
         $iniciado = $averia->iniciado;
         $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema' => $detalle_problema, 'descripcion' => $descripcion, 'iniciado' => $iniciado, 'id' => $averia->id];
 
-        return view('averias.execute', compact('datos_averia', 'cliente'));
+        //Productos
+        $productos = inventario::all();
+        return view('averias.execute', compact('datos_averia', 'cliente', 'productos'));
     }
     public function executeAveria(Request $request, Averia $averia)
     {
@@ -188,6 +195,28 @@ class AveriaController extends Controller
 
         $averia->save();
 
+        if ($request->has('productos') && $request->has('cantidades')) {
+            $productos = $request->productos;
+            $cantidades = $request->cantidades;
+
+            foreach ($productos as $index => $producto_id) {
+                $cantidad_usada = $cantidades[$index] ?? 1;
+
+                // Registrar el producto usado en averia_inventario
+                $averia->inventarios()->attach($producto_id, ['cantidad' => $cantidad_usada]);
+
+                // Actualizar la cantidad en el inventario
+                $inventario = inventario::findOrFail($producto_id);
+                $inventario->cantidad -= $cantidad_usada;
+
+                if ($inventario->cantidad < 0) {
+                    return redirect()->back()->withErrors(['error' => 'No hay suficiente stock para el producto ' . $inventario->nombre]);
+                }
+
+                $inventario->save();
+            }
+        }
+
         return redirect()->route('averias.index')->with('success', 'Avería actualizada exitosamente.');
     }
     public function finalizadasf()
@@ -226,6 +255,9 @@ class AveriaController extends Controller
         // Obtener los resultados paginados
         $averias = $query->paginate(10);
 
+        // Guardar averias en la sesión para el reporte
+        session(['averias' => $averias, 'fecha_inicio' => $fechaInicio, 'fecha_fin' => $fechaFin]);
+
         // Devolver la vista con los datos de las averías finalizadas
         return view('averias.finalizadas', compact('averias'));
     }
@@ -246,13 +278,15 @@ class AveriaController extends Controller
         $fecha_reporte = $averia->created_at;
         $detalle_problema = $averia->detalle_problema;
         $descripcion = $averia->tipo_averia->descripcion;
-        $descripcion = $averia->tipo_averia->descripcion;
         $fecha_reparacion = $averia->updated_at;
         $tecnicos = $averia->tecnicos_encargados;
         $ubicacion_inicio = $averia->ubicacion_inicio;
         $ubicacion_final = $averia->ubicacion_final;
         $datos_averia = ['usuario_reporte' => $usuario_reporte, 'fecha_reporte' => $fecha_reporte, 'detalle_problema'=>$detalle_problema, 'descripcion'=> $descripcion, 'fecha_reparacion' => $fecha_reparacion, 'tecnicos'=>$tecnicos, 'ubicacion_inicio' => $ubicacion_inicio, 'ubicacion_final'=>$ubicacion_final];
 
-        return view('averias.showFinalizadas', compact('cliente', 'datos_averia'));
+        // Obtener los productos utilizados en la avería
+        $productos_utilizados = $averia->inventarios;
+
+        return view('averias.showFinalizadas', compact('cliente', 'datos_averia', 'productos_utilizados'));
     }
 }

@@ -29,7 +29,6 @@ class telefono extends Model
         'velocidad',
         'ip_publica',
         'nodo'
-        //'_token'
     ];
     public function averias():HasMany{
         return $this->hasMany(averia::class);
